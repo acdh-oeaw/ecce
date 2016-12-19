@@ -3,15 +3,15 @@ from vocabs.models import SkosConcept
 
 
 class Date(models.Model):
-    dates = models.IntegerField(blank=True)
-    decade = models.IntegerField(blank=True)
-    semicentury = models.IntegerField(blank=True)
-    century = models.IntegerField(blank=True)
-    pr_cc_checekd = models.FloatField(blank=True)
-    pr_cc_final_V = models.FloatField(blank=True)
-    pr_cc_both = models.FloatField(blank=True)
-    pr_cc_no = models.IntegerField(blank=True)
-    legacy_id = models.CharField(blank=True, null=True, max_length=100)
+    dates = models.IntegerField(primary_key=True)
+    decade = models.IntegerField(blank=True, null=True)
+    semicentury = models.IntegerField(blank=True, null=True)
+    century = models.IntegerField(blank=True, null=True)
+    pr_cc_checekd = models.FloatField(blank=True, null=True)
+    pr_cc_final = models.FloatField(blank=True, null=True)
+    pr_cc_final_V = models.FloatField(blank=True, null=True)
+    pr_cc_both = models.FloatField(blank=True, null=True)
+    pr_cc_no = models.IntegerField(blank=True, null=True)
 
 
 class Corpus(models.Model):
@@ -23,9 +23,9 @@ class Text(models.Model):
     date = models.CharField(blank=True, null=True, max_length=100)
     genre = models.ForeignKey(SkosConcept, blank=True, null=True, related_name="skos_genre")
     corpus = models.ForeignKey(Corpus, blank=True, null=True, related_name="text_corpus")
-    lower = models.IntegerField(blank=True)
-    mean_date = models.ForeignKey(Date, blank=True)
-    size = models.FloatField(blank=True)
+    lower = models.IntegerField(blank=True, null=True)
+    mean_date = models.ForeignKey(Date, blank=True, null=True)
+    size = models.IntegerField(blank=True, null=True)
     dialect = models.ForeignKey(SkosConcept, blank=True, null=True, related_name="skos_dialect")
 
 
@@ -39,9 +39,9 @@ class Consonant(models.Model):
         SkosConcept, blank=True, null=True, related_name="skos_voice")
     airflow = models.ForeignKey(
         SkosConcept, blank=True, null=True, related_name="skos_airflow")
-    sonority = models.IntegerField(blank=True)
+    sonority = models.IntegerField(blank=True, null=True)
     transcription = models.CharField(blank=True, null=True, max_length=1)
-    place_ord = models.IntegerField(blank=True)
+    place_ord = models.IntegerField(blank=True, null=True)
 
 
 class Cluster(models.Model):
@@ -53,13 +53,13 @@ class Cluster(models.Model):
         Consonant, blank=True, null=True, related_name="consonant_third")
     fourth_consonant = models.ForeignKey(
         Consonant, blank=True, null=True, related_name="consonant_fourth")
-    size = models.IntegerField(blank=True)
-    ssp = models.IntegerField(blank=True)
+    size = models.IntegerField(blank=True, null=True)
+    ssp = models.IntegerField(blank=True, null=True)
     cv_structure = models.CharField(blank=True, null=True, max_length=10)
     preferred_consonant = models.CharField(blank=True, null=True, max_length=10)
-    nad_vc = models.IntegerField(blank=True)
-    nad_c1c2 = models.FloatField(blank=True)
-    nad_c2c3 = models.FloatField(blank=True)
+    nad_vc = models.IntegerField(blank=True, null=True)
+    nad_c1c2 = models.FloatField(blank=True, null=True)
+    nad_c2c3 = models.FloatField(blank=True, null=True)
 
 
 class TokenLabel(models.Model):
