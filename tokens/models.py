@@ -90,6 +90,7 @@ class SchwaPresent(models.Model):
         SkosConcept, blank=True, null=True, related_name="skos_schwaprese")
     is_no = models.NullBooleanField()
     is_final = models.NullBooleanField()
+    is_final_v = models.NullBooleanField()
     is_checked = models.NullBooleanField()
     is_both = models.NullBooleanField()
 
