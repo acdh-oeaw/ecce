@@ -57,6 +57,7 @@ class Consonant(models.Model):
 
 
 class Cluster(models.Model):
+    consonant = models.CharField(blank=True, null=True, max_length=10)
     first_consonant = models.ForeignKey(
         Consonant, blank=True, null=True, related_name="consonant_first")
     second_consonant = models.ForeignKey(
@@ -68,10 +69,13 @@ class Cluster(models.Model):
     size = models.IntegerField(blank=True, null=True)
     ssp = models.IntegerField(blank=True, null=True)
     cv_structure = models.CharField(blank=True, null=True, max_length=10)
-    preferred_consonant = models.CharField(blank=True, null=True, max_length=10)
-    nad_vc = models.IntegerField(blank=True, null=True)
+    preferred_cluster = models.CharField(blank=True, null=True, max_length=10)
+    nad_vc = models.FloatField(blank=True, null=True)
     nad_c1c2 = models.FloatField(blank=True, null=True)
     nad_c2c3 = models.FloatField(blank=True, null=True)
+
+    def __str__(self):
+        return "{}".format(self.consonant)
 
 
 class TokenLabel(models.Model):
