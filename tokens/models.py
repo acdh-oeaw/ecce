@@ -13,9 +13,15 @@ class Date(models.Model):
     pr_cc_both = models.FloatField(blank=True, null=True)
     pr_cc_no = models.IntegerField(blank=True, null=True)
 
+    def __str__(self):
+        return "{}".format(self.dates)
+
 
 class Corpus(models.Model):
     name = models.CharField(blank=True, null=True, max_length=100)
+
+    def __str__(self):
+        return "{}".format(self.name)
 
 
 class Text(models.Model):
@@ -27,6 +33,9 @@ class Text(models.Model):
     mean_date = models.ForeignKey(Date, blank=True, null=True)
     size = models.IntegerField(blank=True, null=True)
     dialect = models.ForeignKey(SkosConcept, blank=True, null=True, related_name="skos_dialect")
+
+    def __str__(self):
+        return "{}".format(self.text)
 
 
 class Consonant(models.Model):
@@ -42,6 +51,9 @@ class Consonant(models.Model):
     sonority = models.IntegerField(blank=True, null=True)
     transcription = models.CharField(blank=True, null=True, max_length=1)
     place_ord = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return "{}".format(self.consonant)
 
 
 class Cluster(models.Model):
@@ -68,6 +80,9 @@ class TokenLabel(models.Model):
     morphonotacticity = models.ForeignKey(
         SkosConcept, blank=True, null=True, related_name="skos_morphonotacticity")
 
+    def __str__(self):
+        return "{}".format(self.label)
+
 
 class SchwaPresent(models.Model):
     spelling = models.CharField(blank=True, null=True, max_length=15)
@@ -78,14 +93,21 @@ class SchwaPresent(models.Model):
     is_checked = models.NullBooleanField()
     is_both = models.NullBooleanField()
 
+    def __str__(self):
+        return "{}".format(self.spelling)
+
 
 class OnSet(models.Model):
     rightonset = models.CharField(blank=True, null=True, max_length=15)
-    variable = models.NullBooleanField()
+    variable = models.ForeignKey(
+        SkosConcept, blank=True, null=True, related_name="skos_variable")
     pre_change = models.CharField(blank=True, null=True, max_length=1)
     post_change = models.CharField(blank=True, null=True, max_length=1)
     onset = models.CharField(blank=True, null=True, max_length=15)
     offset = models.CharField(blank=True, null=True, max_length=15)
+
+    def __str__(self):
+        return "{}".format(self.rightonset)
 
 
 class Token(models.Model):
@@ -106,5 +128,9 @@ class Token(models.Model):
     file = models.CharField(blank=True, null=True, max_length=50)
     medial_suffix = models.CharField(blank=True, null=True, max_length=50)
     final_suffix = models.CharField(blank=True, null=True, max_length=50)
-    spelling2 = models.ForeignKey(SchwaPresent, blank=True, null=True, related_name="token_spelling2")
+    spelling2 = models.ForeignKey(
+        SchwaPresent, blank=True, null=True, related_name="token_spelling2")
     rightonset = models.ForeignKey(OnSet, blank=True, null=True, related_name="token_onset")
+
+    def __str__(self):
+        return "{}".format(self.plain_word)
