@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 from vocabs.models import SkosConcept
 
 
@@ -15,6 +16,9 @@ class Date(models.Model):
 
     def __str__(self):
         return "{}".format(self.dates)
+
+    def get_absolute_url(self):
+        return reverse('tokens:date_detail', kwargs={'pk': self.dates})
 
 
 class Corpus(models.Model):

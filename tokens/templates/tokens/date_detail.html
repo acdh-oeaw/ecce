@@ -1,0 +1,40 @@
+{% extends "webpage/base.html" %}
+
+{% block content %}
+
+<h1>{{ object }}</h1>
+<table class="table table-bordered table-striped table-hover">
+    <tr>
+        <th>date</th>
+        <td>{{ object.dates }}</td>
+    </tr>
+    <tr>
+        <th>decade</th>
+        <td>{{ object.decade }}</td>
+    </tr>
+    <tr>
+        <th>semicentury</th>
+        <td>{{ object.semicentury }}</td>
+    </tr>
+    <tr>
+        <th>pr_cc_checekd</th>
+        <td>{{object.pr_cc_checekd}}</td>
+    </tr>
+    <tr>
+        <th>pr_cc_final_V</th>
+        <td>{{object.pr_cc_final_V}}</td>
+    </tr>
+    <tr>
+        <th>pr_cc_both</th>
+        <td>{{object.pr_cc_both}}</td>
+    </tr>
+    <tr>
+        <th>pr_cc_no</th>
+        <td>{{object.pr_cc_no}}</td>
+    </tr>
+</table>
+
+{% if user.is_authenticated %}
+<a class="btn btn-primary" href="{% url 'tokens:date_update' pk=object.dates %}" role="button">edit date</a>
+{% endif %}
+{% endblock %}
