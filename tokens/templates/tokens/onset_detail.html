@@ -1,0 +1,36 @@
+{% extends "webpage/base.html" %}
+
+{% block content %}
+
+<h1>{{ object }}</h1>
+<table class="table table-bordered table-striped table-hover">
+    <tr>
+        <th>rightonset</th>
+        <td>{{ object.rightonset }}</td>
+    </tr>
+    <tr>
+        <th>variable</th>
+        <td>{{ object.variable }}</td>
+    </tr>
+    <tr>
+        <th>pre_change</th>
+        <td>{{ object.pre_change }}</td>
+    </tr>
+    <tr>
+        <th>post_change</th>
+        <td>{{object.post_change}}</td>
+    </tr>
+    <tr>
+        <th>onset</th>
+        <td>{{object.onset}}</td>
+    </tr>
+    <tr>
+        <th>offset</th>
+        <td>{{object.offset}}</td>
+    </tr>
+</table>
+
+{% if user.is_authenticated %}
+<a class="btn btn-primary" href="{% url 'tokens:onset_update' pk=object.pk %}" role="button">edit onset</a>
+{% endif %}
+{% endblock %}

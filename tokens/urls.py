@@ -79,4 +79,15 @@ urlpatterns = [
     url(
         r'^schwapresent/update/(?P<pk>[0-9]+)$', views.SchwaPresentUpdate.as_view(),
         name='schwapresent_update'),
+    url(r'^onset/$', views.OnSetListView.as_view(),
+        name='onset_list'),
+    url(
+        r'^onset/(?P<pk>[0-9]+)$', views.OnSetDetailView.as_view(),
+        name='onset_detail'),
+    url(
+        r'^onset/create/$', views.OnSetCreate.as_view(),
+        name='onset_create'),
+    url(
+        r'^onset/update/(?P<pk>[0-9]+)$', views.OnSetUpdate.as_view(),
+        name='onset_update'),
 ]

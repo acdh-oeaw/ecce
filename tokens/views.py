@@ -185,3 +185,29 @@ class SchwaPresentUpdate(UpdateView):
     model = SchwaPresent
     form_class = SchwaPresentForm
     template_name = 'tokens/schwapresent_create.html'
+
+
+class OnSetDetailView(DetailView):
+
+    model = OnSet
+    template_name = 'tokens/onset_detail.html'
+
+
+class OnSetListView(ListView):
+
+    model = OnSet
+    template_name = 'tokens/onset_list.html'
+
+
+class OnSetCreate(CreateView):
+
+    model = OnSet
+    template_name = 'tokens/onset_create.html'
+    form_class = OnSetForm
+
+
+class OnSetUpdate(UpdateView):
+
+    model = OnSet
+    form_class = OnSetForm
+    template_name = 'tokens/onset_create.html'

@@ -108,3 +108,18 @@ class SchwaPresentForm(forms.ModelForm):
         self.helper.label_class = 'col-md-3'
         self.helper.field_class = 'col-md-9'
         self.helper.add_input(Submit('submit', 'save'),)
+
+
+class OnSetForm(forms.ModelForm):
+    class Meta:
+        model = OnSet
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super(OnSetForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = True
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3'
+        self.helper.field_class = 'col-md-9'
+        self.helper.add_input(Submit('submit', 'save'),)

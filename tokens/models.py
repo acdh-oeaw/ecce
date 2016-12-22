@@ -136,6 +136,9 @@ class OnSet(models.Model):
     def __str__(self):
         return "{}".format(self.rightonset)
 
+    def get_absolute_url(self):
+        return reverse('tokens:onset_detail', kwargs={'pk': self.id})
+
 
 class Token(models.Model):
     legacy_id = models.CharField(blank=True, null=True, max_length=15)
