@@ -90,4 +90,15 @@ urlpatterns = [
     url(
         r'^onset/update/(?P<pk>[0-9]+)$', views.OnSetUpdate.as_view(),
         name='onset_update'),
+    url(r'^token/$', views.TokenListView.as_view(),
+        name='token_list'),
+    url(
+        r'^token/(?P<pk>[0-9]+)$', views.TokenDetailView.as_view(),
+        name='token_detail'),
+    url(
+        r'^token/create/$', views.TokenCreate.as_view(),
+        name='token_create'),
+    url(
+        r'^token/update/(?P<pk>[0-9]+)$', views.TokenUpdate.as_view(),
+        name='token_update'),
 ]

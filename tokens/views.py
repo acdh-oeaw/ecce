@@ -211,3 +211,29 @@ class OnSetUpdate(UpdateView):
     model = OnSet
     form_class = OnSetForm
     template_name = 'tokens/onset_create.html'
+
+
+class TokenDetailView(DetailView):
+
+    model = Token
+    template_name = 'tokens/token_detail.html'
+
+
+class TokenListView(ListView):
+
+    model = Token
+    template_name = 'tokens/token_list.html'
+
+
+class TokenCreate(CreateView):
+
+    model = Token
+    template_name = 'tokens/token_create.html'
+    form_class = TokenForm
+
+
+class TokenUpdate(UpdateView):
+
+    model = Token
+    form_class = TokenForm
+    template_name = 'tokens/token_create.html'

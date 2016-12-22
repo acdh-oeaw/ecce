@@ -164,3 +164,6 @@ class Token(models.Model):
 
     def __str__(self):
         return "{}".format(self.plain_word)
+
+    def get_absolute_url(self):
+        return reverse('tokens:token_detail', kwargs={'pk': self.id})
