@@ -159,3 +159,29 @@ class TokenLabelUpdate(UpdateView):
     model = TokenLabel
     form_class = TokenLabelForm
     template_name = 'tokens/tokenlabel_create.html'
+
+
+class SchwaPresentDetailView(DetailView):
+
+    model = SchwaPresent
+    template_name = 'tokens/schwapresent_detail.html'
+
+
+class SchwaPresentListView(ListView):
+
+    model = SchwaPresent
+    template_name = 'tokens/schwapresent_list.html'
+
+
+class SchwaPresentCreate(CreateView):
+
+    model = SchwaPresent
+    template_name = 'tokens/schwapresent_create.html'
+    form_class = SchwaPresentForm
+
+
+class SchwaPresentUpdate(UpdateView):
+
+    model = SchwaPresent
+    form_class = SchwaPresentForm
+    template_name = 'tokens/schwapresent_create.html'

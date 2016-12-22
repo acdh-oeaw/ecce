@@ -120,6 +120,9 @@ class SchwaPresent(models.Model):
     def __str__(self):
         return "{}".format(self.spelling)
 
+    def get_absolute_url(self):
+        return reverse('tokens:schwapresent_detail', kwargs={'pk': self.id})
+
 
 class OnSet(models.Model):
     rightonset = models.CharField(blank=True, null=True, max_length=15)

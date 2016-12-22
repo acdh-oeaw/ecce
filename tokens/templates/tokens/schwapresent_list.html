@@ -1,0 +1,14 @@
+{% extends "webpage/base.html" %}
+
+{% block content %}
+
+<h1>SchwaPresent</h1>
+<a class="btn btn-primary" href="{% url 'tokens:schwapresent_create' %}" role="button">create schwapresent</a>
+
+
+{% for object in object_list %}
+    <li>
+        <a href="{% url 'tokens:schwapresent_detail' pk=object.id %}">{{ object }}</a></li>
+{% endfor %}
+
+{% endblock %}

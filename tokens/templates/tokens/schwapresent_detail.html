@@ -1,0 +1,40 @@
+{% extends "webpage/base.html" %}
+
+{% block content %}
+
+<h1>{{ object }}</h1>
+<table class="table table-bordered table-striped table-hover">
+    <tr>
+        <th>spelling</th>
+        <td>{{ object.spelling }}</td>
+    </tr>
+    <tr>
+        <th>schwaprese</th>
+        <td>{{ object.schwaprese }}</td>
+    </tr>
+    <tr>
+        <th>is_no</th>
+        <td>{{ object.is_no }}</td>
+    </tr>
+    <tr>
+        <th>is_final</th>
+        <td>{{object.is_final}}</td>
+    </tr>
+    <tr>
+        <th>is_final_v</th>
+        <td>{{object.is_final_v}}</td>
+    </tr>
+    <tr>
+        <th>is_checked</th>
+        <td>{{object.is_checked}}</td>
+    </tr>
+    <tr>
+        <th>is_both</th>
+        <td>{{object.is_both}}</td>
+    </tr>
+</table>
+
+{% if user.is_authenticated %}
+<a class="btn btn-primary" href="{% url 'tokens:schwapresent_update' pk=object.pk %}" role="button">edit schwapresent</a>
+{% endif %}
+{% endblock %}

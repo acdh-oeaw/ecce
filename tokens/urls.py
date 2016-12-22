@@ -68,4 +68,15 @@ urlpatterns = [
     url(
         r'^tokenlabel/update/(?P<pk>[0-9]+)$', views.TokenLabelUpdate.as_view(),
         name='tokenlabel_update'),
+    url(r'^schwapresent/$', views.SchwaPresentListView.as_view(),
+        name='schwapresent_list'),
+    url(
+        r'^schwapresent/(?P<pk>[0-9]+)$', views.SchwaPresentDetailView.as_view(),
+        name='schwapresent_detail'),
+    url(
+        r'^schwapresent/create/$', views.SchwaPresentCreate.as_view(),
+        name='schwapresent_create'),
+    url(
+        r'^schwapresent/update/(?P<pk>[0-9]+)$', views.SchwaPresentUpdate.as_view(),
+        name='schwapresent_update'),
 ]
