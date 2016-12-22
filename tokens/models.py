@@ -90,6 +90,9 @@ class Cluster(models.Model):
     def __str__(self):
         return "{}".format(self.consonant)
 
+    def get_absolute_url(self):
+        return reverse('tokens:cluster_detail', kwargs={'pk': self.id})
+
 
 class TokenLabel(models.Model):
     label = models.CharField(blank=True, null=True, max_length=15)
@@ -99,6 +102,9 @@ class TokenLabel(models.Model):
 
     def __str__(self):
         return "{}".format(self.label)
+
+    def get_absolute_url(self):
+        return reverse('tokens:tokenlabel_detail', kwargs={'pk': self.id})
 
 
 class SchwaPresent(models.Model):

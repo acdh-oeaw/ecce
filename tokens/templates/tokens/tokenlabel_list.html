@@ -1,0 +1,14 @@
+{% extends "webpage/base.html" %}
+
+{% block content %}
+
+<h1>TokenLabel</h1>
+<a class="btn btn-primary" href="{% url 'tokens:tokenlabel_create' %}" role="button">create tokenlabel</a>
+
+
+{% for object in object_list %}
+    <li>
+        <a href="{% url 'tokens:tokenlabel_detail' pk=object.id %}">{{ object }}</a></li>
+{% endfor %}
+
+{% endblock %}

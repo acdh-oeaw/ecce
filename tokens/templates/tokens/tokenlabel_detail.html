@@ -1,0 +1,24 @@
+{% extends "webpage/base.html" %}
+
+{% block content %}
+
+<h1>{{ object }}</h1>
+<table class="table table-bordered table-striped table-hover">
+    <tr>
+        <th>Label</th>
+        <td>{{ object.label }}</td>
+    </tr>
+    <tr>
+        <th>description</th>
+        <td>{{ object.description }}</td>
+    </tr>
+    <tr>
+        <th>morphonotacticity</th>
+        <td>{{ object.morphonotacticity }}</td>
+    </tr>
+</table>
+
+{% if user.is_authenticated %}
+<a class="btn btn-primary" href="{% url 'tokens:tokenlabel_update' pk=object.pk %}" role="button">edit tokenlabel</a>
+{% endif %}
+{% endblock %}

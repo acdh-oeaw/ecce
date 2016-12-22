@@ -46,4 +46,26 @@ urlpatterns = [
     url(
         r'^consonant/update/(?P<pk>[0-9]+)$', views.ConsonantUpdate.as_view(),
         name='consonant_update'),
+    url(r'^cluster/$', views.ClusterListView.as_view(),
+        name='cluster_list'),
+    url(
+        r'^cluster/(?P<pk>[0-9]+)$', views.ClusterDetailView.as_view(),
+        name='cluster_detail'),
+    url(
+        r'^cluster/create/$', views.ClusterCreate.as_view(),
+        name='cluster_create'),
+    url(
+        r'^cluster/update/(?P<pk>[0-9]+)$', views.ClusterUpdate.as_view(),
+        name='cluster_update'),
+    url(r'^tokenlabel/$', views.TokenLabelListView.as_view(),
+        name='tokenlabel_list'),
+    url(
+        r'^tokenlabel/(?P<pk>[0-9]+)$', views.TokenLabelDetailView.as_view(),
+        name='tokenlabel_detail'),
+    url(
+        r'^tokenlabel/create/$', views.TokenLabelCreate.as_view(),
+        name='tokenlabel_create'),
+    url(
+        r'^tokenlabel/update/(?P<pk>[0-9]+)$', views.TokenLabelUpdate.as_view(),
+        name='tokenlabel_update'),
 ]

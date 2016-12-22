@@ -1,8 +1,8 @@
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
-from .models import Date, Corpus, Text, Consonant
-from .forms import DateForm, CorpusForm, TextForm, ConsonantForm
+from .models import *
+from .forms import *
 
 
 class DateDetailView(DetailView):
@@ -107,3 +107,55 @@ class ConsonantUpdate(UpdateView):
     model = Consonant
     form_class = ConsonantForm
     template_name = 'tokens/consonant_create.html'
+
+
+class ClusterDetailView(DetailView):
+
+    model = Cluster
+    template_name = 'tokens/cluster_detail.html'
+
+
+class ClusterListView(ListView):
+
+    model = Cluster
+    template_name = 'tokens/cluster_list.html'
+
+
+class ClusterCreate(CreateView):
+
+    model = Cluster
+    template_name = 'tokens/cluster_create.html'
+    form_class = ClusterForm
+
+
+class ClusterUpdate(UpdateView):
+
+    model = Cluster
+    form_class = ClusterForm
+    template_name = 'tokens/cluster_create.html'
+
+
+class TokenLabelDetailView(DetailView):
+
+    model = TokenLabel
+    template_name = 'tokens/tokenlabel_detail.html'
+
+
+class TokenLabelListView(ListView):
+
+    model = TokenLabel
+    template_name = 'tokens/tokenlabel_list.html'
+
+
+class TokenLabelCreate(CreateView):
+
+    model = TokenLabel
+    template_name = 'tokens/tokenlabel_create.html'
+    form_class = TokenLabelForm
+
+
+class TokenLabelUpdate(UpdateView):
+
+    model = TokenLabel
+    form_class = TokenLabelForm
+    template_name = 'tokens/tokenlabel_create.html'

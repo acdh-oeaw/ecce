@@ -1,0 +1,14 @@
+{% extends "webpage/base.html" %}
+
+{% block content %}
+
+<h1>Cluster</h1>
+<a class="btn btn-primary" href="{% url 'tokens:cluster_create' %}" role="button">create cluster</a>
+
+
+{% for object in object_list %}
+    <li>
+        <a href="{% url 'tokens:cluster_detail' pk=object.id %}">{{ object }}</a></li>
+{% endfor %}
+
+{% endblock %}

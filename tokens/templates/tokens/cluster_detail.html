@@ -1,0 +1,60 @@
+{% extends "webpage/base.html" %}
+
+{% block content %}
+
+<h1>{{ object }}</h1>
+<table class="table table-bordered table-striped table-hover">
+    <tr>
+        <th>Consonant</th>
+        <td>{{ object.consonant }}</td>
+    </tr>
+    <tr>
+        <th>first_consonant</th>
+        <td>{{ object.first_consonant }}</td>
+    </tr>
+    <tr>
+        <th>second_consonant</th>
+        <td>{{ object.second_consonant }}</td>
+    </tr>
+    <tr>
+        <th>third_consonant</th>
+        <td>{{object.third_consonant}}</td>
+    </tr>
+    <tr>
+        <th>fourth_consonant</th>
+        <td>{{object.fourth_consonant}}</td>
+    </tr>
+    <tr>
+        <th>size</th>
+        <td>{{object.size}}</td>
+    </tr>
+    <tr>
+        <th>ssp</th>
+        <td>{{object.ssp}}</td>
+    </tr>
+    <tr>
+        <th>cv_structure</th>
+        <td>{{object.cv_structure}}</td>
+    </tr>
+    <tr>
+        <th>preferred_cluster</th>
+        <td>{{object.preferred_cluster}}</td>
+    </tr>
+    <tr>
+        <th>nad_vc</th>
+        <td>{{object.nad_vc}}</td>
+    </tr>
+    <tr>
+        <th>nad_c1c2</th>
+        <td>{{object.nad_c1c2}}</td>
+    </tr>
+    <tr>
+        <th>nad_c2c3</th>
+        <td>{{object.nad_vc}}</td>
+    </tr>
+</table>
+
+{% if user.is_authenticated %}
+<a class="btn btn-primary" href="{% url 'tokens:cluster_update' pk=object.pk %}" role="button">edit cluster</a>
+{% endif %}
+{% endblock %}
