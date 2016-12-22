@@ -65,6 +65,9 @@ class Consonant(models.Model):
     def __str__(self):
         return "{}".format(self.consonant)
 
+    def get_absolute_url(self):
+        return reverse('tokens:consonant_detail', kwargs={'pk': self.id})
+
 
 class Cluster(models.Model):
     consonant = models.CharField(blank=True, null=True, max_length=10)

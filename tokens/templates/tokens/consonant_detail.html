@@ -1,0 +1,44 @@
+{% extends "webpage/base.html" %}
+
+{% block content %}
+
+<h1>{{ object }}</h1>
+<table class="table table-bordered table-striped table-hover">
+    <tr>
+        <th>Consonant</th>
+        <td>{{ object.consonant }}</td>
+    </tr>
+    <tr>
+        <th>art_manner</th>
+        <td>{{ object.art_manner }}</td>
+    </tr>
+    <tr>
+        <th>art_place</th>
+        <td>{{ object.art_place }}</td>
+    </tr>
+    <tr>
+        <th>voice</th>
+        <td>{{object.voice}}</td>
+    </tr>
+    <tr>
+        <th>airflow</th>
+        <td>{{object.airflow}}</td>
+    </tr>
+    <tr>
+        <th>sonority</th>
+        <td>{{object.sonority}}</td>
+    </tr>
+    <tr>
+        <th>transcription</th>
+        <td>{{object.transcription}}</td>
+    </tr>
+    <tr>
+        <th>place_ord</th>
+        <td>{{object.place_ord}}</td>
+    </tr>
+</table>
+
+{% if user.is_authenticated %}
+<a class="btn btn-primary" href="{% url 'tokens:consonant_update' pk=object.pk %}" role="button">edit consonant</a>
+{% endif %}
+{% endblock %}

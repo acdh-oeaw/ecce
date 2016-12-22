@@ -1,8 +1,8 @@
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
-from .models import Date, Corpus, Text
-from .forms import DateForm, CorpusForm, TextForm
+from .models import Date, Corpus, Text, Consonant
+from .forms import DateForm, CorpusForm, TextForm, ConsonantForm
 
 
 class DateDetailView(DetailView):
@@ -81,3 +81,29 @@ class TextUpdate(UpdateView):
     model = Text
     form_class = TextForm
     template_name = 'tokens/text_create.html'
+
+
+class ConsonantDetailView(DetailView):
+
+    model = Consonant
+    template_name = 'tokens/consonant_detail.html'
+
+
+class ConsonantListView(ListView):
+
+    model = Consonant
+    template_name = 'tokens/consonant_list.html'
+
+
+class ConsonantCreate(CreateView):
+
+    model = Consonant
+    template_name = 'tokens/consonant_create.html'
+    form_class = ConsonantForm
+
+
+class ConsonantUpdate(UpdateView):
+
+    model = Consonant
+    form_class = ConsonantForm
+    template_name = 'tokens/consonant_create.html'

@@ -35,4 +35,15 @@ urlpatterns = [
     url(
         r'^text/update/(?P<pk>[0-9]+)$', views.TextUpdate.as_view(),
         name='text_update'),
+    url(r'^consonant/$', views.ConsonantListView.as_view(),
+        name='consonant_list'),
+    url(
+        r'^consonant/(?P<pk>[0-9]+)$', views.ConsonantDetailView.as_view(),
+        name='consonant_detail'),
+    url(
+        r'^consonant/create/$', views.ConsonantCreate.as_view(),
+        name='consonant_create'),
+    url(
+        r'^consonant/update/(?P<pk>[0-9]+)$', views.ConsonantUpdate.as_view(),
+        name='consonant_update'),
 ]
