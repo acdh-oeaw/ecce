@@ -1,0 +1,14 @@
+{% extends "webpage/base.html" %}
+
+{% block content %}
+
+<h1>Corpora</h1>
+<a class="btn btn-primary" href="{% url 'tokens:corpus_create' %}" role="button">create corpus</a>
+
+
+{% for object in object_list %}
+    <li>
+        <a href="{% url 'tokens:corpus_detail' pk=object.id %}">{{ object }}</a></li>
+{% endfor %}
+
+{% endblock %}

@@ -27,6 +27,9 @@ class Corpus(models.Model):
     def __str__(self):
         return "{}".format(self.name)
 
+    def get_absolute_url(self):
+        return reverse('tokens:corpus_detail', kwargs={'pk': self.id})
+
 
 class Text(models.Model):
     text = models.CharField(blank=True, null=True, max_length=100)
@@ -40,6 +43,9 @@ class Text(models.Model):
 
     def __str__(self):
         return "{}".format(self.text)
+
+    def get_absolute_url(self):
+        return reverse('tokens:text_detail', kwargs={'pk': self.id})
 
 
 class Consonant(models.Model):

@@ -1,0 +1,44 @@
+{% extends "webpage/base.html" %}
+
+{% block content %}
+
+<h1>{{ object }}</h1>
+<table class="table table-bordered table-striped table-hover">
+    <tr>
+        <th>Text</th>
+        <td>{{ object.text }}</td>
+    </tr>
+    <tr>
+        <th>date</th>
+        <td>{{ object.date }}</td>
+    </tr>
+    <tr>
+        <th>genre</th>
+        <td>{{ object.genre }}</td>
+    </tr>
+    <tr>
+        <th>corpus</th>
+        <td>{{object.corpus}}</td>
+    </tr>
+    <tr>
+        <th>lower</th>
+        <td>{{object.lower}}</td>
+    </tr>
+    <tr>
+        <th>mean_date</th>
+        <td>{{object.mean_date}}</td>
+    </tr>
+    <tr>
+        <th>size</th>
+        <td>{{object.size}}</td>
+    </tr>
+    <tr>
+        <th>dialect</th>
+        <td>{{object.dialect}}</td>
+    </tr>
+</table>
+
+{% if user.is_authenticated %}
+<a class="btn btn-primary" href="{% url 'tokens:text_update' pk=object.pk %}" role="button">edit text</a>
+{% endif %}
+{% endblock %}

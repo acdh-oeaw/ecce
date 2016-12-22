@@ -1,8 +1,8 @@
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
-from .models import Date
-from .forms import DateForm
+from .models import Date, Corpus, Text
+from .forms import DateForm, CorpusForm, TextForm
 
 
 class DateDetailView(DetailView):
@@ -29,3 +29,55 @@ class DateUpdate(UpdateView):
     model = Date
     form_class = DateForm
     template_name = 'tokens/date_create.html'
+
+
+class CorpusDetailView(DetailView):
+
+    model = Corpus
+    template_name = 'tokens/corpus_detail.html'
+
+
+class CorpusListView(ListView):
+
+    model = Corpus
+    template_name = 'tokens/corpus_list.html'
+
+
+class CorpusCreate(CreateView):
+
+    model = Corpus
+    template_name = 'tokens/corpus_create.html'
+    form_class = CorpusForm
+
+
+class CorpusUpdate(UpdateView):
+
+    model = Corpus
+    form_class = CorpusForm
+    template_name = 'tokens/corpus_create.html'
+
+
+class TextDetailView(DetailView):
+
+    model = Text
+    template_name = 'tokens/text_detail.html'
+
+
+class TextListView(ListView):
+
+    model = Text
+    template_name = 'tokens/text_list.html'
+
+
+class TextCreate(CreateView):
+
+    model = Text
+    template_name = 'tokens/text_create.html'
+    form_class = TextForm
+
+
+class TextUpdate(UpdateView):
+
+    model = Text
+    form_class = TextForm
+    template_name = 'tokens/text_create.html'
