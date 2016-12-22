@@ -49,7 +49,7 @@ class Text(models.Model):
 
 
 class Consonant(models.Model):
-    consonant = models.CharField(blank=True, null=True, max_length=1)
+    consonant = models.CharField(blank=True, null=True, max_length=15)
     art_manner = models.ForeignKey(
         SkosConcept, blank=True, null=True, related_name="skos_art_manner")
     art_place = models.ForeignKey(
@@ -59,7 +59,7 @@ class Consonant(models.Model):
     airflow = models.ForeignKey(
         SkosConcept, blank=True, null=True, related_name="skos_airflow")
     sonority = models.IntegerField(blank=True, null=True)
-    transcription = models.CharField(blank=True, null=True, max_length=1)
+    transcription = models.CharField(blank=True, null=True, max_length=15)
     place_ord = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
@@ -128,8 +128,8 @@ class OnSet(models.Model):
     rightonset = models.CharField(blank=True, null=True, max_length=15)
     variable = models.ForeignKey(
         SkosConcept, blank=True, null=True, related_name="skos_variable")
-    pre_change = models.CharField(blank=True, null=True, max_length=1)
-    post_change = models.CharField(blank=True, null=True, max_length=1)
+    pre_change = models.CharField(blank=True, null=True, max_length=15)
+    post_change = models.CharField(blank=True, null=True, max_length=15)
     onset = models.CharField(blank=True, null=True, max_length=15)
     offset = models.CharField(blank=True, null=True, max_length=15)
 
