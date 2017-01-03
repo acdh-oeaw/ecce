@@ -39,6 +39,10 @@ class TextForm(forms.ModelForm):
     class Meta:
         model = Text
         fields = "__all__"
+        widgets = {
+            'genre': autocomplete.ModelSelect2(
+                url='../../../vocabs/skos-ac-filtered/?scheme=ecce-genre'),
+        }
 
     def __init__(self, *args, **kwargs):
         super(TextForm, self).__init__(*args, **kwargs)

@@ -49,4 +49,8 @@ urlpatterns = [
             create_field='pref_label',),
         name='skosconcept-autocomplete',
     ),
+    url(
+        r'^skos-ac-filtered/$', dal_views.SKOSConstraintAC.as_view(
+            model=SkosConcept), name='skos-ac-filtered',
+    ),
 ]
