@@ -42,6 +42,8 @@ class TextForm(forms.ModelForm):
         widgets = {
             'genre': autocomplete.ModelSelect2(
                 url='../../../vocabs/skos-ac-filtered/?scheme=ecce-genre'),
+            'dialect': autocomplete.ModelSelect2(
+                url='../../../vocabs/skos-ac-filtered/?scheme=ecce-dialect'),
         }
 
     def __init__(self, *args, **kwargs):
@@ -58,6 +60,16 @@ class ConsonantForm(forms.ModelForm):
     class Meta:
         model = Consonant
         fields = "__all__"
+        widgets = {
+            'art_manner': autocomplete.ModelSelect2(
+                url='../../../vocabs/skos-ac-filtered/?scheme=ecce-artManner'),
+            'art_place': autocomplete.ModelSelect2(
+                url='../../../vocabs/skos-ac-filtered/?scheme=ecce-artPlace'),
+            'voice': autocomplete.ModelSelect2(
+                url='../../../vocabs/skos-ac-filtered/?scheme=ecce-voice'),
+            'airflow': autocomplete.ModelSelect2(
+                url='../../../vocabs/skos-ac-filtered/?scheme=ecce-airflow'),
+        }
 
     def __init__(self, *args, **kwargs):
         super(ConsonantForm, self).__init__(*args, **kwargs)
@@ -88,6 +100,10 @@ class TokenLabelForm(forms.ModelForm):
     class Meta:
         model = TokenLabel
         fields = "__all__"
+        widgets = {
+            'morphonotacticity': autocomplete.ModelSelect2(
+                url='../../../vocabs/skos-ac-filtered/?scheme=ecce-morphonotacticity'),
+        }
 
     def __init__(self, *args, **kwargs):
         super(TokenLabelForm, self).__init__(*args, **kwargs)
@@ -103,6 +119,10 @@ class SchwaPresentForm(forms.ModelForm):
     class Meta:
         model = SchwaPresent
         fields = "__all__"
+        widgets = {
+            'schwaprese': autocomplete.ModelSelect2(
+                url='../../../vocabs/skos-ac-filtered/?scheme=ecce-schwapresent'),
+        }
 
     def __init__(self, *args, **kwargs):
         super(SchwaPresentForm, self).__init__(*args, **kwargs)
@@ -118,6 +138,10 @@ class OnSetForm(forms.ModelForm):
     class Meta:
         model = OnSet
         fields = "__all__"
+        widgets = {
+            'variable': autocomplete.ModelSelect2(
+                url='../../../vocabs/skos-ac-filtered/?scheme=ecce-variable'),
+        }
 
     def __init__(self, *args, **kwargs):
         super(OnSetForm, self).__init__(*args, **kwargs)
@@ -133,6 +157,10 @@ class TokenForm(forms.ModelForm):
     class Meta:
         model = Token
         fields = "__all__"
+        widgets = {
+            'pos': autocomplete.ModelSelect2(
+                url='../../../vocabs/skos-ac-filtered/?scheme=ecce-pos'),
+        }
 
     def __init__(self, *args, **kwargs):
         super(TokenForm, self).__init__(*args, **kwargs)
