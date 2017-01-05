@@ -63,7 +63,7 @@
             <span class="icon-bar"/>
             <span class="icon-bar"/>
           </button>
-        </div>  
+        </div>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
@@ -92,28 +92,28 @@
                         <a href="{% url 'browsing:browse_tokens' %}">Tokens</a>
                     </li>
                     <li>
-                        <a href="{% url 'tokens:date_list' %}">Dates</a>
+                        <a href="{% url 'browsing:browse_dates' %}">Dates</a>
                     </li>
                     <li>
-                        <a href="{% url 'tokens:corpus_list' %}">Corpora</a>
+                        <a href="{% url 'browsing:browse_corpora' %}">Corpora</a>
                     </li>
                     <li>
-                        <a href="{% url 'tokens:text_list' %}">Texts</a>
+                        <a href="{% url 'browsing:browse_texts' %}">Texts</a>
                     </li>
                     <li>
-                        <a href="{% url 'tokens:consonant_list' %}">Consonants</a>
+                        <a href="{% url 'browsing:browse_consonants' %}">Consonants</a>
                     </li>
                     <li>
-                        <a href="{% url 'tokens:cluster_list' %}">Cluster</a>
+                        <a href="{% url 'browsing:browse_clusters' %}">Cluster</a>
                     </li>
                     <li>
-                        <a href="{% url 'tokens:tokenlabel_list' %}">TokenLabel</a>
+                        <a href="{% url 'browsing:browse_tokenlabels' %}">TokenLabel</a>
                     </li>
                     <li>
-                        <a href="{% url 'tokens:schwapresent_list' %}">SchwaPresent</a>
+                        <a href="{% url 'browsing:browse_schwapresents' %}">SchwaPresent</a>
                     </li>
                     <li>
-                        <a href="{% url 'tokens:onset_list' %}">OnSet</a>
+                        <a href="{% url 'browsing:browse_onsets' %}">OnSet</a>
                     </li>
                   </ul>
                 </li>
@@ -122,7 +122,7 @@
                   <span class="caret"/>
                   </a>
                   <ul class="dropdown-menu">
-                    
+
                   </ul>
                 </li> -->
                 {% if user.is_authenticated %}
@@ -192,7 +192,7 @@
         {% endblock %}
       </div>
     </section>
-    
+
     <div align="text-center">
         <span class="socialShare"> <!-- The share buttons will be inserted here --> </span>
       </div>
@@ -201,20 +201,20 @@
       <div class="row text-center">
         <div class="col-sm-4">
           <a href="https://acdh.oeaw.ac.at/acdh/" class="navlink" target="_blank">
-              <img src="{% static 'webpage/img/ACDH_kurz_Weiss.png' %}" alt="ACDH" width="25%"/>   
+              <img src="{% static 'webpage/img/ACDH_kurz_Weiss.png' %}" alt="ACDH" width="25%"/>
           </a>
         </div>
         <div class="col-sm-4">
             <a href="{% projects_metadata 'github' %}" class="navlink" target="_blank">
-              <img src="{% static 'webpage/img/GitHub-Mark-Light-64px.png' %}" alt="{{ metadata.github }}" width="10%"/>   
+              <img src="{% static 'webpage/img/GitHub-Mark-Light-64px.png' %}" alt="{{ metadata.github }}" width="10%"/>
             </a>
         </div>
         <!-- <div class="col-sm-4">
             <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="navlink" target="_blank">
-              <img src="{% static 'webpage/img/by-sa.png' %}" alt="CC-BY-SA-4.0" width="25%"/>                 
+              <img src="{% static 'webpage/img/by-sa.png' %}" alt="CC-BY-SA-4.0" width="25%"/>
             </a>
         </div> -->
-      </div>  
+      </div>
     </footer>
     {% block scripts %}
     <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap.min.js' %}"></script>
@@ -233,7 +233,7 @@
           $('.socialShare').shareButtons(options);
         });
       </script>
-    <!-- scroll-up-bottom -->        
+    <!-- scroll-up-bottom -->
     <script type="text/javascript">
             // Setup plugin with default settings
             $(document).ready(function() {
@@ -243,7 +243,7 @@
                     }
                 });
             });
-    </script>    
+    </script>
     {% endblock %}
   </body>
 </html>

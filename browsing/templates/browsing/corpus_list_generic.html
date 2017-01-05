@@ -1,15 +1,15 @@
 {% extends "browsing/generic_list.html" %}
-{% block Titel %}Browse Token{% endblock %}
-{% block list_title %}Browse Token
+{% block Titel %}Browse Corpus{% endblock %}
+{% block list_title %}Browse Corpus
     {% if user.is_authenticated %}
-        | <a class ="btn btn-success"  href="{% url 'tokens:token_create' %}">Create new Token</a>
+        | <a class ="btn btn-success"  href="{% url 'tokens:corpus_create' %}">Create new Corpus</a>
     {% endif %}
 {% endblock %}
 
 {% block reset_button %}
 <!-- <a class ="btn btn-default"  id="01">Show/Hide Advanced search options</a></br> -->
  <p></p>
- <a class ="btn btn-default"  href="{% url 'browsing:browse_tokens' %}">Reset search</a>
+ <a class ="btn btn-default"  href="{% url 'browsing:browse_corpora' %}">Reset search</a>
 {% endblock %}
 
 {% block customScripts %}
