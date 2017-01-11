@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'vocabs',
     'tokens',
     'browsing',
+    'charts'
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap3"
