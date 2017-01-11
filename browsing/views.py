@@ -1,5 +1,5 @@
 from django_tables2 import SingleTableView, RequestConfig
-from tokens.models import Token
+from tokens.models import *
 from .filters import *
 from .forms import *
 from .tables import *
@@ -34,4 +34,68 @@ class TokenListView(GenericListView):
     table_class = TokenTable
     template_name = 'browsing/token_list_generic.html'
     filter_class = TokenListFilter
+    formhelper_class = GenericFilterFormHelper
+
+
+class DateListView(GenericListView):
+    model = Date
+    table_class = DateTable
+    template_name = 'browsing/date_list_generic.html'
+    filter_class = DateListFilter
+    formhelper_class = GenericFilterFormHelper
+
+
+class CorpusListView(GenericListView):
+    model = Corpus
+    table_class = CorpusTable
+    template_name = 'browsing/corpus_list_generic.html'
+    filter_class = CorpusListFilter
+    formhelper_class = GenericFilterFormHelper
+
+
+class TextListView(GenericListView):
+    model = Text
+    table_class = TextTable
+    template_name = 'browsing/text_list_generic.html'
+    filter_class = TextListFilter
+    formhelper_class = GenericFilterFormHelper
+
+
+class ConsonantListView(GenericListView):
+    model = Consonant
+    table_class = ConsonantTable
+    template_name = 'browsing/consonant_list_generic.html'
+    filter_class = ConsonantListFilter
+    formhelper_class = GenericFilterFormHelper
+
+
+class ClusterListView(GenericListView):
+    model = Cluster
+    table_class = ClusterTable
+    template_name = 'browsing/cluster_list_generic.html'
+    filter_class = ClusterListFilter
+    formhelper_class = GenericFilterFormHelper
+
+
+class TokenLabelListView(GenericListView):
+    model = TokenLabel
+    table_class = TokenLabelTable
+    template_name = 'browsing/tokenlabel_list_generic.html'
+    filter_class = TokenLabelListFilter
+    formhelper_class = GenericFilterFormHelper
+
+
+class SchwaPresentListView(GenericListView):
+    model = SchwaPresent
+    table_class = SchwaPresentTable
+    template_name = 'browsing/schwapresent_list_generic.html'
+    filter_class = SchwaPresentListFilter
+    formhelper_class = GenericFilterFormHelper
+
+
+class OnSetListView(GenericListView):
+    model = OnSet
+    table_class = OnSetTable
+    template_name = 'browsing/onset_list_generic.html'
+    filter_class = OnSetListFilter
     formhelper_class = GenericFilterFormHelper

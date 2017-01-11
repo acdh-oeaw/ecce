@@ -1,5 +1,5 @@
 import django_filters
-from tokens.models import Token
+from tokens.models import *
 
 django_filters.filters.LOOKUP_TYPES = [
     ('', '---------'),
@@ -22,3 +22,51 @@ class TokenListFilter(django_filters.FilterSet):
 
     class Meta:
         model = Token
+
+
+class DateListFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = Date
+
+
+class CorpusListFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = Corpus
+
+
+class TextListFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = Text
+
+
+class ConsonantListFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = Consonant
+
+
+class ClusterListFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = Cluster
+
+
+class TokenLabelListFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = TokenLabel
+
+
+class SchwaPresentListFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = SchwaPresent
+
+
+class OnSetListFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = OnSet
