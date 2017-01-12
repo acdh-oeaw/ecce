@@ -4,19 +4,15 @@ from tokens.models import *
 
 
 class TokenTable(tables.Table):
-    id = tables.Column(verbose_name='ID')
-    legacy_id = tables.LinkColumn(
+    # id = tables.Column(verbose_name='ID')
+    plain_word = tables.LinkColumn(
         'tokens:token_detail',
         args=[A('pk')], verbose_name='Token'
-    )
-    cluster = tables.LinkColumn(
-        'tokens:cluster_detail',
-        args=[A('cluster.id')], verbose_name='Cluster'
     )
 
     class Meta:
         model = Token
-        fields = ['id', 'legacy_id']
+        fields = ['cluster', 'left_context', 'plain_word', 'right_context']
         attrs = {"class": "table table-hover table-striped table-condensed"}
 
 
