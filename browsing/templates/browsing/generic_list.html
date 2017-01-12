@@ -18,13 +18,13 @@
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
                 {% load django_tables2 crispy_forms_tags %}
                 {% crispy filter.form filter.form.helper %}
                 {% block reset_button %}
                 {% endblock %}
             </div>
-            <div class="col-md-10">
+            <div class="col-md-8">
                 {% render_table table %}
             </div>
         </div>

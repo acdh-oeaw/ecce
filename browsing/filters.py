@@ -1,6 +1,7 @@
 import django_filters
 from dal import autocomplete
 from tokens.models import *
+from vocabs.models import SkosConcept
 
 django_filters.filters.LOOKUP_TYPES = [
     ('', '---------'),
@@ -20,14 +21,52 @@ django_filters.filters.LOOKUP_TYPES = [
 
 
 class TokenListFilter(django_filters.FilterSet):
-    # cluster = django_filters.CharFilter(
-    #     label='Cluster',
-    #     help_text=False, widget=autocomplete.ListSelect2(url='dal_ac:cluster-ac')
-    # )
+    plain_word = django_filters.ModelMultipleChoiceFilter(
+        widget=autocomplete.Select2Multiple(url='dal_ac:tokenM-ac'),
+        queryset=Token.objects.all(),
+        #action='my_custom_filter',
+        lookup_expr='icontains',
+        label='Token',
+        help_text=False,
+    )
+
+    cluster = django_filters.ModelMultipleChoiceFilter(
+        queryset=Cluster.objects.all(),
+        #action='my_custom_filter',
+        lookup_expr='icontains',
+        label='Cluster',
+        help_text=False,
+        widget=autocomplete.ModelSelect2Multiple(url='dal_ac:cluster-ac')
+    )
+    text_source__genre = django_filters.ModelMultipleChoiceFilter(
+        queryset=SkosConcept.objects.filter(scheme__dc_title='ecce-genre'),
+        #action='my_custom_filter',
+        lookup_expr='icontains',
+        label='Genre',
+        help_text=False,
+    )
+    text_source__mean_date = django_filters.ModelMultipleChoiceFilter(
+        queryset=Date.objects.all(),
+        #action='my_custom_filter',
+        lookup_expr='icontains',
+        label='Mean Date',
+        help_text=False
+    )
+
+    text_source = django_filters.ModelMultipleChoiceFilter(
+        queryset=Text.objects.all(),
+        #action='my_custom_filter',
+        lookup_expr='icontains',
+        label='Text',
+        help_text=False
+    )
 
     class Meta:
         model = Token
-        fields = ['cluster', 'cluster__size', 'text_source', 'text_source__genre', 'text_source__mean_date']
+        fields = [
+            'text_source__mean_date', 'text_source', 'text_source__genre', 
+            'plain_word', 'cluster', 'cluster__size'
+        ]
 
 
 class DateListFilter(django_filters.FilterSet):
