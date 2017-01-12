@@ -1,4 +1,5 @@
 import django_filters
+from dal import autocomplete
 from tokens.models import *
 
 django_filters.filters.LOOKUP_TYPES = [
@@ -19,9 +20,14 @@ django_filters.filters.LOOKUP_TYPES = [
 
 
 class TokenListFilter(django_filters.FilterSet):
+    cluster = django_filters.CharFilter(
+        label='Cluster',
+        help_text=False, widget=autocomplete.ListSelect2(url='dal_ac:cluster-ac')
+    )
 
     class Meta:
         model = Token
+        fields = ['cluster', 'cluster__size', 'text_source', 'text_source__mean_date']
 
 
 class DateListFilter(django_filters.FilterSet):
