@@ -12,3 +12,4 @@ __pycache__/
 /ecce/settings/dev_secret.py
 /ecce/settings/mysql.py
 /ecce/settings/postgres.py
+/try-and-error.ipynb

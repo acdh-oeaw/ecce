@@ -17,8 +17,10 @@
     <div class="panel panel-default" style="text-align:center">
         <div class="panel-heading"><h1 >Please - make a selection</h1><br/>
             <select id="chartselector" class="form-control">
-                    <option value="---">---</option>
-                    <option value="{% url 'charts:test_json_pie' %}">LASK4EVER</option>
+                <option value="---">---</option>
+                <option value="{% url 'charts:test_json_pie' %}">LASK4EVER</option>
+                <option value="{% url 'charts:data-token-per-genre' %}">Tokens per Genre</option>
+                <option value="{% url 'charts:data-token-per-genre-static' %}">Tokens per Genre (static)</option>
             </select>
         </div>
         <div class="panel-body">
