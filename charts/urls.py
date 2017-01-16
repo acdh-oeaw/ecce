@@ -9,5 +9,7 @@ urlpatterns = [
     url(r'^testjsonpie/$', views.test_json_pie, name='test_json_pie'),
     url(r'^data-token-per-genre/$', views.tokens_per_genre, name='data-token-per-genre'),
     url(r'^data-token-per-genre-static/$', views.tokens_per_genre_static, name='data-token-per-genre-static'),
-    url(r'^data-token-per-date/$', views.tokens_per_date, name='data-token-per-date'),
+    url(r'^data-token-per-semicentury/$', views.tokens_per_semicentury, name='data-token-per-semicentury'),
+    url(r'^data-token-per-decade/$', views.tokens_per_decade, name='data-token-per-decade'),
+    url(r'^data-token-per-dates/$', views.tokens_per_dates, name='data-token-per-dates')
 ]

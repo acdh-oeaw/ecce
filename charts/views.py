@@ -85,7 +85,7 @@ def tokens_per_genre_static(request):
     return JsonResponse(data)
 
 
-def tokens_per_date(request):
+def tokens_per_semicentury(request):
     payload = []
     payload_line = []
     dates = set([x.semicentury for x in Date.objects.all()])
@@ -99,6 +99,56 @@ def tokens_per_date(request):
         "title": "Tokens per semicentury",
         "subtitle": "Tokens per semicentury",
         "legendx": "Semicentury",
+        "legendy": "# of Tokens",
+        "categories": sorted(dates),
+        "measuredObject": "Tokens",
+        "ymin": 0,
+        "payload": payload,
+        "payload_line": payload_line
+    }
+
+    return JsonResponse(data)
+
+
+def tokens_per_decade(request):
+    payload = []
+    payload_line = []
+    dates = set([x.decade for x in Date.objects.all()])
+    for x in sorted(dates):
+        amount = len(Token.objects.filter(text_source__mean_date__decade=x))
+        payload.append(["{}".format(x), amount])
+        payload_line.append(amount)
+
+    data = {
+        "items": len(Token.objects.all()),
+        "title": "Tokens per decade",
+        "subtitle": "Tokens per decade",
+        "legendx": "Decade",
+        "legendy": "# of Tokens",
+        "categories": sorted(dates),
+        "measuredObject": "Tokens",
+        "ymin": 0,
+        "payload": payload,
+        "payload_line": payload_line
+    }
+
+    return JsonResponse(data)
+
+
+def tokens_per_dates(request):
+    payload = []
+    payload_line = []
+    dates = set([x.dates for x in Date.objects.all()])
+    for x in sorted(dates):
+        amount = len(Token.objects.filter(text_source__mean_date__dates=x))
+        payload.append(["{}".format(x), amount])
+        payload_line.append(amount)
+
+    data = {
+        "items": len(Token.objects.all()),
+        "title": "Tokens per years",
+        "subtitle": "Tokens per years",
+        "legendx": "Year",
         "legendy": "# of Tokens",
         "categories": sorted(dates),
         "measuredObject": "Tokens",
