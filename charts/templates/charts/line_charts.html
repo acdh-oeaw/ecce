@@ -29,9 +29,14 @@
     </div>
 </div>
 
+
 {% endblock %}
 {% block scripts %}
-
+<script type="text/javascript">
+	$( document ).ajaxStart(function() {
+  		$('html, body').css("cursor", "wait");
+	});
+</script>
     <script type="text/javascript">
         $(document).ready(function() {
             var fetched_url = History.getState().url;
@@ -84,6 +89,7 @@
     </script>
     <script type="text/javascript">
         $("#chartselector").change(function(){
+        	$('html, body').css("cursor", "wait");
             var chart_label = $("#chartselector option:selected").text();
             var which_chart = $("#chartselector option:selected").val();
             var url_param = "?chart="+which_chart
