@@ -82,6 +82,7 @@
     </script>
     <script type="text/javascript">
         $("#chartselector").change(function(){
+            $('html, body').css("cursor", "wait");
             var chart_label = $("#chartselector option:selected").text();
             var which_chart = $("#chartselector option:selected").val();
             var url_param = "?chart="+which_chart
