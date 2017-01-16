@@ -82,6 +82,7 @@ class ClusterTable(tables.Table):
     second_consonant = tables.RelatedLinkColumn(verbose_name='2nd')
     third_consonant = tables.RelatedLinkColumn(verbose_name='3rd')
     fourth_consonant = tables.RelatedLinkColumn(verbose_name='4th')
+    related_tokens_amount = tables.Column(verbose_name='#related Tokens', orderable=False)
 
     class Meta:
         model = Cluster

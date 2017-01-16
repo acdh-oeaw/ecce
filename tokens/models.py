@@ -87,6 +87,11 @@ class Cluster(models.Model):
     nad_c1c2 = models.FloatField(blank=True, null=True)
     nad_c2c3 = models.FloatField(blank=True, null=True)
 
+    @property
+    def related_tokens_amount(self):
+        tokens = Token.objects.filter(cluster=self.id)
+        return len(tokens)
+
     def __str__(self):
         return "{}".format(self.consonant)
 
@@ -161,6 +166,7 @@ class Token(models.Model):
     spelling2 = models.ForeignKey(
         SchwaPresent, blank=True, null=True, related_name="token_spelling2")
     rightonset = models.ForeignKey(OnSet, blank=True, null=True, related_name="token_onset")
+
 
     def __str__(self):
         return "{}".format(self.plain_word)
