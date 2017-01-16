@@ -4,7 +4,7 @@ from tokens.models import *
 
 
 class TokenTable(tables.Table):
-    # id = tables.Column(verbose_name='ID')
+    cluster = tables.RelatedLinkColumn(verbose_name='Cluster')
     plain_word = tables.LinkColumn(
         'tokens:token_detail',
         args=[A('pk')], verbose_name='Token'
@@ -66,7 +66,7 @@ class ConsonantTable(tables.Table):
 
     class Meta:
         model = Consonant
-        fields = ['consonant']
+        fields = ['consonant', 'first_consonant', 'second_consonant', 'third_consonant', 'fourth_consonant']
         attrs = {"class": "table table-hover table-striped table-condensed"}
 
 
@@ -78,6 +78,10 @@ class ClusterTable(tables.Table):
     consonant = tables.Column(
         verbose_name='Consonant'
     )
+    first_consonant = tables.RelatedLinkColumn(verbose_name='1st')
+    second_consonant = tables.RelatedLinkColumn(verbose_name='2nd')
+    third_consonant = tables.RelatedLinkColumn(verbose_name='3rd')
+    fourth_consonant = tables.RelatedLinkColumn(verbose_name='4th')
 
     class Meta:
         model = Cluster
