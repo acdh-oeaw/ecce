@@ -18,9 +18,9 @@
     <div class="panel-heading"><h1 >Please - make a selection</h1><br/>
         <select id="chartselector" class="form-control">
             <option value="---">---</option>
-            <option value="{% url 'charts:test_json' %}">LASK4EVER</option>
             <option value="{% url 'charts:data-token-per-genre' %}">Tokens per Genre</option>
-            <option value="{% url 'charts:data-token-per-genre-static' %}">Tokens per Genre (static)</option>  
+            <option value="{% url 'charts:data-token-per-genre-static' %}">Tokens per Genre (static)</option>
+            <option value="{% url 'charts:data-token-per-date' %}">Tokens per Semicentury</option>  
         </select>
     </div>
     <div class="panel-body">
@@ -186,7 +186,7 @@
         $(function (){
           var options = {
             twitter: {
-              text: 'So many digital editions!',
+              text: '',
               via: ''
             },
             facebook : true,

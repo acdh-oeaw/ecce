@@ -18,13 +18,11 @@
         <div class="panel-heading"><h1 >Please - make a selection</h1><br/>
             <select id="chartselector" class="form-control">
                 <option value="---">---</option>
-                <option value="{% url 'charts:data-token-per-genre' %}">Tokens per Genre</option>
-                <option value="{% url 'charts:data-token-per-genre-static' %}">Tokens per Genre (static)</option>
                 <option value="{% url 'charts:data-token-per-date' %}">Tokens per Semicentury</option>  
             </select>
         </div>
         <div class="panel-body">
-            <div id="donut"/>
+            <div id="chartscontainer"/>
         </div>
     </div>
 </div>
@@ -44,31 +42,39 @@
                 var header = data.title;
                 $("h1").text(data.title);
                 console.log(items);
-                    $('#donut').highcharts({
-                        chart: {
-                            
-                            type: 'pie',
-                            options3d: {
-                                enabled: true,
-                                alpha: 45
-                            }
-                        },
-                        title: {
-                        text: ""
-                        },
-                        subtitle: {
-                            text: data.subtitle
-                        },
-                        plotOptions: {
-                            pie: {
-                                innerSize: 50,
-                                depth: 40
-                            }
-                        },
-                        series: [{
-                            name: measuredObject,
-                            data:data.payload
-                        }]
+                    Highcharts.chart('chartscontainer', {
+                    	chart : {
+                    		type: 'line'
+                    	},
+                    	title: {
+                    		text: ""
+                    	},
+                    	subtitle: {
+                    		text: data.subtitle
+                    	},
+                    	xAxis: {
+                    		title : {
+                    			text: data.legendx
+                    		},
+                    		categories: data.categories
+                    	},
+                    	yAxis: {
+                    		title: {
+                    			text: data.legendy
+                    		}
+                    	},
+                    	plotOptions: {
+                    		line: {
+                    			dataLabels: {
+                    				enabled: true
+                    			},
+                    			enableMouseTracking: true
+                    		}
+                    	},
+                    	series: [{
+                    		name: measuredObject,
+                    		data : data.payload_line
+                    	}]
                     });
                 });
             });
@@ -87,34 +93,42 @@
                 var header = data.title;
                 $("h1").text(data.title);
                 console.log(items);
-                    $('#donut').highcharts({
-                        chart: {
-                            
-                            type: 'pie',
-                            options3d: {
-                                enabled: true,
-                                alpha: 45
-                            }
-                        },
-                        title: {
-                        text: ""
-                        },
-                        subtitle: {
-                            text: data.subtitle
-                        },
-                        plotOptions: {
-                            pie: {
-                                innerSize: 50,
-                                depth: 40
-                            }
-                        },
-                        series: [{
-                            name: measuredObject,
-                            data:data.payload
-                        }]
+                    Highcharts.chart('chartscontainer', {
+                    	chart : {
+                    		type: 'line'
+                    	},
+                    	title: {
+                    		text: ""
+                    	},
+                    	subtitle: {
+                    		text: data.subtitle
+                    	},
+                    	xAxis: {
+                    		title: {
+                    			text : data.legendx
+                    		},
+                    		categories: data.categories
+                    	},
+                    	yAxis: {
+                    		title: {
+                    			text: data.legendy
+                    		}
+                    	},
+                    	plotOptions: {
+                    		line: {
+                    			dataLabels: {
+                    				enabled: true
+                    			},
+                    			enableMouseTracking: false
+                    		}
+                    	},
+                    	series: [{
+                    		name: measuredObject,
+                    		data : data.payload_line
+                    	}]
                     });
-            });
-        });
+            	});
+        	});
     </script>
     <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap-tab.js' %}"></script>
