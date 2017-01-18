@@ -24,7 +24,6 @@ class TokenListFilter(django_filters.FilterSet):
     plain_word = django_filters.ModelMultipleChoiceFilter(
         widget=autocomplete.Select2Multiple(url='dal_ac:tokenM-ac'),
         queryset=Token.objects.all(),
-        #action='my_custom_filter',
         lookup_expr='icontains',
         label='Token',
         help_text=False,
@@ -32,7 +31,6 @@ class TokenListFilter(django_filters.FilterSet):
 
     cluster = django_filters.ModelMultipleChoiceFilter(
         queryset=Cluster.objects.all(),
-        #action='my_custom_filter',
         lookup_expr='icontains',
         label='Cluster',
         help_text=False,
@@ -40,14 +38,12 @@ class TokenListFilter(django_filters.FilterSet):
     )
     text_source__genre = django_filters.ModelMultipleChoiceFilter(
         queryset=SkosConcept.objects.filter(scheme__dc_title='ecce-genre'),
-        #action='my_custom_filter',
         lookup_expr='icontains',
         label='Genre',
         help_text=False,
     )
     text_source__mean_date = django_filters.ModelMultipleChoiceFilter(
         queryset=Date.objects.all(),
-        #action='my_custom_filter',
         lookup_expr='icontains',
         label='Mean Date',
         help_text=False
@@ -55,7 +51,6 @@ class TokenListFilter(django_filters.FilterSet):
 
     text_source = django_filters.ModelMultipleChoiceFilter(
         queryset=Text.objects.all(),
-        #action='my_custom_filter',
         lookup_expr='icontains',
         label='Text',
         help_text=False
@@ -64,7 +59,7 @@ class TokenListFilter(django_filters.FilterSet):
     class Meta:
         model = Token
         fields = [
-            'text_source__mean_date', 'text_source', 'text_source__genre', 
+            'text_source__mean_date', 'text_source', 'text_source__genre',
             'plain_word', 'cluster', 'cluster__size'
         ]
 
