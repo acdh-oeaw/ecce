@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^browsing/', include('browsing.urls', namespace='browsing')),
     url(r'^autocomplete/', include('tokens.dal_urls', namespace='dal_ac')),
     url(r'^datamodel/', include('django_spaghetti.urls', namespace='datamodel')),
+    url(r'^dtable/', include('dtable.urls', namespace='dtable')),
 ]
