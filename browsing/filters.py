@@ -55,12 +55,24 @@ class TokenListFilter(django_filters.FilterSet):
         label='Text',
         help_text=False
     )
+    label = django_filters.ModelMultipleChoiceFilter(
+        queryset=TokenLabel.objects.all(),
+        lookup_expr='icontains',
+        label='Label',
+        help_text=False,
+    )
+    rightonset = django_filters.ModelMultipleChoiceFilter(
+        queryset=OnSet.objects.all(),
+        lookup_expr='icontains',
+        label='OnSet',
+        help_text=False,
+    )
 
     class Meta:
         model = Token
         fields = [
-            'text_source__mean_date', 'text_source', 'text_source__genre',
-            'plain_word', 'cluster', 'cluster__size'
+            'text_source__mean_date', 'text_source__mean_date__century', 'text_source',
+            'text_source__genre', 'label', 'rightonset', 'plain_word', 'cluster', 'cluster__size'
         ]
 
 

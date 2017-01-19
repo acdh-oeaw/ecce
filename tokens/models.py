@@ -167,7 +167,6 @@ class Token(models.Model):
         SchwaPresent, blank=True, null=True, related_name="token_spelling2")
     rightonset = models.ForeignKey(OnSet, blank=True, null=True, related_name="token_onset")
 
-
     def __str__(self):
         return "{}".format(self.plain_word)
 

@@ -7,17 +7,20 @@ class TokenTable(tables.Table):
     cluster = tables.RelatedLinkColumn(verbose_name='Cluster')
     plain_word = tables.LinkColumn(
         'tokens:token_detail',
-        args=[A('pk')], verbose_name='Token'
+        args=[A('pk')], verbose_name='Plain Word'
     )
 
     class Meta:
         model = Token
-        fields = ['cluster', 'left_context', 'plain_word', 'right_context']
+        fields = [
+            'left_context', 'plain_word', 'pos', 'right_context',
+            'cluster', 'medial_suffix', 'final_suffix', 'spelling2'
+        ]
         attrs = {"class": "table table-hover table-striped table-condensed"}
 
 
 class DateTable(tables.Table):
-    #id = tables.Column(verbose_name='ID')
+    # id = tables.Column(verbose_name='ID')
     dates = tables.LinkColumn(
         'tokens:date_detail',
         args=[A('pk')], verbose_name='Date'
@@ -66,7 +69,10 @@ class ConsonantTable(tables.Table):
 
     class Meta:
         model = Consonant
-        fields = ['consonant', 'first_consonant', 'second_consonant', 'third_consonant', 'fourth_consonant']
+        fields = [
+            'consonant', 'first_consonant', 'second_consonant',
+            'third_consonant', 'fourth_consonant'
+        ]
         attrs = {"class": "table table-hover table-striped table-condensed"}
 
 
