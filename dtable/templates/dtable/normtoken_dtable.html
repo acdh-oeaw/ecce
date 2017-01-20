@@ -37,7 +37,18 @@
 {% endblock %}
 
 {% block content %}
+
 <h1><a href="https://bitbucket.org/pigletto/django-datatables-view">dtable-bitbucket</a></h1>
+
+<form>
+<select class="form-control" name="selected_colums" multiple>
+  {% for x in th_headers %}
+    <option value="{{ x }}">{{ x|title }}</option>
+  {% endfor %}
+</select>
+<input type="submit">
+</form>
+<p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>
     <table class="datatable">
         <thead>
             {% for x in th_headers %}

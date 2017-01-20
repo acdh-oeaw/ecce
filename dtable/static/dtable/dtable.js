@@ -2,7 +2,7 @@ $(document).ready(function() {
     var dt_table = $('.datatable').dataTable({
         language: dt_language,  // global variable defined in html
         order: [[ 0, "desc" ]],
-        lengthMenu: [[25, 50, 100, 200], [25, 50, 100, 200]],
+        lengthMenu: [[5, 50, 100, 200], [5, 50, 100, 200]],
         columnDefs: [
             {orderable: true,
              searchable: true,

@@ -4,6 +4,7 @@ from django_datatables_view.base_datatable_view import BaseDatatableView
 from .models import NormToken
 from tokens.models import Text
 
+fields = [f.name for f in NormToken._meta.get_fields() if f.name != 'label_description']
 
 class TextDtableJson(BaseDatatableView):
     model = Text
@@ -26,13 +27,11 @@ class TextDtable(TemplateView):
     template_name = "dtable/text_dtable.html"
 
 
-fields = [f.name for f in NormToken._meta.get_fields() if f.name != 'label_description']
-
-
 class NormTokenDtableJson(BaseDatatableView):
+
     model = NormToken
-    columns = fields
-    order_columns = fields
+    columns = [f.name for f in NormToken._meta.get_fields() if f.name != 'label_description']
+    order_columns = [f.name for f in NormToken._meta.get_fields() if f.name != 'label_description']
     max_display_length = 100
 
 
@@ -40,6 +39,11 @@ class NormTokenDtable(TemplateView):
     template_name = "dtable/normtoken_dtable.html"
 
     def get_context_data(self, **kwargs):
+        selected_columns = self.request.GET.getlist('selected_colums')
+        if selected_columns is None:
+            selected_columns = all_fields()
+        else:
+            selected_columns = selected_columns
         context = super(NormTokenDtable, self).get_context_data(**kwargs)
-        context['th_headers'] = fields
+        context['th_headers'] = [f.name for f in NormToken._meta.get_fields() if f.name != 'label_description']
         return context
