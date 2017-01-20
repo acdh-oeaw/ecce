@@ -1,0 +1,50 @@
+{% extends "webpage/base.html" %}
+{% load staticfiles %}
+{% load i18n staticfiles %}
+
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+    <script src="{% static "dtable/dtable.js" %}"></script>
+    <script type="text/javascript">
+        var DATA_URL = '{% url "dtable:normtoken-data" %}';
+        // translations for datatables
+
+        var dt_language = {
+            "emptyTable":     "{% trans "No data available in table" %}",
+            "info":           "{% trans "Showing _START_ to _END_ of _TOTAL_ entries" %}",
+            "infoEmpty":      "{% trans "Showing 0 to 0 of 0 entries" %}",
+            "infoFiltered":   "{% trans "(filtered from _MAX_ total entries)" %}",
+            "infoPostFix":    "",
+            "thousands":      ",",
+            "lengthMenu":     "{% trans "Show _MENU_ entries" %}",
+            "loadingRecords": "{% trans "Loading..." %}",
+            "processing":     "{% trans "Processing..." %}",
+            "search":         "{% trans "Search:" %}",
+            "zeroRecords":    "{% trans "No matching records found" %}",
+            "paginate": {
+                "first":      "{% trans "First" %}",
+                "last":       "{% trans "Last" %}",
+                "next":       "{% trans "Next" %}",
+                "previous":   "{% trans "Previous" %}"
+            },
+            "aria": {
+                "sortAscending":  "{% trans ": activate to sort column ascending" %}",
+                "sortDescending": "{% trans ": activate to sort column descending" %}"
+            }
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+<h1><a href="https://bitbucket.org/pigletto/django-datatables-view">dtable-bitbucket</a></h1>
+    <table class="datatable">
+        <thead>
+            {% for x in th_headers %}
+              <th>{{ x }}</th>
+            {% endfor %}
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+{% endblock %}
