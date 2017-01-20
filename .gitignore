@@ -13,3 +13,6 @@ __pycache__/
 /ecce/settings/mysql.py
 /ecce/settings/postgres.py
 /try-and-error.ipynb
+/ecce.json
+/data/access-export/derRest.xlsx
+/data/access-export/derLetzteRest.xlsx
