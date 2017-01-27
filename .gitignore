@@ -17,3 +17,4 @@ __pycache__/
 /data/access-export/derRest.xlsx
 /data/access-export/derLetzteRest.xlsx
 /all.json
+/normtoken.json

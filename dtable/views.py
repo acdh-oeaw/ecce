@@ -6,6 +6,7 @@ from tokens.models import Text
 
 fields = [f.name for f in NormToken._meta.get_fields() if f.name != 'label_description']
 
+
 class TextDtableJson(BaseDatatableView):
     model = Text
     columns = ['text', 'date', 'genre', 'corpus', 'dialect']
