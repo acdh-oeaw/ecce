@@ -1,6 +1,7 @@
 import django_filters
 from dal import autocomplete
 from tokens.models import *
+from dtable.models import NormToken
 from vocabs.models import SkosConcept
 
 django_filters.filters.LOOKUP_TYPES = [
@@ -20,15 +21,20 @@ django_filters.filters.LOOKUP_TYPES = [
 ]
 
 
-class TokenListFilter(django_filters.FilterSet):
-    plain_word = django_filters.ModelMultipleChoiceFilter(
-        widget=autocomplete.Select2Multiple(url='dal_ac:tokenM-ac'),
-        queryset=Token.objects.all(),
-        lookup_expr='icontains',
-        label='Token',
-        help_text=False,
-    )
+class NormTokenListFilter(django_filters.FilterSet):
 
+    class Meta:
+        model = NormToken
+
+
+class TokenListFilter(django_filters.FilterSet):
+    # plain_word = django_filters.ModelMultipleChoiceFilter(
+    #     widget=autocomplete.Select2Multiple(url='dal_ac:tokenM-ac'),
+    #     queryset=Token.objects.all(),
+    #     lookup_expr='icontains',
+    #     label='Token',
+    #     help_text=False,
+    # )
     cluster = django_filters.ModelMultipleChoiceFilter(
         queryset=Cluster.objects.all(),
         lookup_expr='icontains',
@@ -48,7 +54,6 @@ class TokenListFilter(django_filters.FilterSet):
         label='Mean Date',
         help_text=False
     )
-
     text_source = django_filters.ModelMultipleChoiceFilter(
         queryset=Text.objects.all(),
         lookup_expr='icontains',

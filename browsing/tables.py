@@ -1,6 +1,15 @@
 import django_tables2 as tables
 from django_tables2.utils import A
 from tokens.models import *
+from dtable.models import NormToken
+
+
+class NormTokenTable(tables.Table):
+
+    class Meta:
+        model = NormToken
+        fields = [f.name for f in NormToken._meta.get_fields() if f.name != 'label_description']
+        attrs = {"class": "table table-hover table-striped table-condensed"}
 
 
 class TokenTable(tables.Table):

@@ -1,5 +1,6 @@
 from django_tables2 import SingleTableView, RequestConfig
 from tokens.models import *
+from dtable.models import NormToken
 from .filters import *
 from .forms import *
 from .tables import *
@@ -27,6 +28,14 @@ class GenericListView(SingleTableView):
         context = super(GenericListView, self).get_context_data()
         context[self.context_filter_name] = self.filter
         return context
+
+
+class AllInOneView(GenericListView):
+    model = NormToken
+    table_class = NormTokenTable
+    template_name = 'browsing/normtoken.html'
+    filter_class = NormTokenListFilter
+    formhelper_class = GenericFilterFormHelper
 
 
 class TokenListView(GenericListView):
