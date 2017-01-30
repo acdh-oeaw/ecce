@@ -49,7 +49,7 @@ REST_FRAMEWORK = {
 }
 
 SPAGHETTI_SAUCE = {
-    'apps': ['vocabs', 'tokens'],
+    'apps': ['vocabs', 'tokens', 'dtable'],
     'show_fields': False,
     'exclude': {'auth': ['user']}
 }

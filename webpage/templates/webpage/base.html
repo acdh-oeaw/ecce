@@ -90,11 +90,9 @@
                   </a>
                   <ul class="dropdown-menu">
                     <li>
-                        <a href="{% url 'dtable:normtoken-dtable' %}">NormToken DataTable</a>
-                    </li>
-                    <li>
                         <a href="{% url 'browsing:browse_normtokens' %}">NormToken FilterView</a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li>
                         <a href="{% url 'browsing:browse_tokens' %}">Tokens</a>
                     </li>
@@ -122,6 +120,7 @@
                     <li>
                         <a href="{% url 'browsing:browse_onsets' %}">OnSet</a>
                     </li>
+                    {% endif %}
                   </ul>
                 </li>
                 <li class="dropdown">
