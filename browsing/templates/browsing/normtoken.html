@@ -6,8 +6,44 @@
     {% endif %}
 
 {% endblock %}
+{%block customView %}
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myColumns">
+    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+  </button>
+{% endblock %}
 
 {% block reset_button %}
  <p></p>
  <a class ="btn btn-default"  href="{% url 'browsing:browse_normtokens' %}">Reset search</a>
+{% endblock %}
+{% block customScripts %}
+
+<script>
+  var toogable_colums = [{% for x in toogable_colums %} '{{ x }}', {% endfor %}]
+
+  $( document ).ready(function() {
+    initColums();
+  });
+
+  function displayColumn(headertext) {
+      var t = $("a[href*='="+ headertext+ "']").parent().index() + 1;
+      $('td:nth-child('+t+'),th:nth-child('+t+')').toggle();
+  }
+
+
+  function handleClick(cb) {
+    alert("Clicked, new value = " + cb.checked);
+  }
+
+  function initColums(){
+    toogable_colums.forEach(function(a){
+      displayColumn(a);
+      console.log(a);
+    })
+  };
+
+</script>
+
+
+
 {% endblock %}

@@ -8,7 +8,7 @@ class NormTokenTable(tables.Table):
 
     class Meta:
         model = NormToken
-        fields = [f.name for f in NormToken._meta.get_fields() if f.name != 'label_description']
+        fields = [f.name for f in NormToken._meta.get_fields()]
         attrs = {"class": "table table-hover table-striped table-condensed"}
 
 

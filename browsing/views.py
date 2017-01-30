@@ -40,8 +40,12 @@ class AllInOneView(GenericListView):
     def get_context_data(self, **kwargs):
         context = super(GenericListView, self).get_context_data()
         context[self.context_filter_name] = self.filter
-        th_headers = [f.name for f in self.model._meta.get_fields()]
-        context['th_headers'] = th_headers
+        init_columns = [
+            'plain_word', 'pos', 'cluster_consonant', 'medial_suffix', 'final_suffix'
+        ]
+        all_columns = [f.name for f in self.model._meta.get_fields()]
+        toogable_colums = list(set(all_columns) - set(init_columns))
+        context['toogable_colums'] = toogable_colums
         return context
 
 

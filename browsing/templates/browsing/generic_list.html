@@ -13,9 +13,7 @@
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myFilter">
           <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
         </button>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myColumns">
-          <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-        </button>
+        {%block customView %}{% endblock %}
         {% block reset_button %}{% endblock %}
     </div>
     <div class="panel-body">
@@ -33,7 +31,7 @@
         </div>
         <div class="modal-body">
           <form>
-            {% for x in th_headers %}
+            {% for x in toogable_colums %}
             <label class="checkbox-inline">
               <input type="checkbox" value="{{x}}" onclick="displayColumn(this.value);">{{x}}
             </label>
@@ -66,33 +64,6 @@
   </div>
 
 {% block customScripts %}
-  <script>
-  var startcolums = ['id', 'legacy_id'];
-
-  $( document ).ready(function() {
-    initColums();
-  });
-
-    function displayColumn(headertext) {
-        var t = $("a[href='?sort="+ headertext+ "']").parent().index() + 1;
-        $('td:nth-child('+t+'),th:nth-child('+t+')').toggle();
-    }
-
-    function handleClick(cb) {
-      alert("Clicked, new value = " + cb.checked);
-    }
-
-
-
-    function initColums(){
-      startcolums.forEach(function(a){
-        displayColumn(a);
-        console.log(a);
-      })
-    };
-
-  </script>
-
 
 {% endblock %}
 
