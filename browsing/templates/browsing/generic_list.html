@@ -2,64 +2,98 @@
 {% load staticfiles %}
 {% block Titel %} {% endblock %}
 {% block scriptHeader %}
-<!-- <link rel="stylesheet" type="text/css" href="{% static 'webpage/libraries/jquery.autocomplete/jquery.autocomplete.css' %}"/>
-<script src="{% static 'webpage/libraries/jquery.autocomplete/jquery.autocomplete.js' %}"></script> -->
 {% endblock %}
+{% load django_tables2 crispy_forms_tags %}
+
 {% block content %}
 <div class="container">
-<div class="panel panel-default">
+  <div class="panel panel-default">
     <div class="panel-heading">
-
         <h1>{% block list_title %}{% endblock %}</h1>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myFilter">
           <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
         </button>
-        |
-        select colums:
-        <form>
-          <select class="form-control" name="selected_colums" multiple>
-            {% for x in th_headers %}
-              <option value="{{ x }}">{{ x|title }}</option>
-            {% endfor %}
-          </select>
-          <input type="submit">
-        </form>
-
-    {% block create_button %}
-
-    {% endblock %}
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myColumns">
+          <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        </button>
+        {% block reset_button %}{% endblock %}
     </div>
     <div class="panel-body">
-
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
+      {% render_table table %}
+    </div>
+  </div>
+  <!-- Modals -->
+    <div class="modal fade" id="myColumns" role="dialog">
     <div class="modal-dialog">
-
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h4 class="modal-title">Select Colums</h4>
         </div>
         <div class="modal-body">
-          {% load django_tables2 crispy_forms_tags %}
-          {% crispy filter.form filter.form.helper %}
-          {% block reset_button %}
-            {% endblock %}
+          <form>
+            {% for x in th_headers %}
+            <label class="checkbox-inline">
+              <input type="checkbox" value="{{x}}" onclick="displayColumn(this.value);">{{x}}
+            </label>
+            {% endfor %}
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
-
+    </div>
+  </div>
+    <div class="modal fade" id="myFilter" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Filter & Search</h4>
+          </div>
+          <div class="modal-body">
+            {% crispy filter.form filter.form.helper %}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-                {% render_table table %}
-            </div>
-        </div>
-    </div>
+{% block customScripts %}
+  <script>
+  var startcolums = ['id', 'legacy_id'];
 
-{% block customScripts %}{% endblock %}
+  $( document ).ready(function() {
+    initColums();
+  });
+
+    function displayColumn(headertext) {
+        var t = $("a[href='?sort="+ headertext+ "']").parent().index() + 1;
+        $('td:nth-child('+t+'),th:nth-child('+t+')').toggle();
+    }
+
+    function handleClick(cb) {
+      alert("Clicked, new value = " + cb.checked);
+    }
+
+
+
+    function initColums(){
+      startcolums.forEach(function(a){
+        displayColumn(a);
+        console.log(a);
+      })
+    };
+
+  </script>
+
+
+{% endblock %}
+
 {% endblock %}
