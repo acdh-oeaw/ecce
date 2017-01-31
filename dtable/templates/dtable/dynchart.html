@@ -1,5 +1,6 @@
 {% extends "webpage/base.html" %}
 {% load staticfiles %}
+{% load django_tables2 crispy_forms_tags %}
 {% block Titel %}some bar charts{% endblock %}
 
 {% block scriptHeader %}
@@ -14,15 +15,37 @@
 {% endblock %}
 {% block content %}
 <div class="container">
-<div class="panel panel-default" style="text-align:center">
-<h1>
-  {% for x in filtered_objects %}
-    {{ x }}
-  {% endfor %}
-
-</h1>
-    <div class="panel-body">
-        <div id="bar"></div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Some Charts |
+      <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myFilter">
+        <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+      </button>
+      | {{ amount }}
     </div>
+    <div class="panel-body">{{ filter|length }}</div>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myFilter" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Filter & Search</h4>
+      </div>
+      <div class="modal-body">
+        {% crispy filter.form filter.form.helper %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 </div>
 {% endblock %}

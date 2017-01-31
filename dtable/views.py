@@ -15,9 +15,15 @@ class DynChartView(GenericListView):
     def get_context_data(self, **kwargs):
         context = super(GenericListView, self).get_context_data()
         context[self.context_filter_name] = self.filter
-        filtered_objects = NormTokenListFilter(
-            self.request.GET, queryset=NormToken.objects.all()
-        )
-
-        context['filtered_objects'] = filtered_objects[1:20]
+        data = {
+            "items": len(self.filter),
+            "title": "Tokens per semicentury",
+            "subtitle": "Tokens per semicentury",
+            "legendx": "Semicentury",
+            "legendy": "# of Tokens",
+            "categories": "sorted(dates)",
+            "measuredObject": "Tokens",
+            "ymin": 0,
+        }
+        context['amount'] = data
         return context

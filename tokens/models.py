@@ -13,6 +13,7 @@ class Date(models.Model):
     pr_cc_final_V = models.FloatField(blank=True, null=True)
     pr_cc_both = models.FloatField(blank=True, null=True)
     pr_cc_no = models.IntegerField(blank=True, null=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return "{}".format(self.dates)
@@ -40,6 +41,7 @@ class Text(models.Model):
     mean_date = models.ForeignKey(Date, blank=True, null=True)
     size = models.IntegerField(blank=True, null=True)
     dialect = models.ForeignKey(SkosConcept, blank=True, null=True, related_name="skos_dialect")
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return "{}".format(self.text)
@@ -61,6 +63,7 @@ class Consonant(models.Model):
     sonority = models.IntegerField(blank=True, null=True)
     transcription = models.CharField(blank=True, null=True, max_length=15)
     place_ord = models.IntegerField(blank=True, null=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return "{}".format(self.consonant)
@@ -86,6 +89,7 @@ class Cluster(models.Model):
     nad_vc = models.FloatField(blank=True, null=True)
     nad_c1c2 = models.FloatField(blank=True, null=True)
     nad_c2c3 = models.FloatField(blank=True, null=True)
+    updated = models.DateTimeField(auto_now=True)
 
     @property
     def related_tokens_amount(self):
@@ -103,7 +107,9 @@ class TokenLabel(models.Model):
     label = models.CharField(blank=True, null=True, max_length=15)
     description = models.TextField(blank=True, null=True)
     morphonotacticity = models.ForeignKey(
-        SkosConcept, blank=True, null=True, related_name="skos_morphonotacticity")
+        SkosConcept, blank=True, null=True, related_name="skos_morphonotacticity"
+    )
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return "{}".format(self.label)
@@ -121,6 +127,7 @@ class SchwaPresent(models.Model):
     is_final_v = models.NullBooleanField()
     is_checked = models.NullBooleanField()
     is_both = models.NullBooleanField()
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return "{}".format(self.spelling)
@@ -137,6 +144,7 @@ class OnSet(models.Model):
     post_change = models.CharField(blank=True, null=True, max_length=15)
     onset = models.CharField(blank=True, null=True, max_length=15)
     offset = models.CharField(blank=True, null=True, max_length=15)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return "{}".format(self.rightonset)
@@ -166,6 +174,7 @@ class Token(models.Model):
     spelling2 = models.ForeignKey(
         SchwaPresent, blank=True, null=True, related_name="token_spelling2")
     rightonset = models.ForeignKey(OnSet, blank=True, null=True, related_name="token_onset")
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return "{}".format(self.plain_word)

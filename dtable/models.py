@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.utils import timezone
 
 
 class NormToken(models.Model):
@@ -85,6 +86,7 @@ class NormToken(models.Model):
     rightonset_post_change = models.CharField(blank=True, null=True, max_length=150)
     rightonset_onset = models.CharField(blank=True, null=True, max_length=150)
     rightonset_offset = models.CharField(blank=True, null=True, max_length=150)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return "{}".format(self.plain_word)
