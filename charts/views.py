@@ -80,6 +80,7 @@ def tokens_per_genre(request):
 
     return JsonResponse(data)
 
+
 def tokens_per_genre_static(request):
     data = {"measuredObject": "Tokens", "legendy": "# of Tokens", "title": "Tokens per genres", "payload": [["LETTERS_PRIV", 2260], ["FICTION", 3324], ["EDUC_TREATISE", 2237], ["LETTERS_NON-PRIV", 1335], ["BIBLE", 11060], ["SCIENCE_OTHER", 1708], ["PHILOSOPHY", 3289], ["HISTORY", 24427], ["BIOGRAPHY_OTHER", 1178], ["SCIENCE_MEDICINE", 783], ["RULE", 3888], ["RELIG_TREATISE", 46654], ["HANDBOOK_ASTRO", 913], ["SERMON", 18577], ["PHILOSOPHY/FICTION", 2152], ["BIOGRAPHY_LIFE_OF_SAINT", 3687], ["RELIG_TRREATISE", 1895], ["HANDBOOK_MEDICINE", 1002], ["HOMILY", 13500], ["ROMANCE", 8541], ["TRAVELOGUE", 7425], ["HOMILY_POETRY", 5509], ["HANDBOOK_OTHER", 3152], ["DIARY_PRIV", 2396], ["PROCEEDINGS_TRIAL", 2223], ["DRAMA_COMEDY", 1869], ["BIOGRAPHY_AUTO", 644], ["LAW", 1753]], "items": 177400, "ymin": 0, "subtitle": "Tokens per genre", "legendx": "Genres"}
     return JsonResponse(data)
