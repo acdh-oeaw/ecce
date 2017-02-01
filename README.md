@@ -3,7 +3,7 @@ This is the code repo for the ecce-web-app. The application is based on python/d
 # install
 
 1. Clone the repo
-2. Create a virtual environemt 
+2. Create a virtual environemt
 3. Run `pip install -r requirements.txt` to install needed packages
 4. Change into the application's root directory and run `python manage.py runserver --settings=ecce.settings.dev`
 5. The application should be accessible now under [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
@@ -20,3 +20,10 @@ This is the code repo for the ecce-web-app. The application is based on python/d
 8. run `import_Consonant`
 9. rund `immport_Cluster`
 10. and finally run `import_Tokens`. Since there are roughly 300.000 Tokens, the data files, stored in `data/access-export` are splitted. Therefore you have to change the name of the file in the `import_Tokens`.
+
+# denormalize datamodel
+
+To ease querying (and general working with the data), the normalized data model can be denormalized, meaning all tables/classes are merged into one.
+This denormalzing process can be trigged by a custom manage.py command:
+`python manage.py python manage.py synctokens 0 20`
+The intergers passed in the argument define the start, endpoint of the list of all Tokens. Since there is quite a lot of data to process, it is recommended to denormalize in steps.  
