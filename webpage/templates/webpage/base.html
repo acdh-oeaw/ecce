@@ -132,7 +132,13 @@
                   </a>
                   <ul class="dropdown-menu">
                     <li>
-                      <a href="{% url 'dtable:dynchart' property='genre' %}">Custom Charts</a>
+                      <a href="{% url 'dtable:dynchart' property='text_genre' %}">Tokens per Genre</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'dtable:dynchart' property='text_corpus' %}">Tokens per Corpus</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'dtable:dynchart' property='text_mean_date_century' %}">Tokens per Centuries</a>
                     </li>
                     <li>
                       <a href="{% url 'charts:bar_charts' %}">Bar Charts</a>

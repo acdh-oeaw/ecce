@@ -11,27 +11,19 @@
         <script src="{% static 'charts/highcharts/highcharts-3d.js' %}"></script>
         <script src="{% static 'charts/highcharts/exporting.js' %}"></script>
     <!--highcharts END -->
-    <!-- history.js -->
-        <script src="{% static 'charts/historyjs/jquery.history.js' %}"></script>
-    <!-- history.js END-->
 {% endblock %}
 {% block content %}
 <div class="container">
     <div class="panel panel-default">
-        <div class="panel-heading">
-          Some Charts |
-          <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myFilter">
+        <div class="panel-heading" style="text-align:center;">
+            <h1>{{ data.title }}</h1>
+            <legend>{{ table.paginator.count }} / {{ all }}</legend>
+            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myFilter" title="click to add filter">
             <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
           </button>
-          | {{ data }}
         </div>
         <div class="panel-body">
             <div id="bar"></div>
-            <ul>
-                {% for key, value in data.payload.items %}
-                    <li>{{key}} {{value}}</li>
-                {% endfor %}
-            </ul>
         </div>
     </div>
 
@@ -58,7 +50,7 @@
 
 <script>
     $(document).ready(function() {
-        var payload = [{% for key, value in data.payload.items %} ["{{ key }}", {{ value }} ], {% endfor %}]
+        var payload = [{% for key, value in data.payload.items %} ["{{ key }}", {{ value }} ], {% endfor %}].sort()
         $(function () {
             $('#bar').highcharts({
             chart: {
