@@ -1,7 +1,9 @@
 {% extends "webpage/base.html" %}
 {% load staticfiles %}
 {% load django_tables2 crispy_forms_tags %}
-{% block Titel %}some bar charts{% endblock %}
+{% block Titel %}
+    {{ data.title }}
+{% endblock %}
 
 {% block scriptHeader %}
     <!--highcharts -->
@@ -15,16 +17,24 @@
 {% endblock %}
 {% block content %}
 <div class="container">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      Some Charts |
-      <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myFilter">
-        <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
-      </button>
-      | {{ amount }}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          Some Charts |
+          <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myFilter">
+            <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+          </button>
+          | {{ data }}
+        </div>
+        <div class="panel-body">
+            <div id="bar"></div>
+            <ul>
+                {% for key, value in data.payload.items %}
+                    <li>{{key}} {{value}}</li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
-    <div class="panel-body">{{ filter|length }}</div>
-  </div>
+
 
 
   <!-- Modal -->
@@ -45,6 +55,67 @@
     </div>
   </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        var payload = [{% for key, value in data.payload.items %} ["{{ key }}", {{ value }} ], {% endfor %}]
+        $(function () {
+            $('#bar').highcharts({
+            chart: {
+                type: 'column',
+                options3d: {
+                        enabled: true,
+                        alpha: 20
+                    }
+            },
+            title: {
+                text: ""
+                },
+            subtitle: {
+                text: "{{ data.subtitle }}"
+                },
+            xAxis: {
+                type: 'category',
+                labels: {
+                    rotation: -45,
+                    style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                },
+            yAxis: {
+                min: "{{data.ymin}}",
+                title: {
+                text: "{{data.legendy}}"
+                }
+            },
+            legend: {
+                enabled: false
+                },
+            tooltip: {
+            },
+            series: [{
+            name: "{{data.measuredObject}}",
+            data: payload,
+            dataLabels: {
+            enabled: false,
+            rotation: -90,
+            color: '#FFFFFF',
+            align: 'right',
+            format: '{point.y:.1f}', // one decimal
+            y: 10, // 10 pixels down from the top
+            style: {
+            fontSize: '13px',
+            fontFamily: 'Verdana, sans-serif'
+            }
+            }
+        }]
+    });
+    });
+});
+</script>
+
 
 
 </div>

@@ -24,6 +24,6 @@ This is the code repo for the ecce-web-app. The application is based on python/d
 # denormalize datamodel
 
 To ease querying (and general working with the data), the normalized data model can be denormalized, meaning all tables/classes are merged into one.
-This denormalzing process can be trigged by a custom manage.py command:
+This denormalizing process can be trigged by a custom manage.py command:
 `python manage.py python manage.py synctokens 0 20`
-The intergers passed in the argument define the start, endpoint of the list of all Tokens. Since there is quite a lot of data to process, it is recommended to denormalize in steps.  
+The integers passed in the argument define the start, endpoint of the list of all Tokens. Since there is quite a lot of data to process, it is recommended to denormalize in steps.  
