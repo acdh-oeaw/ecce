@@ -12,18 +12,13 @@
       {% endblock %}
       <meta name="author" content="{{ metadata.author }}">
       <!-- Bootstrap -->
-      <link rel="stylesheet" href="{% static 'webpage/libraries/bootstrap337/css/bootstrap.min.css' %}"/></link>
+      <link rel="stylesheet" href="{% static 'webpage/libraries/bootstrap335/css/bootstrap.min.css' %}"/></link>
       <!-- custom css -->
       <link rel="stylesheet" href="{% static 'webpage/css/style.css' %}"/></link>
       <!--scroll to top CSS -->
       <link rel="stylesheet" href="{% static 'webpage/libraries/scroll-to-top/css/ap-scroll-top.min.css'%}"></link>
       <!-- jQuery -->
       <script type="text/javascript" src="{% static 'webpage/libraries/jquery/jquery.js' %}"></script>
-      <!--Isotop-->
-      <script src="https://unpkg.com/isotope-layout@3.0/dist/isotope.pkgd.js"></script>
-      <!--Mansory JS-->
-<script type="text/javascript" src="https://npmcdn.com/masonry-layout@4.0.0/dist/masonry.pkgd.min.js"></script>
-<script src="https://unpkg.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
       {% block extra_head %}{% endblock %}
       <!--scroll to top -->
       <script src="{% static 'webpage/libraries/scroll-to-top/js/ap-scroll-top.min.js'%}"></script>
@@ -65,9 +60,9 @@
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
             <span class="sr-only">Toggle navigation!</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+            <span class="icon-bar"/>
+            <span class="icon-bar"/>
+            <span class="icon-bar"/>
           </button>
         </div>
         </div>
@@ -222,17 +217,34 @@
       </div>
     </section>
 
-    <!-- The share buttons will be inserted here --> 
-   
+    <div align="text-center">
+        <span class="socialShare"> <!-- The share buttons will be inserted here --> </span>
+      </div>
 
     <footer>
-     
+      <div class="row text-center">
+        <div class="col-sm-4">
+          <a href="https://acdh.oeaw.ac.at/acdh/" class="navlink" target="_blank">
+              <img src="{% static 'webpage/img/ACDH_kurz_Weiss.png' %}" alt="ACDH" width="25%"/>
+          </a>
+        </div>
+        <div class="col-sm-4">
+            <a href="{% projects_metadata 'github' %}" class="navlink" target="_blank">
+              <img src="{% static 'webpage/img/GitHub-Mark-Light-64px.png' %}" alt="{{ metadata.github }}" width="10%"/>
+            </a>
+        </div>
+        <!-- <div class="col-sm-4">
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="navlink" target="_blank">
+              <img src="{% static 'webpage/img/by-sa.png' %}" alt="CC-BY-SA-4.0" width="25%"/>
+            </a>
+        </div> -->
+      </div>
     </footer>
     {% block scripts %}
     <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap-tab.js' %}"></script>
     <!-- cool share -->
-    <!--   <script type="text/javascript">
+      <script type="text/javascript">
         $(function (){
           var options = {
             twitter: {
@@ -244,7 +256,7 @@
           };
           $('.socialShare').shareButtons(options);
         });
-      </script> -->
+      </script>
     <!-- scroll-up-bottom -->
     <script type="text/javascript">
             // Setup plugin with default settings

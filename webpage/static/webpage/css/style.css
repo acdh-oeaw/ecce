@@ -1,29 +1,116 @@
 /* Application styles could go here */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 html{
     height:100%;
+}
+* {
+    border-radius: 0 !important;
+}
+.wrap {
+  white-space: pre-wrap;      /* CSS3 */
+  white-space: -moz-pre-wrap; /* Firefox */
+  white-space: -pre-wrap;     /* Opera <7 */
+  white-space: -o-pre-wrap;   /* Opera 7 */
+  word-wrap: break-word;      /* IE */
+
 }
 body{
     display:flex;
     flex-direction:column;
     height:100%;
+    /*padding-top: 70px;*/
+    /*font-family: 'Amiri', serif;*/
+
+
+    font-family: 'Open Sans', sans-serif;
+
 }
 header{
     flex:0 0 auto;
-    background-color:#333; /*#F8F8F8*/
-    color:#ffffff;
 }
 .main-content{
     flex:1 0 auto;
 }
 footer{
     flex:0 0 auto;
-    background-color:#333; /*#F8F8F8*/
-    color:#ffffff;
     font-size:13px;
     padding:20px;
-    /* position: absolute;*/
     left:0;
     right:0;
     width:100%;
     margin-top:10px;
+}
+.navbar {
+    background-color: #fff;
+    color: #056571;
+}
+.grid-item {
+float: left;
+margin: 1%;
+padding-left: 10px;
+padding-right: 10px;
+width: calc(94% / 3);
+padding-top: 10px;
+padding-bottom: 10px;
+position: relative;
+text-align: justify;
+/*background: #4484CE;
+*/    
+/*background: #fff;*/
+color: #fff;
+box-shadow: 2px 2px 24px 0 rgba(0, 0, 0, .1);
+    /*color: #4484CE;*/
+    font-weight: 800;
+    text-align: center;
+    /*border-color: 2px solid #4484CE;*/
+    /*border: 5px solid #587583;*/
+
+
+}
+.grid-item > a, .grid-item > hr {
+    color: #fff;
+}
+.grid-item:hover {
+   box-shadow: 2px 2px 24px 0 #828081; 
+}
+.grid-item:hover > a {
+    text-decoration: none;
+}
+.grid-item > a:hover, 
+.grid-item > a:focus {
+    text-decoration: none;
+}
+.div-tile > h2 {
+    font-weight: 800;
+}
+@media (min-width: 480px) and (max-width: 768px) {
+
+  .grid-item { width: calc(94% / 2); }
+  /*.book-image { width: 50% }*/
+}
+@media (max-width: 480px) {
+
+  .grid-item { width: 94%; }
+  /*.book-image { width: 50% }*/
+
+}
+.div-tile {
+    height:120px; 
+    width:100%;
+}
+.type-one {
+
+background: #44546d;
+}
+.type-two {
+
+background: #cf6766;
+}
+.type-three {
+
+background: #8eaebd;
+}
+.hrtile {
+    width: 70%;
+   /* border: 2px solid #fff;*/
 }
