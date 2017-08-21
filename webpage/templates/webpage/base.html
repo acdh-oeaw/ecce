@@ -22,8 +22,8 @@
       <!--Isotop-->
       <script src="https://unpkg.com/isotope-layout@3.0/dist/isotope.pkgd.js"></script>
       <!--Mansory JS-->
-<script type="text/javascript" src="https://npmcdn.com/masonry-layout@4.0.0/dist/masonry.pkgd.min.js"></script>
-<script src="https://unpkg.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+      <script type="text/javascript" src="https://npmcdn.com/masonry-layout@4.0.0/dist/masonry.pkgd.min.js"></script>
+      <script src="https://unpkg.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
       {% block extra_head %}{% endblock %}
       <!--scroll to top -->
       <script src="{% static 'webpage/libraries/scroll-to-top/js/ap-scroll-top.min.js'%}"></script>
@@ -60,7 +60,8 @@
   </head>
 
   <body role="document">
-    <nav class="navbar navbar-default">
+  <header>
+    <nav class="navbar navbar-default navbar-fixed-top" id="myNavbar">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -72,15 +73,16 @@
         </div>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
             <ul class="nav navbar-nav">
+            <li>
+                <a href="{% url 'webpage:start' %}">HOME</a>
+              </li>
               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ABOUT
                   <span class="caret"/>
                   </a>
                   <ul class="dropdown-menu">
-                    <li>
-                        <a href="{% url 'webpage:start' %}">{% projects_metadata 'title' %}</a>
-                    </li>
                     <li>
                         <a href="{% url 'webpage:about' %}">About</a>
                     </li>
@@ -93,7 +95,7 @@
                   </ul>
               </li>
                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse the Data
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DATA
                   <span class="caret"/>
                   </a>
                   <ul class="dropdown-menu">
@@ -132,7 +134,7 @@
                   </ul>
                 </li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Analyze the Data
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CHARTS
                   <span class="caret"/>
                   </a>
                   <ul class="dropdown-menu">
@@ -158,7 +160,7 @@
                 </li>
                 {% if user.is_authenticated %}
                   <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Vocabs Curation
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">VOCABULARIES
                     <span class="caret"/>
                     </a>
                     <ul class="dropdown-menu">
@@ -213,9 +215,12 @@
             </ul>
         </div>
     </nav>
+    </header>
 
 
     <section class="main-content">
+    {% block index-content %}
+    {% endblock %}
       <div id="content" class="container">
         {% block content %}
         {% endblock %}
