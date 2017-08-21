@@ -18,7 +18,7 @@ body{
     display:flex;
     flex-direction:column;
     height:100%;
-    /*padding-top: 70px;*/
+    padding-top: 70px;
     /*font-family: 'Amiri', serif;*/
 
 
@@ -43,6 +43,15 @@ footer{
 .navbar {
     background-color: #fff;
     color: #056571;
+
+}
+.navbar-nav.navbar-right:last-child {
+    /*dirty fix due to https://github.com/twbs/bootstrap/issues/18362*/
+    margin-right: 0;
+}
+.navbar-default .navbar-nav>li>a:hover {
+    color: #cf6766;
+    font-weight: 600;
 }
 .grid-item {
 float: left;
@@ -114,3 +123,71 @@ background: #8eaebd;
     width: 70%;
    /* border: 2px solid #fff;*/
 }
+#index-jumbo {
+  background: #44546d;
+color: #fff;
+padding: 50px;
+margin-top: -20px;
+}
+#index-jumbo > p {
+  color: #fff;
+
+}
+
+/*the following css solves the responsivness of table for mobile devices by transforming a table into rows*/
+.table-responsive
+{
+    overflow-x: auto;
+}
+@media only screen and (max-width: 800px) {
+/* Force table to not be like tables anymore */
+.table-responsive table,
+.table-responsive thead,
+.table-responsive tbody,
+.table-responsive th,
+.table-responsive td,
+.table-responsive tr {
+display: block;
+}
+ 
+/* Hide table headers (but not display: none;, for accessibility) */
+.table-responsive thead tr {
+position: absolute;
+top: -9999px;
+left: -9999px;
+}
+ 
+.table-responsive tr { 
+  border: 2px solid #ccc; 
+  margin-bottom: 4px;
+}
+  
+.table-responsive td {
+/* Behave like a "row" */
+border: none;
+border-bottom: 1px solid #eee;
+position: relative;
+padding-left: 50%;
+white-space: normal;
+text-align:left;
+}
+ 
+.table-responsive td:before {
+/* Now like a table header */
+/*position: absolute;*/
+/* Top/left values mimic padding */
+top: 6px;
+left: 6px;
+width: 45%;
+padding-right: 10px;
+white-space: nowrap;
+text-align:left;
+font-weight: bold;
+}
+ 
+/*
+Label the data
+*/
+.table-responsive td:before { content: attr(class); }
+}
+/*end of table responsive css*/

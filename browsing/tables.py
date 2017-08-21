@@ -9,7 +9,7 @@ class NormTokenTable(tables.Table):
     class Meta:
         model = NormToken
         fields = [f.name for f in NormToken._meta.get_fields()]
-        attrs = {"class": "table table-hover table-striped table-condensed"}
+        attrs = {"class": "table table-responsive table-hover table-striped table-condensed"}
 
 
 class TokenTable(tables.Table):
@@ -25,7 +25,7 @@ class TokenTable(tables.Table):
             'left_context', 'plain_word', 'pos', 'right_context',
             'cluster', 'medial_suffix', 'final_suffix', 'spelling2'
         ]
-        attrs = {"class": "table table-hover table-striped table-condensed"}
+        attrs = {"class": "table table-responsive table-hover table-striped table-condensed"}
 
 
 class DateTable(tables.Table):
@@ -38,7 +38,7 @@ class DateTable(tables.Table):
     class Meta:
         model = Date
         fields = ['dates']
-        attrs = {"class": "table table-hover table-striped table-condensed"}
+        attrs = {"class": "table table-responsive table-hover table-striped table-condensed"}
 
 
 class CorpusTable(tables.Table):
@@ -51,7 +51,7 @@ class CorpusTable(tables.Table):
     class Meta:
         model = Corpus
         fields = ['name']
-        attrs = {"class": "table table-hover table-striped table-condensed"}
+        attrs = {"class": "table table-responsive table-hover table-striped table-condensed"}
 
 
 class TextTable(tables.Table):
@@ -67,7 +67,7 @@ class TextTable(tables.Table):
     class Meta:
         model = Text
         fields = ['text', 'date']
-        attrs = {"class": "table table-hover table-striped table-condensed"}
+        attrs = {"class": "table table-responsive table-hover table-striped table-condensed"}
 
 
 class ConsonantTable(tables.Table):
@@ -82,7 +82,7 @@ class ConsonantTable(tables.Table):
             'consonant', 'first_consonant', 'second_consonant',
             'third_consonant', 'fourth_consonant'
         ]
-        attrs = {"class": "table table-hover table-striped table-condensed"}
+        attrs = {"class": "table table-responsive table-hover table-striped table-condensed"}
 
 
 class ClusterTable(tables.Table):
@@ -102,7 +102,7 @@ class ClusterTable(tables.Table):
     class Meta:
         model = Cluster
         fields = ['id', 'consonant']
-        attrs = {"class": "table table-hover table-striped table-condensed"}
+        attrs = {"class": "table table-responsive table-hover table-striped table-condensed"}
 
 
 class TokenLabelTable(tables.Table):
@@ -119,7 +119,7 @@ class TokenLabelTable(tables.Table):
     class Meta:
         model = TokenLabel
         fields = ['id', 'label']
-        attrs = {"class": "table table-hover table-striped table-condensed"}
+        attrs = {"class": "table table-responsive table-hover table-striped table-condensed"}
 
 
 class SchwaPresentTable(tables.Table):
@@ -137,7 +137,7 @@ class SchwaPresentTable(tables.Table):
     class Meta:
         model = SchwaPresent
         fields = ['id', 'spelling', 'schwaprese']
-        attrs = {"class": "table table-hover table-striped table-condensed"}
+        attrs = {"class": "table table-responsive table-hover table-striped table-condensed"}
 
 
 class OnSetTable(tables.Table):
@@ -155,4 +155,4 @@ class OnSetTable(tables.Table):
     class Meta:
         model = OnSet
         fields = ['id', 'rightonset', 'variable']
-        attrs = {"class": "table table-hover table-striped table-condensed"}
+        attrs = {"class": "table table-responsive table-hover table-striped table-condensed"}
