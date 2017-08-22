@@ -35,7 +35,7 @@ class AllInOneView(GenericListView):
     table_class = NormTokenTable
     template_name = 'browsing/normtoken.html'
     filter_class = NormTokenListFilter
-    formhelper_class = GenericFilterFormHelper
+    formhelper_class = NormTokenFilterFormHelper
 
     def get_context_data(self, **kwargs):
         context = super(GenericListView, self).get_context_data()
