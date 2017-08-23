@@ -43,6 +43,8 @@ INSTALLED_APPS = [
 
 CRISPY_TEMPLATE_PACK = "bootstrap3"
 
+FILTERS_HELP_TEXT_FILTER = False
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
     'PAGE_SIZE': 10

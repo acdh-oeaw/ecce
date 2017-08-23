@@ -191,3 +191,21 @@ Label the data
 .table-responsive td:before { content: attr(class); }
 }
 /*end of table responsive css*/
+
+.fa {
+  padding-right: 10px;
+}
+
+#accordion > .panel > .panel-heading {
+  color: #fff;
+  background: #8eaebd;
+  border: 2px solid #8eaebd;
+
+}
+.procustom-panel-list {
+ border: none;
+}
+.panel-default > .procustom-panel-heading {
+  /*background-color: #44546d;
+  color: #fff;*/
+}
