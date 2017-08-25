@@ -2,10 +2,13 @@
 
 {% block content %}
 
-<h1>{{ object }}</h1>
-<table class="table table-bordered table-striped table-hover">
+<div class="panel panel-default">
+        <div class="panel-heading">
+            <h1><b>{{ object }}</b></h1>
+        </div>
+<table class="table table-bordered table-hover">
     <tr>
-        <th>Consonant</th>
+        <th style="width:20%;">Consonant</th>
         <td>{{ object.consonant }}</td>
     </tr>
     <tr>
@@ -37,8 +40,10 @@
         <td>{{object.place_ord}}</td>
     </tr>
 </table>
-
-{% if user.is_authenticated %}
-<a class="btn btn-primary" href="{% url 'tokens:consonant_update' pk=object.pk %}" role="button">edit consonant</a>
+ {% if user.is_authenticated %}
+<div class="panel-body">
+    <a class="btn btn-primary" href="{% url 'tokens:consonant_update' pk=object.pk %}" role="button">edit consonant</a>
+</div>
 {% endif %}
+</div>
 {% endblock %}

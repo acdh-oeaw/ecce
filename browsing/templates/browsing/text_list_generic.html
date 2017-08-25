@@ -2,7 +2,7 @@
 {% block Titel %}Browse Text{% endblock %}
 {% block list_title %}Browse Text
     {% if user.is_authenticated %}
-        | <a class ="btn btn-success"  href="{% url 'tokens:text_create' %}">Create new Text</a>
+        | <a class ="btn btn-primary"  href="{% url 'tokens:text_create' %}">Create new Text</a>
     {% endif %}
 {% endblock %}
 

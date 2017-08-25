@@ -2,7 +2,7 @@
 {% block Titel %}Browse TokenLabel{% endblock %}
 {% block list_title %}Browse TokenLabel
     {% if user.is_authenticated %}
-        | <a class ="btn btn-success"  href="{% url 'tokens:tokenlabel_create' %}">Create new TokenLabel</a>
+        | <a class ="btn btn-primary"  href="{% url 'tokens:tokenlabel_create' %}">Create new TokenLabel</a>
     {% endif %}
 {% endblock %}
 

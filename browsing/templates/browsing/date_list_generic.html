@@ -2,7 +2,7 @@
 {% block Titel %}Browse Date{% endblock %}
 {% block list_title %}Browse Date
     {% if user.is_authenticated %}
-        | <a class ="btn btn-success"  href="{% url 'tokens:date_create' %}">Create new Date</a>
+        | <a class ="btn btn-primary"  href="{% url 'tokens:date_create' %}">Create new Date</a>
     {% endif %}
 {% endblock %}
 

@@ -2,7 +2,7 @@
 {% block Titel %}Browse Cluster{% endblock %}
 {% block list_title %}Browse Cluster
     {% if user.is_authenticated %}
-        | <a class ="btn btn-success"  href="{% url 'tokens:cluster_create' %}">Create new Cluster</a>
+        | <a class ="btn btn-primary"  href="{% url 'tokens:cluster_create' %}">Create new Cluster</a>
     {% endif %}
 {% endblock %}
 
