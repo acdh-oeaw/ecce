@@ -18,3 +18,6 @@ __pycache__/
 /data/access-export/derLetzteRest.xlsx
 /all.json
 /normtoken.json
+/data/tblTokensNew.xlsx
+/.idea/*.iml
+.idea

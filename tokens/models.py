@@ -3,6 +3,15 @@ from django.core.urlresolvers import reverse
 from vocabs.models import SkosConcept
 
 
+class Lemma(models.Model):
+    """docstring forLemma."""
+    name = models.CharField(blank=True, null=True, max_length=100)
+    pos = models.ForeignKey(SkosConcept, blank=True, null=True, related_name="skos_lemma_pos")
+
+    def __str__(self):
+        return "{}".format(self.name)
+
+
 class Date(models.Model):
     dates = models.IntegerField(primary_key=True)
     decade = models.IntegerField(blank=True, null=True)
@@ -175,6 +184,9 @@ class Token(models.Model):
         SchwaPresent, blank=True, null=True, related_name="token_spelling2")
     rightonset = models.ForeignKey(OnSet, blank=True, null=True, related_name="token_onset")
     updated = models.DateTimeField(auto_now=True)
+    lemma = models.ForeignKey(Lemma, blank=True, null=True)
+    weight = models.FloatField(blank=True, null=True)
+    weight_norm = models.FloatField(blank=True, null=True)
 
     def __str__(self):
         return "{}".format(self.plain_word)

@@ -10,5 +10,6 @@ admin.site.register(TokenLabel)
 admin.site.register(SchwaPresent)
 admin.site.register(OnSet)
 admin.site.register(Token)
+admin.site.register(Lemma)
 
 # Register your models here.
