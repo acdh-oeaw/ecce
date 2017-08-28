@@ -13,19 +13,16 @@ class NormTokenTable(tables.Table):
 
 
 class TokenTable(tables.Table):
-    cluster = tables.RelatedLinkColumn(verbose_name='Cluster')
+    cluster_size = tables.Column(accessor='cluster.size')
+    cluster = tables.TemplateColumn(template_name='browsing/tables/cluster.html')
     plain_word = tables.LinkColumn(
         'tokens:token_detail',
         args=[A('pk')], verbose_name='Plain Word'
     )
+    lemma = tables.RelatedLinkColumn(verbose_name='Lemma')
 
     class Meta:
         model = Token
-        fields = [
-            'left_context', 'plain_word', 'pos', 'right_context',
-            'cluster', 'medial_suffix', 'final_suffix', 'spelling2'
-        ]
-        attrs = {"class": "table table-responsive table-hover"}
 
 
 class DateTable(tables.Table):
@@ -42,7 +39,7 @@ class DateTable(tables.Table):
 
 
 class CorpusTable(tables.Table):
-    #id = tables.Column(verbose_name='ID')
+    # id = tables.Column(verbose_name='ID')
     name = tables.LinkColumn(
         'tokens:corpus_detail',
         args=[A('pk')], verbose_name='Corpus'
@@ -55,7 +52,7 @@ class CorpusTable(tables.Table):
 
 
 class TextTable(tables.Table):
-    #id = tables.Column(verbose_name='ID')
+    # id = tables.Column(verbose_name='ID')
     text = tables.LinkColumn(
         'tokens:text_detail',
         args=[A('pk')], verbose_name='Text'

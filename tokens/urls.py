@@ -101,4 +101,7 @@ urlpatterns = [
     url(
         r'^token/update/(?P<pk>[0-9]+)$', views.TokenUpdate.as_view(),
         name='token_update'),
+    url(
+        r'^lemma/(?P<pk>[0-9]+)$', views.LemmaDetailView.as_view(),
+        name='lemma_detail'),
 ]

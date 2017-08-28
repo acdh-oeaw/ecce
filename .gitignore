@@ -21,3 +21,7 @@ __pycache__/
 /data/tblTokensNew.xlsx
 /.idea/*.iml
 .idea
+/db.json
+/ecce/settings/pg.py
+/ecce/settings/pg._localpy
+/ecce/settings/pg_local.py

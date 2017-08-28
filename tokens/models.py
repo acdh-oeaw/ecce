@@ -6,10 +6,15 @@ from vocabs.models import SkosConcept
 class Lemma(models.Model):
     """docstring forLemma."""
     name = models.CharField(blank=True, null=True, max_length=100)
-    pos = models.ForeignKey(SkosConcept, blank=True, null=True, related_name="skos_lemma_pos")
+    pos = models.ForeignKey(
+        SkosConcept, blank=True, null=True, related_name="skos_lemma_pos"
+    )
 
     def __str__(self):
-        return "{}".format(self.name)
+        return "{} ({})".format(self.name, self.pos.pref_label)
+
+    def get_absolute_url(self):
+        return reverse('tokens:lemma_detail', kwargs={'pk': self.id})
 
 
 class Date(models.Model):

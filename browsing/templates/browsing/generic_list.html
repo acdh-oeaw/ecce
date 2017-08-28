@@ -27,6 +27,13 @@ $("#goto option").each(function() {
     <div class="panel-heading procustom-panel-heading">
 
         <h3><span class="fa fa-search" style="padding-left:10px; padding-right: 10px;"></span> {% block list_title %}{% endblock %}</h3>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myFilter">
+          <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myColumns">
+          <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+        </button>
+        {%block customView %}{% endblock %}
 
     {% block create_button %}
 
@@ -34,13 +41,7 @@ $("#goto option").each(function() {
     </div>
     <div class="panel-body procustom-panel-body">
         <div class="row">
-            <div class="col-md-4">
-            <legend>Refine your search</legend>
-                {% load django_tables2 crispy_forms_tags %}
-                {% crispy filter.form filter.form.helper %}
-                {% block reset_button %}
-                {% endblock %}
-            </div>
+
             <div class="col-md-8">
     {% with table.paginator.count as total %}
     <legend>Total results: {{ total }}</legend>
@@ -202,6 +203,64 @@ $("#goto option").each(function() {
     </div>
 </div>
 </div>
+
+<div class="modal fade" id="myFilter" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><legend>Refine your search</legend></h4>
+      </div>
+      <div class="col-md-8">
+
+          {% load django_tables2 crispy_forms_tags %}
+          {% crispy filter.form filter.form.helper %}
+          {% block reset_button %}
+          {% endblock %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myColumns" role="dialog">
+<div class="modal-dialog">
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Select Colums</h4>
+    </div>
+    <div class="modal-body">
+      <form>
+        {% for x in toogable_colums %}
+        <label class="checkbox-inline">
+          <input type="checkbox" value="{{x}}" id="{{x}}" onclick="displayColumn(this.value);">{{x}}
+        </label>
+        {% endfor %}
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+function displayColumn(headertext){
+    var loc = location.href;
+    if (loc.indexOf("?") === -1)
+       loc += "?";
+    else
+       loc += "&";
+    location.href = loc + "columns="+headertext;
+    };
+</script>
+
 <script>
 // $(document).ready(function() {
 //     $('#basic_search_fields').collapse("hide");

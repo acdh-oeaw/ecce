@@ -5,6 +5,12 @@ from .models import *
 from .forms import *
 
 
+class LemmaDetailView(DetailView):
+
+    model = Lemma
+    template_name = 'tokens/lemma_detail.html'
+
+
 class DateDetailView(DetailView):
 
     model = Date
