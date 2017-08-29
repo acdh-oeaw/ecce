@@ -181,8 +181,6 @@ $("#goto option").each(function() {
         </li>
         {% endif %}
         {% endfor %}
-
-
         {% if table.page.has_next %}
         {% block pagination.next %}
           <li class="next">
@@ -190,11 +188,7 @@ $("#goto option").each(function() {
           </li>
         {% endblock pagination.next %}
         {% endif %}
-
-
         {% endif %}
-
-
       </ul>
       {% endblock pagination.allpages %}
 
@@ -213,9 +207,12 @@ $("#goto option").each(function() {
         <h4 class="modal-title"><legend>Refine your search</legend></h4>
       </div>
       <div class="col-md-8">
-
           {% load django_tables2 crispy_forms_tags %}
+          <form action="." class="uniForm" method="get">
+              <input type="hidden" name="columns" id="columns_param" value="">
           {% crispy filter.form filter.form.helper %}
+      </form>
+
           {% block reset_button %}
           {% endblock %}
       </div>
@@ -252,12 +249,7 @@ $("#goto option").each(function() {
 
 <script>
 function displayColumn(headertext){
-    var loc = location.href;
-    if (loc.indexOf("?") === -1)
-       loc += "?";
-    else
-       loc += "&";
-    location.href = loc + "columns="+headertext;
+    $("#columns_param").val(headertext);
     };
 </script>
 
