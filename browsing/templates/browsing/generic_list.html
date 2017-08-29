@@ -200,7 +200,7 @@ $("#goto option").each(function() {
           {% load django_tables2 crispy_forms_tags %}
           <form action="." class="uniForm" method="get">
               <input type="hidden" name="columns" id="columns_param" value="">
-              <select class="selectpicker" multiple data-selected-text-format="count > 3" name="columns" id="column_selector">
+              <select class="selectpicker" multiple data-selected-text-format="count > 2" name="columns" id="column_selector">
               {% for x in togglable_colums %}
                   <option value="{{ x }}">{{ x }}</option>
               {% endfor %}

@@ -75,7 +75,7 @@
                     src="{% static 'webpage/img/ecce_logo.jpg' %}" alt="ECCE">
               </a>
         </div>
-       
+
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
             <ul class="nav navbar-nav">
@@ -103,13 +103,9 @@
                   <span class="caret"/>
                   </a>
                   <ul class="dropdown-menu">
-                    <li>
-                        <a href="{% url 'browsing:browse_normtokens' %}">NormToken FilterView</a>
-                    </li>
-                    {% if user.is_authenticated %}
-                    <li>
-                        <a href="{% url 'browsing:browse_tokens' %}">Tokens</a>
-                    </li>
+                      <li>
+                          <a href="{% url 'browsing:browse_tokens' %}">Tokens</a>
+                      </li>
                     <li>
                         <a href="{% url 'browsing:browse_dates' %}">Dates</a>
                     </li>
@@ -134,7 +130,6 @@
                     <li>
                         <a href="{% url 'browsing:browse_onsets' %}">OnSet</a>
                     </li>
-                    {% endif %}
                   </ul>
                 </li>
                 <li class="dropdown">
@@ -232,11 +227,11 @@
       </div>
     </section>
 
-    <!-- The share buttons will be inserted here --> 
-   
+    <!-- The share buttons will be inserted here -->
+
 
     <footer>
-     
+
     </footer>
     {% block scripts %}
     <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap.min.js' %}"></script>
