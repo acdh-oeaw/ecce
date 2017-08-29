@@ -55,7 +55,7 @@ class TokenListView(GenericListView):
     template_name = 'browsing/token_list_generic.html'
     filter_class = TokenListFilter
     formhelper_class = GenericFilterFormHelper
-    init_columns = ['plain_word']
+    init_columns = ['plain_word', 'cluster_size', 'cluster', 'plain_word', 'lemma']
 
     def get_all_cols(self):
         all_cols = list(self.table_class.base_columns.keys())
@@ -64,8 +64,8 @@ class TokenListView(GenericListView):
     def get_context_data(self, **kwargs):
         context = super(TokenListView, self).get_context_data()
         context[self.context_filter_name] = self.filter
-        toogable_colums = [x for x in self.get_all_cols() if x not in self.init_columns]
-        context['toogable_colums'] = toogable_colums
+        togglable_colums = [x for x in self.get_all_cols() if x not in self.init_columns]
+        context['togglable_colums'] = togglable_colums
         return context
 
     def get_table(self, **kwargs):

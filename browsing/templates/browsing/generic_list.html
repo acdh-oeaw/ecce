@@ -4,7 +4,8 @@
 {% load i18n %}
 {% block Titel %} See all {{ object.classname }} {% endblock %}
 {% block scriptHeader %}
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 {% endblock %}
 {% block content %}
 
@@ -30,25 +31,15 @@ $("#goto option").each(function() {
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myFilter">
           <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
         </button>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myColumns">
-          <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
-        </button>
-        {%block customView %}{% endblock %}
-
-    {% block create_button %}
-
-    {% endblock %}
+    {%block customView %}{% endblock %}
+    {% block create_button %}{% endblock %}
     </div>
     <div class="panel-body procustom-panel-body">
         <div class="row">
-
-            <div class="col-md-8">
-    {% with table.paginator.count as total %}
-    <legend>Total results: {{ total }}</legend>
-    {% endwith %}
-
-
-
+            <div class="col-md-12">
+                {% with table.paginator.count as total %}
+                <legend>Total results: {{ total }}</legend>
+                {% endwith %}
       {% block table %}
       <table{% if table.attrs %} {{ table.attrs.as_html }}{% endif %}>
           {% block table.thead %}
@@ -98,7 +89,6 @@ $("#goto option").each(function() {
           {% endblock table.tfoot %}
       </table>
       {% endblock table %}
-
       {% block pagination.allpages %}
 
       <ul class="pagination">
@@ -210,8 +200,22 @@ $("#goto option").each(function() {
           {% load django_tables2 crispy_forms_tags %}
           <form action="." class="uniForm" method="get">
               <input type="hidden" name="columns" id="columns_param" value="">
+              <select class="selectpicker" multiple data-selected-text-format="count > 3" name="columns" id="column_selector">
+              {% for x in togglable_colums %}
+                  <option value="{{ x }}">{{ x }}</option>
+              {% endfor %}
+              </select>
           {% crispy filter.form filter.form.helper %}
       </form>
+      <script>
+      $('#column_selector').on('loaded.bs.select', function (e) {
+
+          var url = new URL(window.location.href);
+          var columns = url.searchParams.getAll("columns");
+          $('#column_selector').selectpicker('val', columns);
+          console.log(columns);
+      });
+      </script>
 
           {% block reset_button %}
           {% endblock %}
@@ -223,42 +227,6 @@ $("#goto option").each(function() {
   </div>
 </div>
 
-<div class="modal fade" id="myColumns" role="dialog">
-<div class="modal-dialog">
-  <!-- Modal content-->
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h4 class="modal-title">Select Colums</h4>
-    </div>
-    <div class="modal-body">
-      <form>
-        {% for x in toogable_colums %}
-        <label class="checkbox-inline">
-          <input type="checkbox" value="{{x}}" id="{{x}}" onclick="displayColumn(this.value);">{{x}}
-        </label>
-        {% endfor %}
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    </div>
-  </div>
-</div>
-</div>
-
-<script>
-function displayColumn(headertext){
-    $("#columns_param").val(headertext);
-    };
-</script>
-
-<script>
-// $(document).ready(function() {
-//     $('#basic_search_fields').collapse("hide");
-//   });
-
-</script>
 <script type="text/javascript">
   /* attached to jquery */
 /* attached to Bootstrap.js */
@@ -275,7 +243,6 @@ function displayColumn(headertext){
     $('.panel-group').on('hide.bs.collapse', function (e) {  //event fires when "hide" method is called
         $(e.target).prev().removeClass('active').find('.fa').removeClass('fa-minus-square-o').addClass('fa-plus-square-o');
     });
-
 </script>
 {% block customScripts %}
 {% endblock %}
