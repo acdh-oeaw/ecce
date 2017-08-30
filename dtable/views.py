@@ -2,8 +2,9 @@ import json
 from collections import Counter
 from browsing.views import GenericListView
 from .models import NormToken
-from browsing.tables import NormTokenTable
-from browsing.filters import NormTokenListFilter
+from tokens.models import Token
+from browsing.tables import NormTokenTable, TokenTable
+from browsing.filters import NormTokenListFilter, TokenListFilter
 from browsing.forms import GenericFilterFormHelper
 from vocabs.models import *
 
@@ -31,10 +32,10 @@ STATIC_DATA = {
 
 
 class DynChartView(GenericListView):
-    model = NormToken
-    table_class = NormTokenTable
+    model = Token
+    table_class = TokenTable
     template_name = 'dtable/dynchart.html'
-    filter_class = NormTokenListFilter
+    filter_class = TokenListFilter
     formhelper_class = GenericFilterFormHelper
 
     def get_context_data(self, **kwargs):
