@@ -17,7 +17,7 @@ class TokenModelAC(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Token.objects.all()
         if self.q:
-            qs = qs.filter(plain_word__icontains=self.q)
+            qs = qs.filter(plain_word__startswith=self.q)
 
         return qs
 

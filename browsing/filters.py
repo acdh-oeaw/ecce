@@ -53,11 +53,6 @@ class TokenListFilter(django_filters.FilterSet):
         help_text=Token._meta.get_field('spelling2').help_text,
         label=Token._meta.get_field('spelling2').verbose_name
         )
-    lemma = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=Token._meta.get_field('lemma').help_text,
-        label=Token._meta.get_field('lemma').verbose_name
-        )
     lemma__name = django_filters.CharFilter(
         lookup_expr='icontains',
         help_text=Lemma._meta.get_field('name').help_text,
