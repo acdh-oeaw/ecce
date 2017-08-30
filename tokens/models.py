@@ -23,16 +23,44 @@ class Lemma(models.Model):
 
 
 class Date(models.Model):
-    dates = models.IntegerField(primary_key=True)
-    decade = models.IntegerField(blank=True, null=True)
-    semicentury = models.IntegerField(blank=True, null=True)
-    century = models.IntegerField(blank=True, null=True)
-    pr_cc_checekd = models.FloatField(blank=True, null=True)
-    pr_cc_final = models.FloatField(blank=True, null=True)
-    pr_cc_final_V = models.FloatField(blank=True, null=True)
-    pr_cc_both = models.FloatField(blank=True, null=True)
-    pr_cc_no = models.IntegerField(blank=True, null=True)
-    updated = models.DateTimeField(auto_now=True)
+    dates = models.IntegerField(
+        primary_key=True, verbose_name="Date",
+        help_text="Date of source text this token is extracted from"
+    )
+    decade = models.IntegerField(
+        blank=True, null=True, verbose_name="Decade",
+        help_text="Decade of source text this token is extracted from"
+    )
+    semicentury = models.IntegerField(
+        blank=True, null=True, verbose_name="Semicentury",
+        help_text="50-year period of source text this token is extracted from (e.g. 1250 stands for 1250-1300)"
+    )
+    century = models.IntegerField(
+        blank=True, null=True, verbose_name="Century",
+        help_text="Century of source text this token is extracted from"
+    )
+    pr_cc_checekd = models.FloatField(
+        blank=True, null=True, verbose_name="pr_cc_checked",
+        help_text="probability estimate of graphemically checked cluster for this year (for probabilistic estimation only)"
+    )
+    pr_cc_final = models.FloatField(
+        blank=True, null=True, verbose_name="pr_cc_final",
+        help_text="probability estimate of cluster with graphemic final schwa for this year (for probabilistic estimation only)"
+    )
+    pr_cc_final_V = models.FloatField(
+        blank=True, null=True, verbose_name="pr_cc_final_V",
+        help_text="probability estimate of cluster with graphemic final and checked schwa for this year (for probabilistic estimation only)")
+    pr_cc_both = models.FloatField(
+        blank=True, null=True, verbose_name="pr_cc_both",
+        help_text="probability estimate of cluster with graphemic final schwa before vowel for this year (for probabilistic estimation only)"
+    )
+    pr_cc_no = models.IntegerField(
+        blank=True, null=True, verbose_name="pr_cc_no",
+        help_text="probability estimate of graphemic cluster for this year (for probabilistic estimation only)"
+    )
+    updated = models.DateTimeField(
+        auto_now=True, verbose_name="updated", help_text="Date of last update"
+    )
 
     def __str__(self):
         return "{}".format(self.dates)
