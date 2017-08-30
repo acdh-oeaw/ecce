@@ -168,6 +168,36 @@ class TokenListFilter(django_filters.FilterSet):
         help_text=Cluster._meta.get_field('fourth_consonant').help_text,
         label=Cluster._meta.get_field('fourth_consonant').verbose_name
         )
+    cluster__size = django_filters.NumberFilter(
+        lookup_expr='exact',
+        help_text=Cluster._meta.get_field('size').help_text,
+        label=Cluster._meta.get_field('size').verbose_name
+        )
+    cluster__ssp = django_filters.NumberFilter(
+        lookup_expr='exact',
+        help_text=Cluster._meta.get_field('ssp').help_text,
+        label=Cluster._meta.get_field('ssp').verbose_name
+        )
+    cluster__nad_vc = django_filters.NumberFilter(
+        lookup_expr='exact',
+        help_text=Cluster._meta.get_field('nad_vc').help_text,
+        label=Cluster._meta.get_field('nad_vc').verbose_name
+        )
+    cluster__nad_c1c2 = django_filters.NumberFilter(
+        lookup_expr='exact',
+        help_text=Cluster._meta.get_field('nad_c1c2').help_text,
+        label=Cluster._meta.get_field('nad_c1c2').verbose_name
+        )
+    cluster__nad_c2c3 = django_filters.NumberFilter(
+        lookup_expr='exact',
+        help_text=Cluster._meta.get_field('nad_c2c3').help_text,
+        label=Cluster._meta.get_field('nad_c2c3').verbose_name
+        )
+    cluster__preferred_cluster = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=Cluster._meta.get_field('preferred_cluster').help_text,
+        label=Cluster._meta.get_field('preferred_cluster').verbose_name
+        )
 
 
     
