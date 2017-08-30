@@ -47,15 +47,42 @@ class Corpus(models.Model):
 
 
 class Text(models.Model):
-    text = models.CharField(blank=True, null=True, max_length=100)
-    date = models.CharField(blank=True, null=True, max_length=100)
-    genre = models.ForeignKey(SkosConcept, blank=True, null=True, related_name="skos_genre")
-    corpus = models.ForeignKey(Corpus, blank=True, null=True, related_name="text_corpus")
-    lower = models.IntegerField(blank=True, null=True)
-    mean_date = models.ForeignKey(Date, blank=True, null=True)
-    size = models.IntegerField(blank=True, null=True)
-    dialect = models.ForeignKey(SkosConcept, blank=True, null=True, related_name="skos_dialect")
-    updated = models.DateTimeField(auto_now=True)
+    text = models.CharField(
+        blank=True, null=True, max_length=100, verbose_name="Text",
+        help_text="Source text the token is extracted from"
+    )
+    date = models.CharField(
+        blank=True, null=True, max_length=100,
+        verbose_name="Text", help_text="Date of source  text this token is extracted from"
+    )
+    genre = models.ForeignKey(
+        SkosConcept, blank=True, null=True, related_name="skos_genre",
+        verbose_name="Genre", help_text="Genre of source text this token is extracted from"
+    )
+    corpus = models.ForeignKey(
+        Corpus, blank=True, null=True, related_name="text_corpus",
+        verbose_name="Corpus", help_text="Corpus of source text this token is extracted from"
+    )
+    lower = models.IntegerField(
+        blank=True, null=True, verbose_name="lower",
+        help_text="lower estimate for date"
+    )
+    mean_date = models.ForeignKey(
+        Date, blank=True, null=True, verbose_name="Date",
+        help_text="Estimate for date of text this token is extracted from"
+    )
+    size = models.IntegerField(
+        blank=True, null=True, verbose_name="Text Size",
+        help_text="Size of source text this token is extracted from"
+    )
+    dialect = models.ForeignKey(
+        SkosConcept, blank=True, null=True, related_name="skos_dialect",
+        verbose_name="Region", help_text="Region of source text this token is extracted from"
+    )
+    updated = models.DateTimeField(
+        auto_now=True, verbose_name="updated",
+        help_text="Date of last update"
+    )
 
     def __str__(self):
         return "{}".format(self.text)
