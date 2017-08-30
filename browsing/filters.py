@@ -28,56 +28,117 @@ class NormTokenListFilter(django_filters.FilterSet):
 
 
 class TokenListFilter(django_filters.FilterSet):
-    # plain_word = django_filters.ModelMultipleChoiceFilter(
-    #     widget=autocomplete.Select2Multiple(url='dal_ac:tokenM-ac'),
-    #     queryset=Token.objects.all(),
-    #     lookup_expr='icontains',
-    #     label='Token',
-    #     help_text=False,
-    # )
-    cluster = django_filters.ModelMultipleChoiceFilter(
-        queryset=Cluster.objects.all(),
+    legacy_id = django_filters.CharFilter(
         lookup_expr='icontains',
-        label='Cluster',
-        help_text=False,
-        widget=autocomplete.ModelSelect2Multiple(url='dal_ac:cluster-ac')
-    )
-    text_source__genre = django_filters.ModelMultipleChoiceFilter(
-        queryset=SkosConcept.objects.filter(scheme__dc_title='ecce-genre'),
+        help_text=Token._meta.get_field('legacy_id').help_text,
+        label=Token._meta.get_field('legacy_id').verbose_name
+        )
+    left_context = django_filters.CharFilter(
         lookup_expr='icontains',
-        label='Genre',
-        help_text=False,
-    )
-    text_source__mean_date = django_filters.ModelMultipleChoiceFilter(
-        queryset=Date.objects.all(),
+        help_text=Token._meta.get_field('left_context').help_text,
+        label=Token._meta.get_field('left_context').verbose_name
+        )
+    plain_word = django_filters.CharFilter(
         lookup_expr='icontains',
-        label='Mean Date',
-        help_text=False
-    )
-    text_source = django_filters.ModelMultipleChoiceFilter(
-        queryset=Text.objects.all(),
+        help_text=Token._meta.get_field('plain_word').help_text,
+        label=Token._meta.get_field('plain_word').verbose_name
+        )
+    right_context = django_filters.CharFilter(
         lookup_expr='icontains',
-        label='Text',
-        help_text=False
-    )
+        help_text=Token._meta.get_field('right_context').help_text,
+        label=Token._meta.get_field('right_context').verbose_name
+        )
+    spelling2 = django_filters.ModelMultipleChoiceFilter(
+        queryset=SchwaPresent.objects.all(),
+        help_text=Token._meta.get_field('spelling2').help_text,
+        label=Token._meta.get_field('spelling2').verbose_name
+        )
+    lemma = django_filters.ModelMultipleChoiceFilter(
+        queryset=Lemma.objects.all(),
+        help_text=Token._meta.get_field('lemma').help_text,
+        label=Token._meta.get_field('lemma').verbose_name
+        )
+    lemma__name = django_filters.ModelMultipleChoiceFilter(
+        queryset=Lemma.objects.all(),
+        help_text=Lemma._meta.get_field('name').help_text,
+        label=Lemma._meta.get_field('name').verbose_name
+        )
+    lemma__pos = django_filters.ModelMultipleChoiceFilter(
+        queryset=Lemma.objects.all(),
+        help_text=Lemma._meta.get_field('pos').help_text,
+        label=Lemma._meta.get_field('pos').verbose_name
+        )
+    pos = django_filters.ModelMultipleChoiceFilter(
+        queryset=SkosConcept.objects.all(),
+        help_text=Token._meta.get_field('pos').help_text,
+        label=Token._meta.get_field('pos').verbose_name
+        )
     label = django_filters.ModelMultipleChoiceFilter(
         queryset=TokenLabel.objects.all(),
+        help_text=Token._meta.get_field('label').help_text,
+        label=Token._meta.get_field('label').verbose_name
+        )
+    medial_suffix = django_filters.CharFilter(
         lookup_expr='icontains',
-        label='Label',
-        help_text=False,
-    )
+        help_text=Token._meta.get_field('medial_suffix').help_text,
+        label=Token._meta.get_field('medial_suffix').verbose_name
+        )
+    final_suffix = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=Token._meta.get_field('final_suffix').help_text,
+        label=Token._meta.get_field('final_suffix').verbose_name
+        )
+    label__label = django_filters.ModelMultipleChoiceFilter(
+        queryset=TokenLabel.objects.all(),
+        help_text=TokenLabel._meta.get_field('label').help_text,
+        label=TokenLabel._meta.get_field('label').verbose_name
+        )
+    label__description = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=TokenLabel._meta.get_field('description').help_text,
+        label=TokenLabel._meta.get_field('description').verbose_name
+        )
+    label__morphonotacticity = django_filters.ModelMultipleChoiceFilter(
+        queryset=TokenLabel.objects.all(),
+        help_text=TokenLabel._meta.get_field('morphonotacticity').help_text,
+        label=TokenLabel._meta.get_field('morphonotacticity').verbose_name
+        )
     rightonset = django_filters.ModelMultipleChoiceFilter(
         queryset=OnSet.objects.all(),
+        help_text=Token._meta.get_field('rightonset').help_text,
+        label=Token._meta.get_field('rightonset').verbose_name
+        )
+    rightonset__variable = django_filters.ModelMultipleChoiceFilter(
+        queryset=OnSet.objects.all(),
+        help_text=OnSet._meta.get_field('variable').help_text,
+        label=OnSet._meta.get_field('variable').verbose_name
+        )
+    rightonset__pre_change = django_filters.CharFilter(
         lookup_expr='icontains',
-        label='OnSet',
-        help_text=False,
-    )
+        help_text=OnSet._meta.get_field('pre_change').help_text,
+        label=OnSet._meta.get_field('pre_change').verbose_name
+        )
+    rightonset__post_change = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=OnSet._meta.get_field('post_change').help_text,
+        label=OnSet._meta.get_field('post_change').verbose_name
+        )
+    rightonset__onset = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=OnSet._meta.get_field('onset').help_text,
+        label=OnSet._meta.get_field('onset').verbose_name
+        )
+    rightonset__offset = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=OnSet._meta.get_field('offset').help_text,
+        label=OnSet._meta.get_field('offset').verbose_name
+        )
+
 
     class Meta:
         model = Token
         fields = [
-            'text_source__mean_date', 'text_source__mean_date__century', 'text_source',
-            'text_source__genre', 'label', 'rightonset', 'plain_word', 'cluster', 'cluster__size'
+            'legacy_id'
         ]
 
 

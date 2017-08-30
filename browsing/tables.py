@@ -23,6 +23,7 @@ class TokenTable(tables.Table):
 
     class Meta:
         model = Token
+        attrs = {"class": "table table-responsive table-hover"}
 
 
 class DateTable(tables.Table):
