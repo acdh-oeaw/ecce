@@ -133,6 +133,44 @@ class TokenListFilter(django_filters.FilterSet):
         help_text=OnSet._meta.get_field('offset').help_text,
         label=OnSet._meta.get_field('offset').verbose_name
         )
+    weight = django_filters.NumberFilter(
+        lookup_expr='exact',
+        help_text=Token._meta.get_field('weight').help_text,
+        label=Token._meta.get_field('weight').verbose_name
+        )
+    weight_norm= django_filters.NumberFilter(
+        lookup_expr='exact',
+        help_text=Token._meta.get_field('weight_norm').help_text,
+        label=Token._meta.get_field('weight_norm').verbose_name
+        )
+    cluster__consonant = django_filters.ModelMultipleChoiceFilter(
+        queryset=Cluster.objects.all(),
+        help_text=Cluster._meta.get_field('consonant').help_text,
+        label=Cluster._meta.get_field('consonant').verbose_name
+        )
+    cluster__first_consonant__consonant = django_filters.ModelMultipleChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Cluster._meta.get_field('first_consonant').help_text,
+        label=Cluster._meta.get_field('first_consonant').verbose_name
+        )
+    cluster__second_consonant__consonant = django_filters.ModelMultipleChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Cluster._meta.get_field('second_consonant').help_text,
+        label=Cluster._meta.get_field('second_consonant').verbose_name
+        )
+    cluster__third_consonant__consonant = django_filters.ModelMultipleChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Cluster._meta.get_field('third_consonant').help_text,
+        label=Cluster._meta.get_field('third_consonant').verbose_name
+        )
+    cluster__fourth_consonant__consonant = django_filters.ModelMultipleChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Cluster._meta.get_field('fourth_consonant').help_text,
+        label=Cluster._meta.get_field('fourth_consonant').verbose_name
+        )
+
+
+    
 
 
     class Meta:
