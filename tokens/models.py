@@ -5,9 +5,14 @@ from vocabs.models import SkosConcept
 
 class Lemma(models.Model):
     """docstring forLemma."""
-    name = models.CharField(blank=True, null=True, max_length=100)
+    name = models.CharField(
+        blank=True, null=True, max_length=100, verbose_name="Lemma",
+        help_text="Lemma of the word form the cluster is part of"
+    )
     pos = models.ForeignKey(
-        SkosConcept, blank=True, null=True, related_name="skos_lemma_pos"
+        SkosConcept, blank=True, null=True, related_name="skos_lemma_pos",
+        verbose_name="Part of speech (lemma)",
+        help_text="Part of speech of word token the cluster is part of"
     )
 
     def __str__(self):
