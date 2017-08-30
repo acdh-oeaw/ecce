@@ -128,19 +128,43 @@ class Text(models.Model):
 
 
 class Consonant(models.Model):
-    consonant = models.CharField(blank=True, null=True, max_length=15)
+    consonant = models.CharField(
+        blank=True, null=True, max_length=15, verbose_name="Consonant",
+        help_text="IPA phonological transcription of the segment involved in cluster composition"
+    )
     art_manner = models.ForeignKey(
-        SkosConcept, blank=True, null=True, related_name="skos_art_manner")
+        SkosConcept, blank=True, null=True, related_name="skos_art_manner",
+        verbose_name="Manner of articulation",
+        help_text="Manner of articulation of the segment"
+    )
     art_place = models.ForeignKey(
-        SkosConcept, blank=True, null=True, related_name="skos_art_place")
+        SkosConcept, blank=True, null=True, related_name="skos_art_place",
+        verbose_name="Place of articulation",
+        help_text="Place of articulation of the segment"
+    )
     voice = models.ForeignKey(
-        SkosConcept, blank=True, null=True, related_name="skos_voice")
+        SkosConcept, blank=True, null=True, related_name="skos_voice",
+        verbose_name="Voicing",
+        help_text="Phonation of the segment")
     airflow = models.ForeignKey(
-        SkosConcept, blank=True, null=True, related_name="skos_airflow")
-    sonority = models.IntegerField(blank=True, null=True)
-    transcription = models.CharField(blank=True, null=True, max_length=15)
-    place_ord = models.IntegerField(blank=True, null=True)
-    updated = models.DateTimeField(auto_now=True)
+        SkosConcept, blank=True, null=True, related_name="skos_airflow",
+        verbose_name="MISSING", help_text="MISSING"
+    )
+    sonority = models.IntegerField(
+        blank=True, null=True, verbose_name="Sonority",
+        help_text="Ordinal sonority score of the segment"
+    )
+    transcription = models.CharField(
+        blank=True, null=True, max_length=15, verbose_name="ECCE transcription",
+        help_text="ECCE phonological transcription of the segment"
+    )
+    place_ord = models.IntegerField(
+        blank=True, null=True, verbose_name="Place scale",
+        help_text="Ordinal place-of-articulation score of the segment"
+    )
+    updated = models.DateTimeField(
+        auto_now=True, verbose_name="updated", help_text="Date of last update"
+    )
 
     def __str__(self):
         return "{}".format(self.consonant)
