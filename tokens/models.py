@@ -4,7 +4,10 @@ from vocabs.models import SkosConcept
 
 
 class Lemma(models.Model):
-    """docstring forLemma."""
+
+    """This class contains lexical information about
+    the word form the cluster token is embedded in."""
+
     name = models.CharField(
         blank=True, null=True, max_length=100, verbose_name="Lemma",
         help_text="Lemma of the word form the cluster is part of"
@@ -23,6 +26,10 @@ class Lemma(models.Model):
 
 
 class Date(models.Model):
+
+    """This class adds information to each date (e.g. century labels,
+    schwa-loss probability estimates for cluster-spelling categories)"""
+
     dates = models.IntegerField(
         primary_key=True, verbose_name="Date",
         help_text="Date of source text this token is extracted from"
@@ -70,6 +77,9 @@ class Date(models.Model):
 
 
 class Corpus(models.Model):
+
+    """The Corpus the texts were taken from"""
+
     name = models.CharField(
         blank=True, null=True, max_length=100, verbose_name="Corpus",
         help_text="Corpus of source text this token is extracted from"
@@ -83,6 +93,10 @@ class Corpus(models.Model):
 
 
 class Text(models.Model):
+
+    """This class contains information about the
+    source text the token has been retrieved from."""
+
     text = models.CharField(
         blank=True, null=True, max_length=100, verbose_name="Text",
         help_text="Source text the token is extracted from"
@@ -128,6 +142,10 @@ class Text(models.Model):
 
 
 class Consonant(models.Model):
+
+    """This class contains phonological information about the segments involved
+    in cluster composition (e.g. manner and place of articulation)."""
+
     consonant = models.CharField(
         blank=True, null=True, max_length=15, verbose_name="Consonant",
         help_text="IPA phonological transcription of the segment involved in cluster composition"
@@ -174,6 +192,9 @@ class Consonant(models.Model):
 
 
 class Cluster(models.Model):
+
+    """This class contains phonotactic information about cluster types."""
+
     consonant = models.CharField(
         blank=True, null=True, max_length=10,
         verbose_name="Cluster", help_text="IPA phonological transcription of the cluster"
@@ -242,6 +263,10 @@ class Cluster(models.Model):
 
 
 class TokenLabel(models.Model):
+
+    """This class contains morphonotactic information which can be added to
+    a cluster token (e.g. whether or not the cluster spans a moprheme boundary)."""
+
     label = models.CharField(
         blank=True, null=True, max_length=15, verbose_name="Morphological status",
         help_text="Morphological status of cluster (e.g. lexical, derivational, inflectional,...)"
@@ -267,6 +292,10 @@ class TokenLabel(models.Model):
 
 
 class SchwaPresent(models.Model):
+
+    """This class contains information about whether or not
+    schwas are graphemically represented in a cluster."""
+
     spelling = models.CharField(
         blank=True, null=True, max_length=15, verbose_name="Spelling category",
         help_text="Graphemic category of the cluster"
@@ -308,6 +337,9 @@ class SchwaPresent(models.Model):
 
 
 class OnSet(models.Model):
+
+    """This class contains information about the right phonological context of a cluster."""
+
     rightonset = models.CharField(
         blank=True, null=True, max_length=15, verbose_name="Right phonological context",
         help_text="Phonological onset of the following word form"
@@ -345,6 +377,10 @@ class OnSet(models.Model):
 
 
 class Token(models.Model):
+
+    """This class contains information specific to a particular cluster token
+    (e.g. context, wordform, text source)."""
+
     legacy_id = models.CharField(
         blank=True, null=True, max_length=15, verbose_name="Identifier",
         help_text="Canonical identifier of this token"
