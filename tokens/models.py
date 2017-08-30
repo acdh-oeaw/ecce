@@ -183,14 +183,34 @@ class SchwaPresent(models.Model):
 
 
 class OnSet(models.Model):
-    rightonset = models.CharField(blank=True, null=True, max_length=15)
+    rightonset = models.CharField(
+        blank=True, null=True, max_length=15, verbose_name="Right phonological context",
+        help_text="Phonological onset of the following word form"
+    )
     variable = models.ForeignKey(
-        SkosConcept, blank=True, null=True, related_name="skos_variable")
-    pre_change = models.CharField(blank=True, null=True, max_length=15)
-    post_change = models.CharField(blank=True, null=True, max_length=15)
-    onset = models.CharField(blank=True, null=True, max_length=15)
-    offset = models.CharField(blank=True, null=True, max_length=15)
-    updated = models.DateTimeField(auto_now=True)
+        SkosConcept, blank=True, null=True, related_name="skos_variable",
+        verbose_name="Variability of right context",
+        help_text="Stability status of the onset of the following wordform (fixed or variable)"
+    )
+    pre_change = models.CharField(
+        blank=True, null=True, max_length=15, verbose_name="Status pre change of context",
+        help_text="Phonological value before a potential sound change of the following onset"
+    )
+    post_change = models.CharField(
+        blank=True, null=True, max_length=15, verbose_name="Status post change of context",
+        help_text="Phonological value after a potential sound change of the following onset"
+    )
+    onset = models.CharField(
+        blank=True, null=True, max_length=15, verbose_name="Onset of change",
+        help_text="Onset of sound change of the following phonological onset"
+    )
+    offset = models.CharField(
+        blank=True, null=True, max_length=15, verbose_name="Offset of change",
+        help_text="Offset of sound change of the following phonological onset"
+    )
+    updated = models.DateTimeField(
+        auto_now=True, verbose_name="updated", help_text="Date of last update"
+    )
 
     def __str__(self):
         return "{}".format(self.rightonset)
