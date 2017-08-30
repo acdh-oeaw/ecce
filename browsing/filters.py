@@ -53,18 +53,18 @@ class TokenListFilter(django_filters.FilterSet):
         help_text=Token._meta.get_field('spelling2').help_text,
         label=Token._meta.get_field('spelling2').verbose_name
         )
-    lemma = django_filters.ModelMultipleChoiceFilter(
-        queryset=Lemma.objects.all(),
+    lemma = django_filters.CharFilter(
+        lookup_expr='icontains',
         help_text=Token._meta.get_field('lemma').help_text,
         label=Token._meta.get_field('lemma').verbose_name
         )
-    lemma__name = django_filters.ModelMultipleChoiceFilter(
-        queryset=Lemma.objects.all(),
+    lemma__name = django_filters.CharFilter(
+        lookup_expr='icontains',
         help_text=Lemma._meta.get_field('name').help_text,
         label=Lemma._meta.get_field('name').verbose_name
         )
-    lemma__pos = django_filters.ModelMultipleChoiceFilter(
-        queryset=Lemma.objects.all(),
+    lemma__pos = django_filters.CharFilter(
+        lookup_expr='icontains',
         help_text=Lemma._meta.get_field('pos').help_text,
         label=Lemma._meta.get_field('pos').verbose_name
         )
