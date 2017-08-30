@@ -44,6 +44,9 @@ header {
 .main-content {
     flex: 1 0 auto;
 }
+#content  {
+    margin-bottom: 50px;
+}
 
 footer {
     flex: 0 0 auto;
@@ -295,4 +298,7 @@ background-color: #fff;
     border-bottom: none;
     outline: 0 !important;;
 
+}
+a .fa {
+color: #000000;
 }
