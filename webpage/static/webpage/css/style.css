@@ -44,6 +44,9 @@ header {
 .main-content {
     flex: 1 0 auto;
 }
+#content  {
+    margin-bottom: 50px;
+}
 
 footer {
     flex: 0 0 auto;
@@ -290,4 +293,12 @@ Label the data
 .panel-default > .panel-heading {
 border-bottom: 2px solid black;
 background-color: #fff; 
+}
+.modal-header {
+    border-bottom: none;
+    outline: 0 !important;;
+
+}
+a .fa-github {
+color: #000000;
 }

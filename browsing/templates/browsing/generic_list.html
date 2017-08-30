@@ -195,16 +195,18 @@ $("#goto option").each(function() {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"><legend>Refine your search</legend></h4>
       </div>
       <div class="col-md-12">
           {% load django_tables2 crispy_forms_tags %}
             <form action="." class="uniForm" method="get">
                 {% if togglable_colums %}
+                </br>
                     <legend>Select additional columns</legend>
                     {% column_selector  %}
                 {% endif %}
-            <legend>Filter/Search</legend>
+                
+                </br>
+            <legend>Refine your search</legend>
             {% crispy filter.form filter.form.helper %}
             </form>
 
