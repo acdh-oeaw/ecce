@@ -70,7 +70,10 @@ class Date(models.Model):
 
 
 class Corpus(models.Model):
-    name = models.CharField(blank=True, null=True, max_length=100)
+    name = models.CharField(
+        blank=True, null=True, max_length=100, verbose_name="Corpus",
+        help_text="Corpus of source text this token is extracted from"
+    )
 
     def __str__(self):
         return "{}".format(self.name)
