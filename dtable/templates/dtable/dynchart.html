@@ -14,6 +14,7 @@
 {% endblock %}
 {% block content %}
 <div class="container">
+    {{ data }}
     <div class="panel panel-default">
         <div class="panel-heading" style="text-align:center;">
             <h1>{{ data.title }}</h1>
@@ -51,6 +52,7 @@
 <script>
     $(document).ready(function() {
         var payload = [{% for key, value in data.payload.items %} ["{{ key }}", {{ value }} ], {% endfor %}].sort()
+        console.log(payload)
         $(function () {
             $('#bar').highcharts({
             chart: {

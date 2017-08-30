@@ -68,7 +68,7 @@ def tokens_per_genre(request):
         payload.append([x.pref_label, amount])
 
     data = {
-        "items": len(Token.objects.all()),
+        "items": Token.objects.all().count(),
         "title": "Tokens per genres",
         "subtitle": "Tokens per genre",
         "legendx": "Genres",
