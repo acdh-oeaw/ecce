@@ -147,23 +147,60 @@ class Consonant(models.Model):
 
 
 class Cluster(models.Model):
-    consonant = models.CharField(blank=True, null=True, max_length=10)
+    consonant = models.CharField(
+        blank=True, null=True, max_length=10,
+        verbose_name="Cluster", help_text="IPA phonological transcription of the cluster"
+    )
     first_consonant = models.ForeignKey(
-        Consonant, blank=True, null=True, related_name="consonant_first")
+        Consonant, blank=True, null=True, related_name="consonant_first",
+        verbose_name="Fourth-to-last segment",
+        help_text="IPA phonological transcription of fourth-to-last segment of the cluster (only applies to CCCC)"
+    )
     second_consonant = models.ForeignKey(
-        Consonant, blank=True, null=True, related_name="consonant_second")
+        Consonant, blank=True, null=True, related_name="consonant_second",
+        verbose_name="Third-to-last segment",
+        help_text="IPA phonological transcription of third-to-last segment of the cluster (only applies to CCC(C))"
+    )
     third_consonant = models.ForeignKey(
-        Consonant, blank=True, null=True, related_name="consonant_third")
+        Consonant, blank=True, null=True, related_name="consonant_third",
+        verbose_name="Second-to-last segment",
+        help_text="IPA phonological transcription of penultimate segment of the cluster"
+    )
     fourth_consonant = models.ForeignKey(
-        Consonant, blank=True, null=True, related_name="consonant_fourth")
-    size = models.IntegerField(blank=True, null=True)
-    ssp = models.IntegerField(blank=True, null=True)
-    cv_structure = models.CharField(blank=True, null=True, max_length=10)
-    preferred_cluster = models.CharField(blank=True, null=True, max_length=10)
-    nad_vc = models.FloatField(blank=True, null=True)
-    nad_c1c2 = models.FloatField(blank=True, null=True)
-    nad_c2c3 = models.FloatField(blank=True, null=True)
-    updated = models.DateTimeField(auto_now=True)
+        Consonant, blank=True, null=True, related_name="consonant_fourth",
+        verbose_name="Last segment",
+        help_text="IPA phonological transcription of fourth-to-last segment of the cluster (only applies to CCCC)"
+    )
+    size = models.IntegerField(
+        blank=True, null=True, verbose_name="Cluster size",
+        help_text="Number of segments in the cluster"
+    )
+    ssp = models.IntegerField(
+        blank=True, null=True, verbose_name="SSP fulfilled",
+        verbose_name="Says if sonority sequencing principle is fulfilled for this cluster"
+    )
+    cv_structure = models.CharField(
+        blank=True, null=True, max_length=10, verbose_name="cv_structure",
+        help_text="Segmental structure of this cluster"
+    )
+    preferred_cluster = models.CharField(
+        blank=True, null=True, max_length=10,
+        verbose_name="NAD preferred",
+        help_text="Says if cluster is preferred according to net auditory distance (see http://wa.amu.edu.pl/nadcalc/)"
+    )
+    nad_vc = models.FloatField(
+        blank=True, null=True, verbose_name="NAD VC",
+        help_text="Net auditory distance between preceding vowel and penultimate segment (see http://wa.amu.edu.pl/nadcalc/)"
+    )
+    nad_c1c2 = models.FloatField(
+        blank=True, null=True, verbose_name="NAD C1C2", help_text="Net auditory distance between segment 1 and segment 2 (see http://wa.amu.edu.pl/nadcalc/)"
+    )
+    nad_c2c3 = models.FloatField(
+        blank=True, null=True, verbose_name="NAD C2C3",
+        help_text="Net auditory distance between segment 1 and segment 2 (see http://wa.amu.edu.pl/nadcalc/)")
+    updated = models.DateTimeField(
+        auto_now=True, verbose_name="updated", help_text="Date of last update"
+    )
 
     @property
     def related_tokens_amount(self):
