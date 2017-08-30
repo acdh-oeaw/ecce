@@ -133,6 +133,74 @@ class TokenListFilter(django_filters.FilterSet):
         help_text=OnSet._meta.get_field('offset').help_text,
         label=OnSet._meta.get_field('offset').verbose_name
         )
+    weight = django_filters.NumberFilter(
+        lookup_expr='exact',
+        help_text=Token._meta.get_field('weight').help_text,
+        label=Token._meta.get_field('weight').verbose_name
+        )
+    weight_norm= django_filters.NumberFilter(
+        lookup_expr='exact',
+        help_text=Token._meta.get_field('weight_norm').help_text,
+        label=Token._meta.get_field('weight_norm').verbose_name
+        )
+    cluster__consonant = django_filters.ModelMultipleChoiceFilter(
+        queryset=Cluster.objects.all(),
+        help_text=Cluster._meta.get_field('consonant').help_text,
+        label=Cluster._meta.get_field('consonant').verbose_name
+        )
+    cluster__first_consonant__consonant = django_filters.ModelMultipleChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Cluster._meta.get_field('first_consonant').help_text,
+        label=Cluster._meta.get_field('first_consonant').verbose_name
+        )
+    cluster__second_consonant__consonant = django_filters.ModelMultipleChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Cluster._meta.get_field('second_consonant').help_text,
+        label=Cluster._meta.get_field('second_consonant').verbose_name
+        )
+    cluster__third_consonant__consonant = django_filters.ModelMultipleChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Cluster._meta.get_field('third_consonant').help_text,
+        label=Cluster._meta.get_field('third_consonant').verbose_name
+        )
+    cluster__fourth_consonant__consonant = django_filters.ModelMultipleChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Cluster._meta.get_field('fourth_consonant').help_text,
+        label=Cluster._meta.get_field('fourth_consonant').verbose_name
+        )
+    cluster__size = django_filters.NumberFilter(
+        lookup_expr='exact',
+        help_text=Cluster._meta.get_field('size').help_text,
+        label=Cluster._meta.get_field('size').verbose_name
+        )
+    cluster__ssp = django_filters.NumberFilter(
+        lookup_expr='exact',
+        help_text=Cluster._meta.get_field('ssp').help_text,
+        label=Cluster._meta.get_field('ssp').verbose_name
+        )
+    cluster__nad_vc = django_filters.NumberFilter(
+        lookup_expr='exact',
+        help_text=Cluster._meta.get_field('nad_vc').help_text,
+        label=Cluster._meta.get_field('nad_vc').verbose_name
+        )
+    cluster__nad_c1c2 = django_filters.NumberFilter(
+        lookup_expr='exact',
+        help_text=Cluster._meta.get_field('nad_c1c2').help_text,
+        label=Cluster._meta.get_field('nad_c1c2').verbose_name
+        )
+    cluster__nad_c2c3 = django_filters.NumberFilter(
+        lookup_expr='exact',
+        help_text=Cluster._meta.get_field('nad_c2c3').help_text,
+        label=Cluster._meta.get_field('nad_c2c3').verbose_name
+        )
+    cluster__preferred_cluster = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=Cluster._meta.get_field('preferred_cluster').help_text,
+        label=Cluster._meta.get_field('preferred_cluster').verbose_name
+        )
+
+
+    
 
 
     class Meta:
