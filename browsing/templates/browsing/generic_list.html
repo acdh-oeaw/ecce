@@ -3,10 +3,13 @@
 {% load django_tables2 %}
 {% load browsing_extras %}
 {% load i18n %}
-{% block Titel %} See all {{ object.classname }} {% endblock %}
+{% block Titel %} Browse {{ class_name }} {% endblock %}
 {% block scriptHeader %}
 {% endblock %}
 {% block content %}
+<script>
+    var new_url = old_url.substring(0, window.location.href.indexOf('?'));
+</script>
 
 <script type="text/javascript">
 
@@ -21,12 +24,11 @@ $("#goto option").each(function() {
 
 });
 </script>
-
 <div class="container">
 <div class="panel panel-default">
     <div class="panel-heading procustom-panel-heading">
 
-        <h3><span class="fa fa-search" style="padding-left:10px; padding-right: 10px;"></span> {% block list_title %}{% endblock %}</h3>
+        <h3><span class="fa fa-search" style="padding-left:10px; padding-right: 10px;"></span>Browse {% class_definition %} {% block list_title %}{% endblock %}</h3>
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myFilter">
           <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
         </button>
@@ -207,6 +209,7 @@ $("#goto option").each(function() {
             </form>
 
           {% block reset_button %}
+          <a class ="btn btn-default"  href=".">Reset search</a>
           {% endblock %}
       </div>
       <div class="modal-footer">
