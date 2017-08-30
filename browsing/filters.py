@@ -213,9 +213,36 @@ class TokenListFilter(django_filters.FilterSet):
         help_text=Text._meta.get_field('mean_date').help_text,
         label=Text._meta.get_field('mean_date').verbose_name
         )
-
-
-    
+    text_source__size = django_filters.NumberFilter(
+        lookup_expr='exact',
+        help_text=Text._meta.get_field('size').help_text,
+        label=Text._meta.get_field('size').verbose_name
+        )
+    text_source__dialect = django_filters.ModelMultipleChoiceFilter(
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-dialect'),
+        help_text=Text._meta.get_field('dialect').help_text,
+        label=Text._meta.get_field('dialect').verbose_name
+        )
+    text_source = django_filters.ModelMultipleChoiceFilter(
+        queryset=Text.objects.all(),
+        help_text=Token._meta.get_field('text_source').help_text,
+        label=Token._meta.get_field('text_source').verbose_name
+        )
+    text_source__mean_date__decade = django_filters.NumberFilter(
+        lookup_expr='exact',
+        help_text=Date._meta.get_field('decade').help_text,
+        label=Date._meta.get_field('decade').verbose_name
+        )
+    text_source__mean_date__semicentury = django_filters.NumberFilter(
+        lookup_expr='exact',
+        help_text=Date._meta.get_field('semicentury').help_text,
+        label=Date._meta.get_field('semicentury').verbose_name
+        )
+    text_source__mean_date__century = django_filters.NumberFilter(
+        lookup_expr='exact',
+        help_text=Date._meta.get_field('century').help_text,
+        label=Date._meta.get_field('century').verbose_name
+        )
 
 
     class Meta:
