@@ -69,7 +69,7 @@ class TokenListFilter(django_filters.FilterSet):
         label=Lemma._meta.get_field('pos').verbose_name
         )
     pos = django_filters.ModelMultipleChoiceFilter(
-        queryset=SkosConcept.objects.all(),
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-pos'),
         help_text=Token._meta.get_field('pos').help_text,
         label=Token._meta.get_field('pos').verbose_name
         )
@@ -197,6 +197,21 @@ class TokenListFilter(django_filters.FilterSet):
         lookup_expr='icontains',
         help_text=Cluster._meta.get_field('preferred_cluster').help_text,
         label=Cluster._meta.get_field('preferred_cluster').verbose_name
+        )
+    text_source__genre = django_filters.ModelMultipleChoiceFilter(
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-genre'),
+        help_text=Text._meta.get_field('genre').help_text,
+        label=Text._meta.get_field('genre').verbose_name
+        )
+    text_source__corpus = django_filters.ModelMultipleChoiceFilter(
+        queryset=Corpus.objects.all(),
+        help_text=Text._meta.get_field('corpus').help_text,
+        label=Text._meta.get_field('corpus').verbose_name
+        )
+    text_source__mean_date = django_filters.ModelMultipleChoiceFilter(
+        queryset=Date.objects.all(),
+        help_text=Text._meta.get_field('mean_date').help_text,
+        label=Text._meta.get_field('mean_date').verbose_name
         )
 
 
