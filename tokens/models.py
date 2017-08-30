@@ -218,12 +218,22 @@ class Cluster(models.Model):
 
 
 class TokenLabel(models.Model):
-    label = models.CharField(blank=True, null=True, max_length=15)
-    description = models.TextField(blank=True, null=True)
-    morphonotacticity = models.ForeignKey(
-        SkosConcept, blank=True, null=True, related_name="skos_morphonotacticity"
+    label = models.CharField(
+        blank=True, null=True, max_length=15, verbose_name="Morphological status",
+        help_text="Morphological status of cluster (e.g. lexical, derivational, inflectional,...)"
     )
-    updated = models.DateTimeField(auto_now=True)
+    description = models.TextField(
+        blank=True, null=True, verbose_name="Description morphological status",
+        help_text="Further description of morphological status of the cluster"
+    )
+    morphonotacticity = models.ForeignKey(
+        SkosConcept, blank=True, null=True, related_name="skos_morphonotacticity",
+        verbose_name="Morphonotactic status",
+        help_text="Morphonotactic status of the cluster (lexical, morphonotactic, weakly morphonotatcic)"
+    )
+    updated = models.DateTimeField(
+        auto_now=True, verbose_name="updated", help_text="Date of last update"
+    )
 
     def __str__(self):
         return "{}".format(self.label)
