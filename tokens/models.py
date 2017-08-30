@@ -204,7 +204,7 @@ class Cluster(models.Model):
     )
     ssp = models.IntegerField(
         blank=True, null=True, verbose_name="SSP fulfilled",
-        verbose_name="Says if sonority sequencing principle is fulfilled for this cluster"
+        help_text="Says if sonority sequencing principle is fulfilled for this cluster"
     )
     cv_structure = models.CharField(
         blank=True, null=True, max_length=10, verbose_name="cv_structure",
