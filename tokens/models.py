@@ -165,15 +165,38 @@ class TokenLabel(models.Model):
 
 
 class SchwaPresent(models.Model):
-    spelling = models.CharField(blank=True, null=True, max_length=15)
+    spelling = models.CharField(
+        blank=True, null=True, max_length=15, verbose_name="Spelling category",
+        help_text="Graphemic category of the cluster"
+    )
     schwaprese = models.ForeignKey(
-        SkosConcept, blank=True, null=True, related_name="skos_schwaprese")
-    is_no = models.NullBooleanField()
-    is_final = models.NullBooleanField()
-    is_final_v = models.NullBooleanField()
-    is_checked = models.NullBooleanField()
-    is_both = models.NullBooleanField()
-    updated = models.DateTimeField(auto_now=True)
+        SkosConcept, blank=True, null=True, related_name="skos_schwaprese",
+        verbose_name="schwa present category",
+        help_text="classification of spelling category (for probabilistic estimation only)"
+    )
+    is_no = models.NullBooleanField(
+        verbose_name="schwa not present",
+        help_text="says if schwa is graphemically represented (for probabilistic estimation only)"
+    )
+    is_final = models.NullBooleanField(
+        verbose_name="schwa finally present",
+        help_text="says if schwa is graphemically represented in word final position (for probabilistic estimation only)"
+    )
+    is_final_v = models.NullBooleanField(
+        verbose_name="schwa finally_V present",
+        help_text="says if schwa is graphemically represented in word final position before vowel (for probabilistic estimation only)"
+    )
+    is_checked = models.NullBooleanField(
+        verbose_name="checked schwa present",
+        help_text="says if schwa is graphemically represented in interconsonantal position (for probabilistic estimation only)"
+    )
+    is_both = models.NullBooleanField(
+        verbose_name="both schwas present",
+        help_text="says if schwa is graphemically represented in both positions"
+    )
+    updated = models.DateTimeField(
+        auto_now=True, verbose_name="updated", help_text="Date of last update"
+    )
 
     def __str__(self):
         return "{}".format(self.spelling)
