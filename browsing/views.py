@@ -60,7 +60,7 @@ class TokenListView(GenericListView):
     table_class = TokenTable
     # template_name = 'browsing/token_list_generic.html'
     filter_class = TokenListFilter
-    formhelper_class = GenericFilterFormHelper
+    formhelper_class = TokenFilterFormHelper
     init_columns = ['plain_word', 'cluster_size', 'cluster', 'plain_word', 'lemma']
 
     def get_all_cols(self):
