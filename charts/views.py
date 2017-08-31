@@ -47,7 +47,7 @@ class DynChartView(GenericListView):
             payload[x[property_name]] = x['amount']
         context['all'] = Token.objects.count()
         data = {
-            "items": "{} out of {}".format(self.filter.count(), context['all']),
+            "items": "{} out of {}".format(self.get_queryset().count(), context['all']),
             "title": "Tokens per {}".format(plotted_item['label']),
             "subtitle": "Tokens per {}".format(property_name.title()),
             "legendx": property_name.title(),
