@@ -1,7 +1,6 @@
 import django_filters
 from dal import autocomplete
 from tokens.models import *
-from dtable.models import NormToken
 from vocabs.models import SkosConcept
 
 django_filters.filters.LOOKUP_TYPES = [
@@ -19,12 +18,6 @@ django_filters.filters.LOOKUP_TYPES = [
     ('icontains', 'Contains (case insensitive)'),
     ('not_contains', 'Does not contain'),
 ]
-
-
-class NormTokenListFilter(django_filters.FilterSet):
-
-    class Meta:
-        model = NormToken
 
 
 class TokenListFilter(django_filters.FilterSet):

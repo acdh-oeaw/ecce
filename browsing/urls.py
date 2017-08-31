@@ -3,7 +3,6 @@ from . import views
 
 urlpatterns = [
     url(r'tokens/$', views.TokenListView.as_view(), name='browse_tokens'),
-    url(r'allinone/$', views.AllInOneView.as_view(), name='browse_normtokens'),
     url(r'dates/$', views.DateListView.as_view(), name='browse_dates'),
     url(r'corpora/$', views.CorpusListView.as_view(), name='browse_corpora'),
     url(r'texts/$', views.TextListView.as_view(), name='browse_texts'),

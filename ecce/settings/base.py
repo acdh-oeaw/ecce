@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'tokens',
     'browsing',
     'charts',
-    'dtable',
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap3"
@@ -51,7 +50,7 @@ REST_FRAMEWORK = {
 }
 
 SPAGHETTI_SAUCE = {
-    'apps': ['vocabs', 'tokens', 'dtable'],
+    'apps': ['vocabs', 'tokens'],
     'show_fields': False,
     'exclude': {'auth': ['user']}
 }

@@ -1,6 +1,5 @@
 from django_tables2 import SingleTableView, RequestConfig
 from tokens.models import *
-from dtable.models import NormToken
 from .filters import *
 from .forms import *
 from .tables import *
@@ -36,29 +35,9 @@ class GenericListView(SingleTableView):
         return context
 
 
-class AllInOneView(GenericListView):
-    model = NormToken
-    table_class = NormTokenTable
-    template_name = 'browsing/normtoken.html'
-    filter_class = NormTokenListFilter
-    formhelper_class = NormTokenFilterFormHelper
-
-    def get_context_data(self, **kwargs):
-        context = super(GenericListView, self).get_context_data()
-        context[self.context_filter_name] = self.filter
-        init_columns = [
-            'plain_word', 'pos', 'cluster_consonant', 'medial_suffix', 'final_suffix'
-        ]
-        all_columns = [f.name for f in self.model._meta.get_fields()]
-        toogable_colums = list(set(all_columns) - set(init_columns))
-        context['toogable_colums'] = toogable_colums
-        return context
-
-
 class TokenListView(GenericListView):
     model = Token
     table_class = TokenTable
-    # template_name = 'browsing/token_list_generic.html'
     filter_class = TokenListFilter
     formhelper_class = TokenFilterFormHelper
     init_columns = ['plain_word', 'cluster_size', 'cluster', 'plain_word', 'lemma']
