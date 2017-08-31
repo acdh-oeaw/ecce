@@ -18,7 +18,7 @@ class ChartSelector(TemplateView):
         context = super(ChartSelector, self).get_context_data()
         values = {}
         for x in TokenListFilter.declared_filters.items():
-            values[x[0]] = {'lookup': x[0], 'label': x[1].label}
+            values[x[0]] = {'lookup': x[0], 'label': x[1].label, 'help_text': x[1].lookup_expr}
         context['links'] = values
         return context
 

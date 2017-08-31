@@ -6,7 +6,7 @@
 <h1>hallo</h1>
     {% for key, value in links.items %}
     <li>
-        <a href="./{{ key }}">{{ value.label }}</a>
+        <a href="./{{ key }}">{{ value.label }} <small>{{ value.help_text }}</small></a>
     </li>
     {% endfor %}
 {% endblock %}
