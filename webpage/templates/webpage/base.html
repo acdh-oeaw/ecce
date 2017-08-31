@@ -133,29 +133,14 @@
                   </ul>
                 </li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CHARTS
-                  <span class="caret"/>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a href="{% url 'dtable:dynchart' property='text_genre' %}">Tokens per Genre</a>
-                    </li>
-                    <li>
-                      <a href="{% url 'dtable:dynchart' property='text_corpus' %}">Tokens per Corpus</a>
-                    </li>
-                    <li>
-                      <a href="{% url 'dtable:dynchart' property='text_mean_date_century' %}">Tokens per Centuries</a>
-                    </li>
-                    <li>
-                      <a href="{% url 'charts:bar_charts' %}">Bar Charts</a>
-                    </li>
-                    <li>
-                      <a href="{% url 'charts:pie_charts' %}">Pie Charts</a>
-                    </li>
-                    <li>
-                      <a href="{% url 'charts:line_charts' %}">Line Charts</a>
-                    </li>
-                  </ul>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CHARTS
+                        <span class="caret"/>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{% url 'charts:chart_selector' %}">select charts</a>
+                        </li>
+                    </ul>
                 </li>
                 {% if user.is_authenticated %}
                   <li class="dropdown">
@@ -242,7 +227,7 @@
               <img src="{% static 'webpage/img/acdh_logo_black_with_text.png' %}" alt="ACDH" style="width: 30%; margin-top: 30px; margin-bottom: 30px;"/>
           </a>
         </div>
-       
+
         <div class="col-sm-4 text-left">
             <h4><b>Contact:</b></h4>
             <p>Institut für Anglistik und Amerikanistik der Universität Wien

@@ -1,0 +1,12 @@
+{% extends "webpage/base.html" %}
+{% load staticfiles %}
+{% load django_tables2 crispy_forms_tags %}
+
+{% block content %}
+<h1>hallo</h1>
+    {% for key, value in links.items %}
+    <li>
+        <a href="./{{ key }}">{{ value.label }}</a>
+    </li>
+    {% endfor %}
+{% endblock %}
