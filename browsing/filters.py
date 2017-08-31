@@ -51,8 +51,8 @@ class TokenListFilter(django_filters.FilterSet):
         help_text=Lemma._meta.get_field('name').help_text,
         label=Lemma._meta.get_field('name').verbose_name
         )
-    lemma__pos = django_filters.CharFilter(
-        lookup_expr='icontains',
+    lemma__pos = django_filters.ModelMultipleChoiceFilter(
+        queryset = SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-pos'),
         help_text=Lemma._meta.get_field('pos').help_text,
         label=Lemma._meta.get_field('pos').verbose_name
         )
@@ -76,18 +76,18 @@ class TokenListFilter(django_filters.FilterSet):
         help_text=Token._meta.get_field('final_suffix').help_text,
         label=Token._meta.get_field('final_suffix').verbose_name
         )
-    label__label = django_filters.ModelMultipleChoiceFilter(
-        queryset=TokenLabel.objects.all(),
-        help_text=TokenLabel._meta.get_field('label').help_text,
-        label=TokenLabel._meta.get_field('label').verbose_name
-        )
+    # label__label = django_filters.ModelMultipleChoiceFilter(
+    #     queryset=TokenLabel.objects.all(),
+    #     help_text=TokenLabel._meta.get_field('label').help_text,
+    #     label=TokenLabel._meta.get_field('label').verbose_name
+    #     )
     label__description = django_filters.CharFilter(
         lookup_expr='icontains',
         help_text=TokenLabel._meta.get_field('description').help_text,
         label=TokenLabel._meta.get_field('description').verbose_name
         )
     label__morphonotacticity = django_filters.ModelMultipleChoiceFilter(
-        queryset=TokenLabel.objects.all(),
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='morphonotacticity'),
         help_text=TokenLabel._meta.get_field('morphonotacticity').help_text,
         label=TokenLabel._meta.get_field('morphonotacticity').verbose_name
         )
@@ -97,7 +97,7 @@ class TokenListFilter(django_filters.FilterSet):
         label=Token._meta.get_field('rightonset').verbose_name
         )
     rightonset__variable = django_filters.ModelMultipleChoiceFilter(
-        queryset=OnSet.objects.all(),
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-variable'),
         help_text=OnSet._meta.get_field('variable').help_text,
         label=OnSet._meta.get_field('variable').verbose_name
         )
