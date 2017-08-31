@@ -133,8 +133,8 @@
                   </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CHARTS
-                        <span class="caret"/>
+                    <a href="{% url 'charts:chart_selector' %}">
+                    CHARTS
                     </a>
                     <ul class="dropdown-menu">
                         <li>
@@ -217,22 +217,33 @@
 
     <footer>
      <div class="container">
+     <div class="row">
       <div class="col-sm-4 text-center">
             <a href="http://ecce.univie.ac.at/home/" class="navlink" target="_blank">
-              <img src="{% static 'webpage/img/Uni_Logo_2016_SW.png' %}" alt="UniWien" style="width: 60%; "/>
+              <img src="{% static 'webpage/img/Uni_Logo_2016_SW.png' %}" alt="UniWien" style="width: 60%; margin-bottom: 30px;"/>
             </a>
+            
         </div>
         <div class="col-sm-4 text-center">
           <a href="https://acdh.oeaw.ac.at/acdh/" class="navlink" target="_blank">
-              <img src="{% static 'webpage/img/acdh_logo_black_with_text.png' %}" alt="ACDH" style="width: 30%; margin-top: 30px; margin-bottom: 30px;"/>
+              <img src="{% static 'webpage/img/acdh_logo_black_with_text.png' %}" alt="ACDH" style="width: 30%; margin-top: 25px; margin-bottom: 30px;"/>
           </a>
+        </div>
+        <div class="col-sm-4 text-center">
+        <a href="https://www.fwf.ac.at/en/" class="navlink" target="_blank">
+              <img src="{% static 'webpage/img/fwf-logo.jpg' %}" alt="FWF" style="width: 50%; margin-top: 25px; margin-bottom: 30px;"/>
+            </a>
+        </div>
         </div>
 
         <div class="col-sm-4 text-left">
             <h4><b>Contact:</b></h4>
-            <p>Institut für Anglistik und Amerikanistik der Universität Wien
-              Spitalgasse 2-4/Hof 8.3</p>
-            <p>1090 Wien</p>
+            <p>Dr. Nikolaus Ritt
+            <br>nikolaus.ritt@univie.ac.at</p>
+            <p>Department of English and American Studies,
+            <br>University of Vienna
+            <br>Spitalgasse 2-4/Hof 8.3
+            <br>1090 Vienna</p>
             <a href="https://github.com/acdh-oeaw/ecce">
             <i class="fa fa-github fa-3x" aria-hidden="true"></i>
             </a>
@@ -258,6 +269,21 @@
         });
       </script> -->
     <!-- scroll-up-bottom -->
+    <script type="text/javascript">
+    var nav = $('#myNavbar'); // Change to nav div
+    var nav_class = 'mini-nav'; // Change to class name
+    var threshold = 100; // Change to pixels scrolled
+    $(window).scroll(function() {
+    var distance = $(this).scrollTop();
+    if (distance > threshold) { // If scrolled past threshold
+        nav.addClass(nav_class); // Add class to nav
+    } else { // If user scrolls back to top
+        if (nav.hasClass(nav_class)) { // And if class has been added
+            nav.removeClass(nav_class); // Remove it
+        }
+    }
+});
+</script>
     <script type="text/javascript">
             // Setup plugin with default settings
             $(document).ready(function() {

@@ -29,12 +29,8 @@ body {
     flex-direction: column;
     height: 100%;
     padding-top: 70px;
-    /*font-family: 'Amiri', serif;*/
-    /*font-size: 16px;*/
-    /*background: #f6f4f1;*/
     background: #efefef;
     font-family: 'Open Sans', sans-serif;
-    /* font-family: 'Roboto', sans-serif;*/
 }
 
 header {
@@ -61,10 +57,6 @@ footer {
 
 .navbar {
     background-color: #fff;
-    /*color: #056571;*/
-
-    /*font-weight: 600;*/
-    /*box-shadow: 2px 2px 24px 0 #828081;*/
 }
 
 .navbar-nav.navbar-right:last-child {
@@ -99,6 +91,9 @@ footer {
 .navbar-toggle {
     margin-top: 15px;
 }
+#myNavbar.mini-nav {
+    box-shadow: 0 2px 2px #848488;
+}
 .grid-item {
     float: left;
     margin: 1%;
@@ -109,16 +104,11 @@ footer {
     padding-bottom: 10px;
     position: relative;
     text-align: justify;
-    /*background: #4484CE;
-*/
-    /*background: #fff;*/
     color: #fff;
     box-shadow: 2px 2px 24px 0 rgba(0, 0, 0, .1);
-    /*color: #4484CE;*/
+
     font-weight: 800;
     text-align: center;
-    /*border-color: 2px solid #4484CE;*/
-    /*border: 5px solid #587583;*/
 }
 
 .grid-item>a,
@@ -156,49 +146,34 @@ footer {
     .grid-item {
         width: 94%;
     }
-    /*.book-image { width: 50% }*/
-}
 
+}
 .div-tile {
-    height: 120px;
     width: 100%;
+    height: 120px;
 }
-
 .type-one {
-
-    background: #44546d;
+    background: #cf6766;
 }
-
 .type-two {
-
-    /*background: #cf6766;*/
     background: #8eaebd;
 }
-
-.type-three {
-
-    background: #8eaebd;
-}
-
 .hrtile {
     width: 70%;
-    /* border: 2px solid #fff;*/
 }
-
 #index-jumbo {
-    /*background: #44546d;*/
-    color: #fff;
-    padding: 50px;
     margin-top: -20px;
-    background: #cf6766;
+    padding: 50px;
+
+    color: #fff;
+    background: #44546d;
 }
 
 #index-jumbo>p {
     color: #fff;
 }
 
-
-/*the following css solves the responsivness of table for mobile devices by transforming a table into rows*/
+/**/the following css solves the responsivness of table for mobile devices by transforming a table into rows*/
 
 .table-responsive {
     overflow-x: auto;
@@ -265,8 +240,8 @@ Label the data
 
 #accordion>.panel>.panel-heading {
     color: #fff;
-    background: #8eaebd;
     border: 2px solid #8eaebd;
+    background: #8eaebd;
 }
 
 .procustom-panel-list {
@@ -274,31 +249,36 @@ Label the data
 }
 
 .panel-default>.procustom-panel-heading {
-     background-color: #fff;
-  /*color: #fff;*/
-  border-bottom: 3px solid black;
-  border-width: 70%;
+    border-width: 70%;
+    /*color: #fff;*/
+    border-bottom: 3px solid black;
+    background-color: #fff;
 }
 
 .btn {
     line-height: 36px;
+
     height: 36px;
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 0 2rem;
+
     white-space: normal;
     letter-spacing: .5px;
     text-transform: uppercase;
 }
-.panel-default > .panel-heading {
-border-bottom: 2px solid black;
-background-color: #fff; 
+
+.panel-default>.panel-heading {
+    border-bottom: 2px solid black;
+    background-color: #fff;
 }
+
 .modal-header {
     border-bottom: none;
-    outline: 0 !important;;
-
+    outline: 0 !important;
+    ;
 }
+
 a .fa-github {
-color: #000000;
+    color: #000;
 }

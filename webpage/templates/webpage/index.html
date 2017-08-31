@@ -3,29 +3,22 @@
 {% load webpage_extras %}
 
 
-
-
-
 {% block index-content %}
 <div class="container jumbotron text-center" id="index-jumbo">
-
-  <!-- <h1 class="page-name">EVOLUTION OF CONSONANT CLUSTERS IN ENGLISH</h1> -->
   <h1>ECCE</h1>
-  <!-- <h2 class="subheading">An interactive database of English word-final consonant clusters</h2> -->
   <h2>EVOLUTION OF CONSONANT CLUSTERS IN ENGLISH</h2>
-  <!-- <span class="meta">Pooling data together</span> -->
-  <hr style="width: 60%">
+  <hr style="width: 60%; border: 2px solid #fff;">
   <p class="text-muted" align="justify">One of the main purposes of this project is to produce an interactive database of English word-final consonant clusters – phonologically speaking highly marked structures which are nevertheless abundant in English. Our aim is to enrich the scientific landscape of phonology with up to now unexplored diachronic aspects of cluster development, showing how coda clusters emerged and why they are historically speaking stable despite their marked status.</p>
 
 </div>
 {% endblock %}
 
 {% block content %}
-<h1 style="text-align: center; color: #cf6766;">EXPLORE</h1>
-<hr style="width: 60%; border-color: #cf6766;">
+<h1 style="text-align: center; color: #44546d;"><b>EXPLORE</b></h1>
+<hr style="width: 60%; border: 2px solid #44546d;">
 <div class="grid">
 
-    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-two">
+    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-one">
     <a href="{% url 'browsing:browse_tokens' %}">
         <div class="div-tile">
             <h2>Tokens</h2>
@@ -34,7 +27,7 @@
         </div>
         </a>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-three">
+    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-two">
     <a href="{% url 'browsing:browse_dates' %}">
         <div class="div-tile">
             <h2>Dates</h2>
@@ -44,7 +37,7 @@
         </div>
         </a>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-two">
+    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-one">
     <a href="{% url 'browsing:browse_corpora' %}">
         <div class="div-tile">
             <h2>Corpora</h2>
@@ -54,7 +47,7 @@
         </div>
         </a>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-one">
+    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-two">
     <a href="{% url 'browsing:browse_texts' %}">
         <div class="div-tile">
             <h2>Texts</h2>
@@ -64,7 +57,7 @@
         </div>
         </a>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-two">
+    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-one">
     <a href="{% url 'browsing:browse_consonants' %}">
         <div class="div-tile">
             <h2><b>Consonants</b></h2>
@@ -74,7 +67,7 @@
         </div>
         </a>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-one">
+    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-two">
     <a href="{% url 'browsing:browse_clusters' %}">
         <div class="div-tile">
             <h2>Cluster</h2>
@@ -84,40 +77,7 @@
         </div>
         </a>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-three">
-    <a href="{% url 'browsing:browse_tokenlabels' %}">
-        <div class="div-tile">
-            <h2>TokenLabel</h2>
-             <hr class="hrtile">
-
-            <h2>{% tokenlabels_count %}</h2>
-        </div>
-        </a>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-one">
-    <a href="{% url 'browsing:browse_schwapresents' %}">
-        <div class="div-tile">
-            <h2>SchwaPresent</h2>
-             <hr class="hrtile">
-
-            <h2>{% schwapresents_count %}</h2>
-        </div>
-        </a>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-three">
-    <a href="{% url 'browsing:browse_onsets' %}">
-        <div class="div-tile">
-            <h2>OnSet</h2>
-             <hr class="hrtile">
-
-            <h2>{% onsets_count %}</h2>
-        </div>
-        </a>
-    </div>
 </div>
-
-
-
 
 <script type="text/javascript">
 
