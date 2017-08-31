@@ -243,45 +243,53 @@ class DateListFilter(django_filters.FilterSet):
 
     class Meta:
         model = Date
+        fields = "__all__"
 
 
 class CorpusListFilter(django_filters.FilterSet):
 
     class Meta:
         model = Corpus
+        fields = "__all__"
 
 
 class TextListFilter(django_filters.FilterSet):
 
     class Meta:
         model = Text
+        fields = "__all__"
 
 
 class ConsonantListFilter(django_filters.FilterSet):
 
     class Meta:
         model = Consonant
+        fields = "__all__"
 
 
 class ClusterListFilter(django_filters.FilterSet):
 
     class Meta:
         model = Cluster
+        fields = "__all__"
 
 
 class TokenLabelListFilter(django_filters.FilterSet):
 
     class Meta:
         model = TokenLabel
+        fields = "__all__"
 
 
 class SchwaPresentListFilter(django_filters.FilterSet):
 
     class Meta:
         model = SchwaPresent
+        fields = "__all__"
 
 
 class OnSetListFilter(django_filters.FilterSet):
 
     class Meta:
         model = OnSet
+        fields = "__all__"

@@ -1,5 +1,158 @@
 import lxml.etree as ET
+import csv
 from .models import SkosConcept, SkosConceptScheme, SkosLabel
+
+
+class Csv2SkosReader(object):
+    """
+    extract SKOS-like objects from special structured CSV sheets
+    and returns a list of dictionaries containing data needed to
+    create vocabs-entries
+    """
+
+    def __init__(self, csv_file):
+        self.csv_file = csv_file
+        self.data = [x for x in csv.reader(self.csv_file)]
+        self.headers = self.data[0]
+        try:
+            self.alt_lang = (self.headers[1])[(self.headers[1]).index('@')+1:]
+        except:
+            self.alt_lang = None
+        self.schemes = set([x[0] for x in self.data[1:]])
+        self.number_of_schemes = len(self.schemes)
+
+    def get_concepts(self):
+        concepts = []
+        for x in self.data[1:]:
+            first_order = x[1].split('|')
+            if x[2] != '':
+                second_order = x[2].split('|')
+                concept = {
+                    'scheme': x[0],
+                    'concept': {
+                        'pref_label': first_order[0],
+                        'pref_label_lang': 'eng',
+                        'alt_label': self.alt_lang,
+                        'alt_label_lang': self.alt_lang,
+                        'narrower': {
+                            'scheme': x[0],
+                            'concept': {
+                                'pref_label': second_order[0],
+                                'pref_label_lang': 'eng',
+                                'alt_label': second_order[1],
+                                'alt_label_lang': self.alt_lang,
+                            }
+                        }
+                    }
+                }
+            else:
+                concept = {
+                    'scheme': x[0],
+                    'concept': {
+                        'pref_label': first_order[0],
+                        'pref_label_lang': 'eng',
+                        'alt_label': first_order[1],
+                        'alt_label_lang': self.alt_lang,
+                    }
+                }
+            concepts.append(concept)
+
+        return concepts
+
+
+class Csv2SkosImporter(Csv2SkosReader):
+    """Takes a special formatted csv file, parses it and imports the derived data into vocabs"""
+
+    def update_schemes(self):
+        """import/updates all conceptSchemes found in csv"""
+        report = {}
+        report['before'] = len(SkosConceptScheme.objects.all())
+        failed = []
+        success = []
+        for x in self.schemes:
+            try:
+                clean = x.split('|')[0].strip()
+            except:
+                clean = x.strip()
+            try:
+                temp_scheme, _ = SkosConceptScheme.objects.get_or_create(dc_title=clean)
+                temp_scheme.save()
+                success.append(x)
+            except:
+                failed.append(x)
+        report['failed'] = failed
+        report['success'] = success
+        report['after'] = len(SkosConceptScheme.objects.all())
+        return report
+
+    def importConcepts(self):
+        """import/updates all SkosConcepts found in csv"""
+        report = {}
+        report['before'] = len(SkosConcept.objects.all())
+        report['schemes_before'] = len(SkosConceptScheme.objects.all())
+        failed = []
+        success = []
+        for x in self.get_concepts():
+            # get scheme
+            try:
+                clean = x['scheme'].split('|')[0].strip()
+            except:
+                clean = x['scheme'].strip()
+            temp_scheme, _ = SkosConceptScheme.objects.get_or_create(dc_title=clean)
+            # crete 1st order
+            try:
+                temp_label, _ = SkosLabel.objects.get_or_create(
+                    label=x['concept']['alt_label'],
+                    label_type='altLabel',
+                    isoCode=x['concept']['alt_label_lang']
+                )
+                temp_first, _ = SkosConcept.objects.get_or_create(
+                    pref_label=x['concept']['pref_label'],
+                    pref_label_lang=x['concept']['pref_label_lang']
+                )
+                temp_first.label = [temp_label]
+                temp_first.scheme = [temp_scheme]
+                success.append(x['concept']['pref_label'])
+            except:
+                failed.append(x['concept']['pref_label'])
+            try:
+                second = x['concept']['narrower']['concept']
+                # crete 2st order
+                try:
+                    temp_label, _ = SkosLabel.objects.get_or_create(
+                        label=second['alt_label'],
+                        label_type='altLabel',
+                        isoCode=second['alt_label_lang']
+                    )
+                    temp_second, _ = SkosConcept.objects.get_or_create(
+                        pref_label=second['pref_label'],
+                        pref_label_lang=second['pref_label_lang']
+                    )
+                    temp_second.label = [temp_label]
+                    temp_second.scheme = [temp_scheme]
+                    temp_first.skos_narrower = [temp_second]
+                    success.append(second['pref_label'])
+                except:
+                    failed.append(second['pref_label'])
+            except:
+                pass
+        report['failed'] = failed
+        report['success'] = success
+        report['after'] = len(SkosConcept.objects.all())
+        report['schemes_after'] = len(SkosConceptScheme.objects.all())
+        return report
+
+    def update_concepts(self):
+        """import/updates all SkosConcepts found in csv"""
+        report = {}
+        report['before'] = len(SkosConcept.objects.all())
+        failed = []
+        success = []
+        for x in self.get_concepts():
+            # print(x['concept'])
+            pass
+        report['after'] = len(SkosConcept.objects.all())
+        return report
 
 
 class SkosReader(object):
@@ -54,6 +207,10 @@ class SkosReader(object):
                 skos_label['lang'] = y.attrib['{http://www.w3.org/XML/1998/namespace}lang']
                 skos_pref_labels.append(skos_label)
             description["pref_labels"] = skos_pref_labels
+            skos_definitions = []
+            for y in x.findall('skos:definition', namespaces={"skos": self.ns_skos}):
+                skos_definitions.append(y.text)
+            description["definitions"] = skos_definitions
 
             skos_alt_labels = []
             for y in x.findall('skos:altLabel', namespaces={"skos": self.ns_skos}):
@@ -123,6 +280,11 @@ class SkosImporter(SkosReader):
                     temp_concept.pref_label_lang = x['pref_labels']["lang"]
                 except:
                     pass
+                try:
+                    temp_concept.definition = x['definitions'][0]
+                    temp_concept.definition_lang = "eng"
+                except:
+                    pass
                 temp_concept.save()
 
                 for y in x['pref_labels'][1:]:
@@ -147,7 +309,8 @@ class SkosImporter(SkosReader):
                     temp_scheme, _ = SkosConceptScheme.objects.get_or_create(
                         legacy_id=z
                     )
-                    temp_scheme.dc_title = self.skosfile
+                    scheme_dctitle = z.split('/')[-1]
+                    temp_scheme.dc_title = scheme_dctitle
                     temp_scheme.save()
                     temp_concept.scheme = [temp_scheme]
                     temp_concept.save()
