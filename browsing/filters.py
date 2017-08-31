@@ -126,7 +126,7 @@ class TokenListFilter(django_filters.FilterSet):
         help_text=Token._meta.get_field('weight').help_text,
         label=Token._meta.get_field('weight').verbose_name
         )
-    weight_norm= django_filters.NumberFilter(
+    weight_norm = django_filters.NumberFilter(
         lookup_expr='exact',
         help_text=Token._meta.get_field('weight_norm').help_text,
         label=Token._meta.get_field('weight_norm').verbose_name
@@ -231,7 +231,6 @@ class TokenListFilter(django_filters.FilterSet):
         help_text=Date._meta.get_field('century').help_text,
         label=Date._meta.get_field('century').verbose_name
         )
-
 
     class Meta:
         model = Token
