@@ -3,10 +3,45 @@
 {% load django_tables2 crispy_forms_tags %}
 
 {% block content %}
-<h1>hallo</h1>
-    {% for key, value in links.items %}
-    <li>
-        <a href="./{{ key }}">{{ value.label }} <small>{{ value.help_text }}</small></a>
-    </li>
-    {% endfor %}
+<div class="alert alert-warning alert-dismissable">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Warning!</strong> This overview and the related charts are still work in progress.
+</div>
+<h1 style="text-align:center;">Make your choice</h1>
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Property to visualize
+            </th>
+            <th>
+                Type of visualization
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for key, value in links.items %}
+        <tr>
+            <td>
+                {{ value.label }} <small>{{ value.help_text }}</small>
+            </td>
+            <td>
+                <a href="./{{ key }}">
+                    <i class="fa fa-bar-chart" aria-hidden="true" title="bar-chart"></i>
+                </a>
+                <a href="./{{ key }}">
+                    <i class="fa fa-line-chart" aria-hidden="true" title="line-chart"></i>
+                </a>
+                <a href="./{{ key }}">
+                    <i class="fa fa-area-chart" aria-hidden="true" title="area-chart"></i>
+                </a>
+                <a href="./{{ key }}">
+                    <i class="fa fa-pie-chart" aria-hidden="true" title="pie-chart"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
