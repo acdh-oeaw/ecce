@@ -29,19 +29,12 @@ class DynChartView(GenericListView):
     formhelper_class = TokenFilterFormHelper
     template_name = 'charts/dynchart.html'
 
-    def get_lookup_table(self, **kwargs):
-        values = {}
-        for x in self.filter_class.declared_filters.items():
-            values[x[0]] = {'lookup': x[0], 'label': x[1].label}
-        return values
-
     def get_context_data(self, **kwargs):
         context = super(DynChartView, self).get_context_data()
         context[self.context_filter_name] = self.filter
         context['charttype'] = self.kwargs['charttype']
         property_name = self.kwargs['property']
-        lookup_table = self.get_lookup_table()
-        plotted_item = lookup_table[property_name]
+        plotted_item = TOKEN_CHART_CONF[property_name]
         payload = {}
         objects = self.get_queryset()
         for x in objects.values(property_name).annotate(
@@ -51,7 +44,7 @@ class DynChartView(GenericListView):
         data = {
             "items": "{} out of {}".format(objects.count(), context['all']),
             "title": "Tokens per {}".format(plotted_item['label']),
-            "subtitle": "Tokens per {}".format(property_name.title()),
+            "subtitle": "Tokens per {}".format(plotted_item['help_text']),
             "legendx": property_name.title(),
             "legendy": "# of Tokens",
             "categories": "sorted(dates)",

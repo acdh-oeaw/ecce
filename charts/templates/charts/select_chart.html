@@ -16,6 +16,9 @@
                 Property to visualize
             </th>
             <th>
+                What will it show
+            </th>
+            <th>
                 Type of visualization
             </th>
         </tr>
@@ -24,7 +27,10 @@
         {% for key, value in links.items %}
         <tr>
             <td>
-                {{ value.label }} <small>{{ value.help_text }}</small>
+                {{ value.label }}
+            </td>
+            <td>
+                <small>{{ value.help_text }}</small>
             </td>
             <td>
                 {% for x in value.chart_types %}
