@@ -27,16 +27,16 @@
                 {{ value.label }} <small>{{ value.help_text }}</small>
             </td>
             <td>
-                <a href="./{{ key }}">
+                <a href="{% url 'charts:dynchart' property=key %}">
                     <i class="fa fa-bar-chart" aria-hidden="true" title="bar-chart"></i>
                 </a>
-                <a href="./{{ key }}">
+                <a href="{% url 'charts:dynchart' property=key %}">
                     <i class="fa fa-line-chart" aria-hidden="true" title="line-chart"></i>
                 </a>
-                <a href="./{{ key }}">
+                <a href="{% url 'charts:dynchart' property=key %}">
                     <i class="fa fa-area-chart" aria-hidden="true" title="area-chart"></i>
                 </a>
-                <a href="./{{ key }}">
+                <a href="{% url 'charts:dynchart' property=key %}">
                     <i class="fa fa-pie-chart" aria-hidden="true" title="pie-chart"></i>
                 </a>
             </td>
