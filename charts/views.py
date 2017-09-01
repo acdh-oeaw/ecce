@@ -35,20 +35,21 @@ class DynChartView(GenericListView):
         context['charttype'] = self.kwargs['charttype']
         property_name = self.kwargs['property']
         plotted_item = TOKEN_CHART_CONF[property_name]
+        modelname = self.model.__name__
         payload = {}
         objects = self.get_queryset()
         for x in objects.values(property_name).annotate(
                 amount=Count(property_name)).order_by('amount'):
             payload[x[property_name]] = x['amount']
-        context['all'] = Token.objects.count()
+        context['all'] = self.model.objects.count()
         data = {
             "items": "{} out of {}".format(objects.count(), context['all']),
-            "title": "Tokens per {}".format(plotted_item['label']),
-            "subtitle": "Tokens per {}".format(plotted_item['help_text']),
+            "title": "{}s per {}".format(modelname, plotted_item['label']),
+            "subtitle": "{}s per {}".format(modelname, plotted_item['help_text']),
             "legendx": property_name.title(),
-            "legendy": "# of Tokens",
+            "legendy": "# of {}s".format(modelname),
             "categories": "sorted(dates)",
-            "measuredObject": "Tokens",
+            "measuredObject": "{}s".format(modelname),
             "ymin": 0,
             "payload": payload
         }
