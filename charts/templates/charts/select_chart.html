@@ -27,18 +27,11 @@
                 {{ value.label }} <small>{{ value.help_text }}</small>
             </td>
             <td>
-                <a href="{% url 'charts:dynchart' property=key %}">
-                    <i class="fa fa-bar-chart" aria-hidden="true" title="bar-chart"></i>
+                {% for x in value.chart_types %}
+                <a href="{% url 'charts:dynchart' property=key charttype=x%}">
+                    <i class="fa fa-{{ x }}-chart" aria-hidden="true" title="{{ x }}-chart"></i>
                 </a>
-                <a href="{% url 'charts:dynchart' property=key %}">
-                    <i class="fa fa-line-chart" aria-hidden="true" title="line-chart"></i>
-                </a>
-                <a href="{% url 'charts:dynchart' property=key %}">
-                    <i class="fa fa-area-chart" aria-hidden="true" title="area-chart"></i>
-                </a>
-                <a href="{% url 'charts:dynchart' property=key %}">
-                    <i class="fa fa-pie-chart" aria-hidden="true" title="pie-chart"></i>
-                </a>
+                {% endfor %}
             </td>
         </tr>
         {% endfor %}

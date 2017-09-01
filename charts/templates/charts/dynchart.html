@@ -14,7 +14,7 @@
 {% endblock %}
 {% block content %}
 <div class="container">
-    
+
     <div class="panel panel-default">
         <div class="panel-heading" style="text-align:center;">
             <h1>{{ data.title }}</h1>
@@ -61,7 +61,7 @@
         $(function () {
             $('#bar').highcharts({
             chart: {
-                type: 'column',
+                type: '{{ charttype }}',
                 options3d: {
                         enabled: true,
                         alpha: 20
