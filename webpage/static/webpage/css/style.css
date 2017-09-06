@@ -286,3 +286,11 @@ Label the data
 a .fa-github {
     color: #000;
 }
+.label {
+     display: block; 
+     font-size: inherit;
+}
+.table>thead>tr>th {
+    /*vertical-align: bottom;*/
+     border-bottom: 0px; 
+}
