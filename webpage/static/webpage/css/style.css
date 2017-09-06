@@ -227,6 +227,7 @@ footer {
         text-align: left;
         font-weight: bold;
     }
+    
     /*
 Label the data
 */
@@ -289,6 +290,7 @@ a .fa-github {
 .label {
      display: block; 
      font-size: inherit;
+     color: #000000;
 }
 .table>thead>tr>th {
     /*vertical-align: bottom;*/
