@@ -4,16 +4,20 @@ from tokens.models import *
 
 
 class TokenTable(tables.Table):
-    cluster_size = tables.Column(accessor='cluster.size')
-    cluster = tables.TemplateColumn(template_name='browsing/tables/cluster.html')
     plain_word = tables.LinkColumn(
         'tokens:token_detail',
         args=[A('pk')], verbose_name='Plain Word'
     )
-    lemma = tables.RelatedLinkColumn(verbose_name='Lemma')
+    lemma = tables.RelatedLinkColumn()
+    cluster = tables.TemplateColumn(template_name='browsing/tables/cluster.html')
+    label = tables.RelatedLinkColumn()
+    date = tables.Column(accessor='text_source.date', verbose_name='Date')
+
 
     class Meta:
         model = Token
+        sequence = ('legacy_id', 'plain_word', 'pos', 'lemma', 'cluster',
+                    'label', 'date')
         attrs = {"class": "table table-responsive table-hover"}
 
 

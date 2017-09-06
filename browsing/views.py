@@ -40,7 +40,8 @@ class TokenListView(GenericListView):
     table_class = TokenTable
     filter_class = TokenListFilter
     formhelper_class = TokenFilterFormHelper
-    init_columns = ['plain_word', 'cluster_size', 'cluster', 'plain_word', 'lemma']
+    init_columns = ['legacy_id', 'plain_word', 'pos', 'lemma', 'cluster',
+                    'label', 'date']
 
     def get_all_cols(self):
         all_cols = list(self.table_class.base_columns.keys())
