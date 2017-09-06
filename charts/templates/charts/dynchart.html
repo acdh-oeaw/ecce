@@ -73,7 +73,7 @@
                 text: ""
                 },
             subtitle: {
-                text: "{{ data.subtitle|safe }}"
+                text: "{{ data.subtitle|safe }}{% if charttype == 'pie' %} <br/> {% else %}<br/><small>Click and drag in the plot area to zoom in </small> {% endif %}"
                 },
             xAxis: {
                 type: 'category',
