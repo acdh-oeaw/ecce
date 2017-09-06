@@ -11,7 +11,6 @@ from browsing.forms import TokenFilterFormHelper
 from vocabs.models import *
 
 
-
 class ChartSelector(ListView):
     model = ChartConfig
     template_name = 'charts/select_chart.html'
@@ -43,7 +42,7 @@ class DynChartView(GenericListView):
         payload = []
         objects = self.get_queryset()
         for x in objects.values(property_name).annotate(
-                amount=Count(property_name)).order_by('amount'):
+                amount=Count(property_name)).order_by(property_name):
             if x[property_name]:
                 payload.append([x[property_name], x['amount']])
             else:
