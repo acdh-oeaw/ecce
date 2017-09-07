@@ -9,10 +9,9 @@ class TokenTable(tables.Table):
         args=[A('pk')], verbose_name='Plain Word'
     )
     lemma = tables.RelatedLinkColumn()
-    cluster = tables.TemplateColumn(template_name='browsing/tables/cluster.html')
+    cluster = tables.RelatedLinkColumn()
     label = tables.RelatedLinkColumn()
-    date = tables.Column(accessor='text_source.date', verbose_name='Date')
-
+    date = tables.RelatedLinkColumn(accessor='text_source.mean_date', verbose_name='Date')
 
     class Meta:
         model = Token
