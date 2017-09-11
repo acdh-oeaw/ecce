@@ -6,6 +6,8 @@ from .models import *
 from .serializers import *
 from browsing.filters import *
 from vocabs.models import SkosConcept
+from django_filters.rest_framework import FilterSet
+from rest_framework import filters
 
 
 
@@ -25,13 +27,19 @@ class CustomPagination(pagination.PageNumberPagination):
             'results': data
         })
 
+class LemmaRestFilter(django_filters.rest_framework.FilterSet):
+
+    class Meta:
+        model = Lemma
+        fields = "__all__"
+
 
 class LemmaViewSet(viewsets.ModelViewSet):
     queryset = Lemma.objects.all()
     serializer_class = LemmaSerializer
     pagination_class = CustomPagination
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter, )
-    filter_class = LemmaListFilter
+    filter_class = LemmaRestFilter
     ordering_fields = '__all__'
 
 
