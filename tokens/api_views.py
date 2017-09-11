@@ -113,3 +113,5 @@ class TokenViewSet(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter, )
     filter_class = TokenListFilter
     ordering_fields = '__all__'
+
+    #https://github.com/encode/django-rest-framework/issues/3636

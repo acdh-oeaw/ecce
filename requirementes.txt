@@ -2,6 +2,7 @@ colorama==0.3.7
 decorator==4.0.10
 Django==1.11.4
 django-autocomplete-light==3.2.1
+django-cors-headers==2.1.0
 django-crispy-forms==1.6.1
 django-datatables-view==1.13.2
 django-extensions==1.7.4

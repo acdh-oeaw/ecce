@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
-
+from corsheaders.defaults import default_headers
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(os.path.join(__file__, '../'))))
 
@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django_filters',
     'django_tables2',
     'rest_framework',
+    'corsheaders',
     'webpage',
     'vocabs',
     'tokens',
@@ -49,6 +50,25 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+)
+
+CORS_ALLOW_HEADERS = default_headers
+
+CORS_REPLACE_HTTPS_REFERER = True
+
+CSRF_TRUSTED_ORIGINS = ['ecce.acdh.oeaw.ac.at']
+
+CORS_PREFLIGHT_MAX_AGE = 86400
+
 SPAGHETTI_SAUCE = {
     'apps': ['vocabs', 'tokens'],
     'show_fields': False,
@@ -56,6 +76,7 @@ SPAGHETTI_SAUCE = {
 }
 
 MIDDLEWARE_CLASSES = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
