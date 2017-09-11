@@ -239,6 +239,13 @@ class TokenListFilter(django_filters.FilterSet):
         ]
 
 
+class LemmaListFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = Lemma
+        fields = "__all__"
+        
+
 class DateListFilter(django_filters.FilterSet):
 
     class Meta:

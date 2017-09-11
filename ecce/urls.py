@@ -1,14 +1,27 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
+from tokens.api_views import *
+from vocabs.api_views import *
 
-from vocabs import api_views
+
 
 router = routers.DefaultRouter()
-router.register(r'skoslabels', api_views.SkosLabelViewSet)
-router.register(r'skosnamespaces', api_views.SkosNamespaceViewSet)
-router.register(r'skosconceptschemes', api_views.SkosConceptSchemeViewSet)
-router.register(r'skosconcepts', api_views.SkosConceptViewSet)
+router.register(r'skoslabels', SkosLabelViewSet)
+router.register(r'skosnamespaces', SkosNamespaceViewSet)
+router.register(r'skosconceptschemes', SkosConceptSchemeViewSet)
+router.register(r'skosconcepts', SkosConceptViewSet)
+
+router.register(r'lemma', LemmaViewSet)
+router.register(r'date', DateViewSet)
+router.register(r'corpus', CorpusViewSet)
+router.register(r'text', TextViewSet)
+router.register(r'consonant', ConsonantViewSet)
+router.register(r'cluster', ClusterViewSet)
+router.register(r'tokenlabel', TokenLabelViewSet)
+router.register(r'schwapresent', SchwaPresentViewSet)
+router.register(r'onset', OnSetViewSet)
+router.register(r'token', TokenViewSet)
 
 
 urlpatterns = [
