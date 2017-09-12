@@ -3,6 +3,7 @@ from dal import autocomplete
 from tokens.models import *
 from vocabs.models import SkosConcept
 
+
 django_filters.filters.LOOKUP_TYPES = [
     ('', '---------'),
     ('exact', 'Is equal to'),

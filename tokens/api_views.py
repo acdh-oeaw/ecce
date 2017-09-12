@@ -4,7 +4,7 @@ from rest_framework.response import Response
 import django_filters
 from .models import *
 from .serializers import *
-from browsing.filters import *
+from .api_filters import *
 from vocabs.models import SkosConcept
 from django_filters.rest_framework import FilterSet
 from rest_framework import filters
@@ -27,12 +27,6 @@ class CustomPagination(pagination.PageNumberPagination):
             'results': data
         })
 
-class LemmaRestFilter(django_filters.rest_framework.FilterSet):
-
-    class Meta:
-        model = Lemma
-        fields = "__all__"
-
 
 class LemmaViewSet(viewsets.ModelViewSet):
     queryset = Lemma.objects.all()
@@ -48,7 +42,7 @@ class DateViewSet(viewsets.ModelViewSet):
     serializer_class = DateSerializer
     pagination_class = CustomPagination
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter, )
-    filter_class = DateListFilter
+    filter_class = DateRestFilter
     ordering_fields = '__all__'
 
 
@@ -56,7 +50,7 @@ class CorpusViewSet(viewsets.ModelViewSet):
     queryset = Corpus.objects.all()
     serializer_class = CorpusSerializer
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter, )
-    filter_class = CorpusListFilter
+    filter_class = CorpusRestFilter
     ordering_fields = '__all__'
 
 
@@ -65,7 +59,7 @@ class TextViewSet(viewsets.ModelViewSet):
     serializer_class = TextSerializer
     pagination_class = CustomPagination
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter, )
-    filter_class = TextListFilter
+    filter_class = TextRestFilter
     ordering_fields = '__all__'
 
 
@@ -74,7 +68,7 @@ class ConsonantViewSet(viewsets.ModelViewSet):
     serializer_class = ConsonantSerializer
     pagination_class = CustomPagination
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter, )
-    filter_class = ConsonantListFilter
+    filter_class = ConsonantRestFilter
     ordering_fields = '__all__'
 
 
@@ -83,7 +77,7 @@ class ClusterViewSet(viewsets.ModelViewSet):
     serializer_class = ClusterSerializer
     pagination_class = CustomPagination
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter, )
-    filter_class = ClusterListFilter
+    filter_class = ClusterRestFilter
     ordering_fields = '__all__'
 
 
@@ -92,7 +86,7 @@ class TokenLabelViewSet(viewsets.ModelViewSet):
     serializer_class = TokenLabelSerializer
     pagination_class = CustomPagination
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter, )
-    filter_class = TokenLabelListFilter
+    filter_class = TokenLabelRestFilter
     ordering_fields = '__all__'
 
 
@@ -101,7 +95,7 @@ class SchwaPresentViewSet(viewsets.ModelViewSet):
     serializer_class = SchwaPresentSerializer
     pagination_class = CustomPagination
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter, )
-    filter_class = SchwaPresentListFilter
+    filter_class = SchwaPresentRestFilter
     ordering_fields = '__all__'
 
 
@@ -110,7 +104,7 @@ class OnSetViewSet(viewsets.ModelViewSet):
     serializer_class = OnSetSerializer
     pagination_class = CustomPagination
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter, )
-    filter_class = OnSetListFilter
+    filter_class = OnSetRestFilter
     ordering_fields = '__all__'
 
 
@@ -119,7 +113,7 @@ class TokenViewSet(viewsets.ModelViewSet):
     serializer_class = TokenSerializer
     pagination_class = CustomPagination
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter, )
-    filter_class = TokenListFilter
+    # filter_class = TokenRestFilter
     ordering_fields = '__all__'
 
     #https://github.com/encode/django-rest-framework/issues/3636
