@@ -5,10 +5,7 @@ import django_filters
 from .models import *
 from .serializers import *
 from .api_filters import *
-from vocabs.models import SkosConcept
 from django_filters.rest_framework import FilterSet
-from rest_framework import filters
-
 
 
 class CustomPagination(pagination.PageNumberPagination):

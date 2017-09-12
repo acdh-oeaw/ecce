@@ -5,10 +5,15 @@ from django_filters.rest_framework import FilterSet
 
 
 class LemmaRestFilter(django_filters.rest_framework.FilterSet):
-
-    class Meta:
-        model = Lemma
-        fields = "__all__"
+	pos = django_filters.ModelMultipleChoiceFilter(
+        queryset = SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-pos'),
+        help_text=Lemma._meta.get_field('pos').help_text,
+        label=Lemma._meta.get_field('pos').verbose_name
+        )
+	
+	class Meta:
+		model = Lemma
+		fields = "__all__"
         
 
 class DateRestFilter(django_filters.rest_framework.FilterSet):
