@@ -129,15 +129,10 @@
                     </li>
                   </ul>
                 </li>
-                <li class="dropdown">
+                <li>
                     <a href="{% url 'charts:chart_selector' %}">
                     CHARTS
                     </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="{% url 'charts:chart_selector' %}">select charts</a>
-                        </li>
-                    </ul>
                 </li>
                 {% if user.is_authenticated %}
                   <li class="dropdown">
@@ -164,6 +159,11 @@
                     </ul>
                   </li>
                   {% endif %}
+                  <li>
+                    <a href="{% url 'api-root' %}">
+                    API
+                    </a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
