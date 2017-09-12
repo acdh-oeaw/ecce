@@ -262,6 +262,16 @@ class CorpusListFilter(django_filters.FilterSet):
 
 
 class TextListFilter(django_filters.FilterSet):
+    genre = django_filters.ModelMultipleChoiceFilter(
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-genre'),
+        help_text=Text._meta.get_field('genre').help_text,
+        label=Text._meta.get_field('genre').verbose_name
+        )
+    dialect = django_filters.ModelMultipleChoiceFilter(
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-dialect'),
+        help_text=Text._meta.get_field('dialect').help_text,
+        label=Text._meta.get_field('dialect').verbose_name
+        )
 
     class Meta:
         model = Text
@@ -269,6 +279,29 @@ class TextListFilter(django_filters.FilterSet):
 
 
 class ConsonantListFilter(django_filters.FilterSet):
+    art_manner = django_filters.ModelMultipleChoiceFilter(
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-artManner'),
+        help_text=Consonant._meta.get_field('art_manner').help_text,
+        label=Consonant._meta.get_field('art_manner').verbose_name
+        )
+
+    art_place = django_filters.ModelMultipleChoiceFilter(
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-artPlace'),
+        help_text=Consonant._meta.get_field('art_place').help_text,
+        label=Consonant._meta.get_field('art_place').verbose_name
+        )
+
+    voice = django_filters.ModelMultipleChoiceFilter(
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-voice'),
+        help_text=Consonant._meta.get_field('voice').help_text,
+        label=Consonant._meta.get_field('voice').verbose_name
+        )
+
+    airflow = django_filters.ModelMultipleChoiceFilter(
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-airflow'),
+        help_text=Consonant._meta.get_field('airflow').help_text,
+        label=Consonant._meta.get_field('airflow').verbose_name
+        )
 
     class Meta:
         model = Consonant
@@ -283,6 +316,11 @@ class ClusterListFilter(django_filters.FilterSet):
 
 
 class TokenLabelListFilter(django_filters.FilterSet):
+    morphonotacticity = django_filters.ModelMultipleChoiceFilter(
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='morphonotacticity'),
+        help_text=TokenLabel._meta.get_field('morphonotacticity').help_text,
+        label=TokenLabel._meta.get_field('morphonotacticity').verbose_name
+        )
 
     class Meta:
         model = TokenLabel
@@ -290,6 +328,11 @@ class TokenLabelListFilter(django_filters.FilterSet):
 
 
 class SchwaPresentListFilter(django_filters.FilterSet):
+    schwaprese = django_filters.ModelMultipleChoiceFilter(
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='schwapresent'),
+        help_text=SchwaPresent._meta.get_field('schwaprese').help_text,
+        label=SchwaPresent._meta.get_field('schwaprese').verbose_name
+        )
 
     class Meta:
         model = SchwaPresent
@@ -297,6 +340,11 @@ class SchwaPresentListFilter(django_filters.FilterSet):
 
 
 class OnSetListFilter(django_filters.FilterSet):
+    variable = django_filters.ModelMultipleChoiceFilter(
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-variable'),
+        help_text=OnSet._meta.get_field('variable').help_text,
+        label=OnSet._meta.get_field('variable').verbose_name
+        )
 
     class Meta:
         model = OnSet
