@@ -113,7 +113,7 @@ class TokenViewSet(viewsets.ModelViewSet):
     serializer_class = TokenSerializer
     pagination_class = CustomPagination
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter, )
-    # filter_class = TokenRestFilter
+    filter_class = TokenRestFilter
     ordering_fields = '__all__'
 
     #https://github.com/encode/django-rest-framework/issues/3636
