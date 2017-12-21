@@ -446,6 +446,25 @@ class TokenCustomFilter(django_filters.FilterSet):
         label=Date._meta.get_field('dates').verbose_name,
         widget=RangeWidget(attrs={'placeholder': 'YYYY'})
         )
+    #Search spelling string
+    plain_word = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=Token._meta.get_field('plain_word').help_text,
+        label=Token._meta.get_field('plain_word').verbose_name
+        )
+    #MPT Status
+    label = django_filters.ModelChoiceFilter(
+        queryset=TokenLabel.objects.all(),
+        help_text=Token._meta.get_field('label').help_text,
+        label=Token._meta.get_field('label').verbose_name
+        )
+    #POS
+    pos = django_filters.ModelChoiceFilter(
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-pos'),
+        help_text=Token._meta.get_field('pos').help_text,
+        label=Token._meta.get_field('pos').verbose_name
+        )
+
 
 
     class Meta:

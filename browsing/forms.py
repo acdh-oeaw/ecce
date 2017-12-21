@@ -250,5 +250,8 @@ class TokenCustomFilterFormHelper(FormHelper):
                     'cluster__third_consonant__voice',
                     'cluster__fourth_consonant__voice',
                     'text_source__mean_date__dates',
+                    'plain_word',
+                    'label',
+                    'pos',
                     css_id="phonotactics_search_options")
                 )
