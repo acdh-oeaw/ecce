@@ -441,23 +441,11 @@ class TokenCustomFilter(django_filters.FilterSet):
         )
     #Period
     text_source__mean_date__dates = django_filters.NumericRangeFilter(
-        # name='text_source__mean_date__semicentury',
         lookup_expr='range',
-        # to_field_name='semicentury',
-        # queryset=Date.objects.all(),
         help_text=Date._meta.get_field('dates').help_text,
-        label=Date._meta.get_field('dates').verbose_name
-        # widget=RangeWidget(attrs={'placeholder': 'YYYY'})
+        label=Date._meta.get_field('dates').verbose_name,
+        widget=RangeWidget(attrs={'placeholder': 'YYYY'})
         )
-    # date_to = django_filters.NumberFilter(
-    #     name='text_source__mean_date__semicentury',
-    #     lookup_expr='lte'
-        # to_field_name='semicentury',
-        # queryset=Date.objects.all(),
-        # help_text=Date._meta.get_field('semicentury').help_text,
-        # label=Date._meta.get_field('semicentury').verbose_name,
-        # widget=RangeWidget(attrs={'placeholder': 'YYYY'})
-        # )
 
 
     class Meta:
