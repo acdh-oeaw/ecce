@@ -1,4 +1,6 @@
 import django_filters
+from django_filters import DateRangeFilter, DateFilter, DateFromToRangeFilter
+from django_filters.widgets import *
 from dal import autocomplete
 from tokens.models import *
 from vocabs.models import SkosConcept
@@ -376,73 +378,86 @@ class TokenCustomFilter(django_filters.FilterSet):
         )
     #Art manner
     cluster__first_consonant__art_manner = django_filters.ModelChoiceFilter(
-        queryset=Consonant.objects.all(),
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-artManner'),
         help_text=Consonant._meta.get_field('art_manner').help_text,
         label=Consonant._meta.get_field('art_manner').verbose_name
         )
     cluster__second_consonant__art_manner = django_filters.ModelChoiceFilter(
-        queryset=Consonant.objects.all(),
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-artManner'),
         help_text=Consonant._meta.get_field('art_manner').help_text,
         label=Consonant._meta.get_field('art_manner').verbose_name
         )
     cluster__third_consonant__art_manner = django_filters.ModelChoiceFilter(
-        queryset=Consonant.objects.all(),
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-artManner'),
         help_text=Consonant._meta.get_field('art_manner').help_text,
         label=Consonant._meta.get_field('art_manner').verbose_name
         )
     cluster__fourth_consonant__art_manner = django_filters.ModelChoiceFilter(
-        queryset=Consonant.objects.all(),
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-artManner'),
         help_text=Consonant._meta.get_field('art_manner').help_text,
         label=Consonant._meta.get_field('art_manner').verbose_name
         )
     #Art place
     cluster__first_consonant__art_place = django_filters.ModelChoiceFilter(
-        queryset=Consonant.objects.all(),
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-artPlace'),
         help_text=Consonant._meta.get_field('art_place').help_text,
         label=Consonant._meta.get_field('art_place').verbose_name
         )
     cluster__second_consonant__art_place = django_filters.ModelChoiceFilter(
-        queryset=Consonant.objects.all(),
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-artPlace'),
         help_text=Consonant._meta.get_field('art_place').help_text,
         label=Consonant._meta.get_field('art_place').verbose_name
         )
     cluster__third_consonant__art_place = django_filters.ModelChoiceFilter(
-        queryset=Consonant.objects.all(),
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-artPlace'),
         help_text=Consonant._meta.get_field('art_place').help_text,
         label=Consonant._meta.get_field('art_place').verbose_name
         )
     cluster__fourth_consonant__art_place = django_filters.ModelChoiceFilter(
-        queryset=Consonant.objects.all(),
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-artPlace'),
         help_text=Consonant._meta.get_field('art_place').help_text,
         label=Consonant._meta.get_field('art_place').verbose_name
         )
     #Voice
     cluster__first_consonant__voice = django_filters.ModelChoiceFilter(
-        queryset=Consonant.objects.all(),
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-voice'),
         help_text=Consonant._meta.get_field('voice').help_text,
         label=Consonant._meta.get_field('voice').verbose_name
         )
     cluster__second_consonant__voice = django_filters.ModelChoiceFilter(
-        queryset=Consonant.objects.all(),
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-voice'),
         help_text=Consonant._meta.get_field('voice').help_text,
         label=Consonant._meta.get_field('voice').verbose_name
         )
     cluster__third_consonant__voice = django_filters.ModelChoiceFilter(
-        queryset=Consonant.objects.all(),
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-voice'),
         help_text=Consonant._meta.get_field('voice').help_text,
         label=Consonant._meta.get_field('voice').verbose_name
         )
     cluster__fourth_consonant__voice = django_filters.ModelChoiceFilter(
-        queryset=Consonant.objects.all(),
+        queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-voice'),
         help_text=Consonant._meta.get_field('voice').help_text,
         label=Consonant._meta.get_field('voice').verbose_name
         )
     #Period
-    text_source__mean_date__semicentury = django_filters.ModelChoiceFilter(
-        queryset=Date.objects.all(),
-        help_text=Date._meta.get_field('semicentury').help_text,
-        label=Date._meta.get_field('semicentury').verbose_name
+    text_source__mean_date__dates = django_filters.NumericRangeFilter(
+        # name='text_source__mean_date__semicentury',
+        lookup_expr='range',
+        # to_field_name='semicentury',
+        # queryset=Date.objects.all(),
+        help_text=Date._meta.get_field('dates').help_text,
+        label=Date._meta.get_field('dates').verbose_name
+        # widget=RangeWidget(attrs={'placeholder': 'YYYY'})
         )
+    # date_to = django_filters.NumberFilter(
+    #     name='text_source__mean_date__semicentury',
+    #     lookup_expr='lte'
+        # to_field_name='semicentury',
+        # queryset=Date.objects.all(),
+        # help_text=Date._meta.get_field('semicentury').help_text,
+        # label=Date._meta.get_field('semicentury').verbose_name,
+        # widget=RangeWidget(attrs={'placeholder': 'YYYY'})
+        # )
 
 
     class Meta:
