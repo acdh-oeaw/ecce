@@ -349,3 +349,108 @@ class OnSetListFilter(django_filters.FilterSet):
     class Meta:
         model = OnSet
         fields = "__all__"
+
+
+
+class TokenCustomFilter(django_filters.FilterSet):
+    #Consonants
+    cluster__first_consonant__consonant = django_filters.ModelChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Cluster._meta.get_field('first_consonant').help_text,
+        label=Cluster._meta.get_field('first_consonant').verbose_name
+        )
+    cluster__second_consonant__consonant = django_filters.ModelChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Cluster._meta.get_field('second_consonant').help_text,
+        label=Cluster._meta.get_field('second_consonant').verbose_name
+        )
+    cluster__third_consonant__consonant = django_filters.ModelChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Cluster._meta.get_field('third_consonant').help_text,
+        label=Cluster._meta.get_field('third_consonant').verbose_name
+        )
+    cluster__fourth_consonant__consonant = django_filters.ModelChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Cluster._meta.get_field('fourth_consonant').help_text,
+        label=Cluster._meta.get_field('fourth_consonant').verbose_name
+        )
+    #Art manner
+    cluster__first_consonant__art_manner = django_filters.ModelChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Consonant._meta.get_field('art_manner').help_text,
+        label=Consonant._meta.get_field('art_manner').verbose_name
+        )
+    cluster__second_consonant__art_manner = django_filters.ModelChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Consonant._meta.get_field('art_manner').help_text,
+        label=Consonant._meta.get_field('art_manner').verbose_name
+        )
+    cluster__third_consonant__art_manner = django_filters.ModelChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Consonant._meta.get_field('art_manner').help_text,
+        label=Consonant._meta.get_field('art_manner').verbose_name
+        )
+    cluster__fourth_consonant__art_manner = django_filters.ModelChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Consonant._meta.get_field('art_manner').help_text,
+        label=Consonant._meta.get_field('art_manner').verbose_name
+        )
+    #Art place
+    cluster__first_consonant__art_place = django_filters.ModelChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Consonant._meta.get_field('art_place').help_text,
+        label=Consonant._meta.get_field('art_place').verbose_name
+        )
+    cluster__second_consonant__art_place = django_filters.ModelChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Consonant._meta.get_field('art_place').help_text,
+        label=Consonant._meta.get_field('art_place').verbose_name
+        )
+    cluster__third_consonant__art_place = django_filters.ModelChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Consonant._meta.get_field('art_place').help_text,
+        label=Consonant._meta.get_field('art_place').verbose_name
+        )
+    cluster__fourth_consonant__art_place = django_filters.ModelChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Consonant._meta.get_field('art_place').help_text,
+        label=Consonant._meta.get_field('art_place').verbose_name
+        )
+    #Voice
+    cluster__first_consonant__voice = django_filters.ModelChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Consonant._meta.get_field('voice').help_text,
+        label=Consonant._meta.get_field('voice').verbose_name
+        )
+    cluster__second_consonant__voice = django_filters.ModelChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Consonant._meta.get_field('voice').help_text,
+        label=Consonant._meta.get_field('voice').verbose_name
+        )
+    cluster__third_consonant__voice = django_filters.ModelChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Consonant._meta.get_field('voice').help_text,
+        label=Consonant._meta.get_field('voice').verbose_name
+        )
+    cluster__fourth_consonant__voice = django_filters.ModelChoiceFilter(
+        queryset=Consonant.objects.all(),
+        help_text=Consonant._meta.get_field('voice').help_text,
+        label=Consonant._meta.get_field('voice').verbose_name
+        )
+    #Period
+    text_source__mean_date__semicentury = django_filters.ModelChoiceFilter(
+        queryset=Date.objects.all(),
+        help_text=Date._meta.get_field('semicentury').help_text,
+        label=Date._meta.get_field('semicentury').verbose_name
+        )
+
+
+    class Meta:
+        model = Token
+        fields = [
+            'legacy_id'
+        ]
+
+
+
+

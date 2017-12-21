@@ -220,3 +220,35 @@ class NormTokenFilterFormHelper(FormHelper):
                 css_id="accordion",
                 )
             )
+
+
+class TokenCustomFilterFormHelper(FormHelper):
+    def __init__(self, *args, **kwargs):
+        super(TokenCustomFilterFormHelper, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.form_class = 'genericFilterForm'
+        self.form_method = 'GET'
+        self.helper.form_tag = False
+        self.add_input(Submit('Filter', 'Search'))
+        self.layout = Layout(
+                Fieldset(
+                    'Custom search options',
+                    'cluster__first_consonant__consonant',
+                    'cluster__second_consonant__consonant',
+                    'cluster__third_consonant__consonant',
+                    'cluster__fourth_consonant__consonant',
+                    'cluster__first_consonant__art_manner',
+                    'cluster__second_consonant__art_manner',
+                    'cluster__third_consonant__art_manner',
+                    'cluster__fourth_consonant__art_manner',
+                    'cluster__first_consonant__art_place',
+                    'cluster__second_consonant__art_place',
+                    'cluster__third_consonant__art_place',
+                    'cluster__fourth_consonant__art_place',
+                    'cluster__first_consonant__voice',
+                    'cluster__second_consonant__voice',
+                    'cluster__third_consonant__voice',
+                    'cluster__fourth_consonant__voice',
+                    'text_source__mean_date__semicentury',
+                    css_id="phonotactics_search_options")
+                )

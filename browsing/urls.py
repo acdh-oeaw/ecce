@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'tokenlabels/$', views.TokenLabelListView.as_view(), name='browse_tokenlabels'),
     url(r'schwapresents/$', views.SchwaPresentListView.as_view(), name='browse_schwapresents'),
     url(r'onsets/$', views.OnSetListView.as_view(), name='browse_onsets'),
+    url(r'tokens-custom/$', views.TokenCustomView.as_view(), name='browse_tokens_custom'),
 ]
