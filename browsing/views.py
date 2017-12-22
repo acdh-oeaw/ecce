@@ -127,6 +127,7 @@ class TokenCustomView(GenericListView):
     table_class = TokenTable
     filter_class = TokenCustomFilter
     formhelper_class = TokenCustomFilterFormHelper
+    template_name = 'browsing/browse_tokens_custom.html'
     init_columns = ['legacy_id', 'plain_word', 'pos', 'lemma', 'cluster',
                     'label', 'date']
 
