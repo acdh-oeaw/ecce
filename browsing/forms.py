@@ -269,11 +269,22 @@ class TokenCustomFilterFormHelper(FormHelper):
                     css_class="form-group row",
                     title="Phonation",
                     ),
-
-                    'text_source__mean_date__dates',
-                    'plain_word',
-                    'label',
-                    'pos',
+                    Div(
+                    Div(HTML("<p><b>Period:</b></p>"), css_class="col-md-2"),
+                    Div('text_source__mean_date__dates', css_class="col-md-2"),
+                    Div(HTML("<p><b>Search spelling string:</b></p>"), css_class="col-md-2"),
+                    Div('plain_word', css_class="col-md-2"),
+                    css_class="form-group row",
+                    title="Period",
+                    ),
+                    Div(
+                    Div(HTML("<p><b>MPT Status:</b></p>"), css_class="col-md-2"),
+                    Div('label', css_class="col-md-2"),
+                    Div(HTML("<p><b>POS:</b></p>"), css_class="col-md-2"),
+                    Div('pos', css_class="col-md-2"),
+                    css_class="form-group row",
+                    title="MPT Status",
+                    ),
                     css_id="custom_search_options", style="margin-top: 20px;"),
                 Accordion(
                     AccordionGroup(
