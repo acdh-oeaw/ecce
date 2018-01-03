@@ -232,7 +232,7 @@ class TokenCustomFilterFormHelper(FormHelper):
         self.add_input(Submit('Filter', 'Search'))
         self.layout = Layout(
                 Fieldset(
-                    'Custom search options',
+                    '',
                     Div(
                     Div(HTML("<br><p><b>Phoneme:</b></p>"), css_class="col-md-2"),
                     Div('cluster__first_consonant__consonant', css_class="col-md-2"),
@@ -287,7 +287,7 @@ class TokenCustomFilterFormHelper(FormHelper):
                     ),
                     css_id="custom_search_options", style="margin-top: 20px;"),
                 Accordion(
-                    AccordionGroup(
+                AccordionGroup(
                     'Basic search options',
                     'legacy_id',
                     'left_context',

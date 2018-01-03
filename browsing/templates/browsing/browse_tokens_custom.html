@@ -28,6 +28,13 @@ $("#goto option").each(function() {
 
 });
 </script>
+<script>
+$(document).ready(function(){
+        $("#accordion").wrap("<div class='modal fade' id='myFilter' role='dialog'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'></div><div class='modal-footer'><button type='button' class='btn btn-default' data-dismiss='modal'>Close</button></div></div></div></div>");
+    });
+
+</script>
+
 <div class="container">
 <div class="panel panel-default">
     <div class="panel-heading procustom-panel-heading">
@@ -43,17 +50,24 @@ $("#goto option").each(function() {
                     {% column_selector  %}
                     <br>
                 {% endif %}
-                
-                
-            
-            {% crispy filter.form filter.form.helper %}
-            </form>
 
+            {% crispy filter.form filter.form.helper %}
+
+            <div class="row inline">
+            <div class="col-md-2">
+            <br>
+            <p><b>Additional options:</b></p>
+            </div>
+            <div class="col-md-10">
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myFilter"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+            </button>
           {% block reset_button %}
           <a class ="btn btn-default"  href=".">Reset search</a>
-          {% endblock %}
-    
-        <!-- <a class ="btn btn-default"  href=".">Reset search</a> -->
+          {% endblock %}       
+        </div>
+        </div>
+            </form>
+
     {%block customView %}{% endblock %}
     {% block create_button %}{% endblock %}
  </div>
