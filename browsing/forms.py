@@ -1,6 +1,6 @@
 from django import forms
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, Fieldset, Div, MultiField, HTML
+from crispy_forms.layout import Submit, Layout, Fieldset, Div, MultiField, HTML, ButtonHolder, Reset
 from crispy_forms.bootstrap import *
 from tokens.models import *
 
@@ -229,7 +229,7 @@ class TokenCustomFilterFormHelper(FormHelper):
         self.form_class = 'genericFilterForm'
         self.form_method = 'GET'
         self.helper.form_tag = False
-        self.add_input(Submit('Filter', 'Search'))
+        # self.add_input(Submit('Filter', 'Search'))
         self.layout = Layout(
                 Fieldset(
                     '',
@@ -286,6 +286,12 @@ class TokenCustomFilterFormHelper(FormHelper):
                     title="MPT Status",
                     ),
                     css_id="custom_search_options", style="margin-top: 20px;"),
+                Div(HTML("""
+                    <div class='modal fade' id='myFilter' role='dialog'>
+                    <div class='modal-dialog'>
+                    <div class='modal-content'>
+                    <div class='modal-header'>
+                    """),
                 Accordion(
                 AccordionGroup(
                     'Basic search options',
@@ -341,5 +347,35 @@ class TokenCustomFilterFormHelper(FormHelper):
                     'text_source__mean_date__century',
                     css_id="text_search_options"),
                 css_id="accordion",
-                    )
+                    ),
+                HTML("""
+                    </div><div class='modal-footer'>
+                    <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    """),
+                HTML("""
+                    <div class='row inline'>
+                    <div class='col-md-2'>
+                    <br>
+                    <p><b>Additional options:</b></p>
+                    </div>
+                    <div class='col-md-10'>
+                    <button type='button' class='btn btn-info btn-lg' data-toggle='modal' data-target='#myFilter'>
+                    <span class='glyphicon glyphicon-filter' aria-hidden='true'></span>
+                    </button>
+                    </div>
+                    </div>
+                    """)
+                ),
+                ButtonHolder(
+                Submit('Filter', 'Search')
+                ),
+                HTML(
+                """
+                {% block reset_button %} <a class ="btn btn-default"  href=".">Reset search</a> {% endblock %}
+                """
+                )
                 )
