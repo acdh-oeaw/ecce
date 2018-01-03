@@ -232,7 +232,7 @@ class TokenCustomFilterFormHelper(FormHelper):
         # self.add_input(Submit('Filter', 'Search'))
         self.layout = Layout(
                 Fieldset(
-                    '',
+                    'Refine your search',
                     Div(
                     Div(HTML("<br><p><b>Phoneme:</b></p>"), css_class="col-md-2"),
                     Div('cluster__first_consonant__consonant', css_class="col-md-2"),
