@@ -433,7 +433,8 @@ class TokenCustomFilter(django_filters.FilterSet):
     #Search spelling string
     plain_word = django_filters.CharFilter(
         method='filter_wildcard',
-        label=""
+        label="",
+        help_text='use + as a wildcard when needed'
         )
     #MPT Status
     label = django_filters.ModelChoiceFilter(
