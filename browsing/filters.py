@@ -4,6 +4,7 @@ from django_filters.widgets import RangeWidget
 from dal import autocomplete
 from tokens.models import *
 from vocabs.models import SkosConcept
+import re
 
 
 django_filters.filters.LOOKUP_TYPES = [
@@ -429,9 +430,11 @@ class TokenCustomFilter(django_filters.FilterSet):
         label="",
         widget=RangeWidget(attrs={'placeholder': 'YYYY'})
         )
-    #Search spelling string
+    #Search spelling string  - QuerySet API provides regex, iregex
     plain_word = django_filters.CharFilter(
-        lookup_expr='icontains',
+        # lookup_expr='iregex',
+        method='filter_wildcard',
+        # lookup_expr='icontains',
         label=""
         )
     #MPT Status
@@ -607,6 +610,33 @@ class TokenCustomFilter(django_filters.FilterSet):
         )
 
 
+    def filter_wildcard(self, qs, name, value):
+        #for cases like '+c+' - query all words with 'c' inside the word
+        if value.startswith('+') and value.endswith('+'):
+            newvalue = value[1:-1]
+            qs = Token.objects.filter(plain_word__icontains=newvalue)\
+            .exclude(plain_word__istartswith=newvalue)\
+            .exclude(plain_word__iendswith=newvalue)
+        #for cases like '+nd' - query all words which end with 'nd'
+        elif value.startswith('+'):
+            newvalue = value.split('+')[1]
+            qs = Token.objects.filter(plain_word__iendswith=newvalue)
+        #for cases like 'a+' - query all words which start with 'a'
+        elif value.endswith('+'):
+            newvalue = value.split('+')[0]
+            qs = Token.objects.filter(plain_word__istartswith=newvalue)
+        else:
+            #for cases like 's+e' - query all words which start with 's' and end with 'e'
+            if '+' in value:
+                newvalue = value.split('+')
+                startvalue = newvalue[0]
+                endvalue = newvalue[-1]
+                qs = Token.objects.filter(plain_word__istartswith=startvalue)\
+                .filter(plain_word__iendswith=endvalue)
+            else:
+                #for all rest cases including whole word search
+                qs = Token.objects.filter(plain_word__icontains=value)
+        return qs
 
 
     class Meta:
@@ -614,7 +644,3 @@ class TokenCustomFilter(django_filters.FilterSet):
         fields = [
             'legacy_id'
         ]
-
-
-
-
