@@ -430,11 +430,9 @@ class TokenCustomFilter(django_filters.FilterSet):
         label="",
         widget=RangeWidget(attrs={'placeholder': 'YYYY'})
         )
-    #Search spelling string  - QuerySet API provides regex, iregex
+    #Search spelling string
     plain_word = django_filters.CharFilter(
-        # lookup_expr='iregex',
         method='filter_wildcard',
-        # lookup_expr='icontains',
         label=""
         )
     #MPT Status
