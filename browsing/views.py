@@ -160,7 +160,7 @@ class FrequenciesView(GenericListView):
     filter_class = TokenCustomFilter
     formhelper_class = TokenCustomFilterFormHelper
     template_name = 'browsing/browse_frequencies.html'
-    init_columns = ['corpus_size', 'date']
+    init_columns = ['corpus_size', 'date', 'plain_word']
 
 
     def get_all_cols(self):

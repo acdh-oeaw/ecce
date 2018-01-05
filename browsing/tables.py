@@ -159,8 +159,12 @@ class FrequenciesTable(tables.Table):
         accessor='text_source.mean_date.semicentury',
         verbose_name='Time'
         )
+    plain_word = tables.LinkColumn(
+        'tokens:token_detail',
+        args=[A('pk')], verbose_name='Plain Word'
+    )
 
     class Meta:
         model = Token
-        sequence = ('date', 'corpus_size')
+        sequence = ('date', 'corpus_size', 'plain_word')
         attrs = {"class": "table table-responsive table-hover"}

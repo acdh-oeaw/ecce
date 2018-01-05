@@ -75,11 +75,6 @@ class Date(models.Model):
     def get_absolute_url(self):
         return reverse('tokens:date_detail', kwargs={'pk': self.dates})
 
-    # @property
-    # def related_tokens_amount(self):
-    #     tokens = Token.objects.filter(text_source__mean_date=self.id)
-    #     return len(tokens)
-
 
 class Corpus(models.Model):
 
@@ -147,8 +142,13 @@ class Text(models.Model):
 
     @property
     def related_tokens_amount(self):
-        tokens = Token.objects.filter(text_source=self.id)
-        return len(tokens)
+        #1. filter all tokens related to text
+        tokens_per_text = Token.objects.filter(text_source=self.id)
+        #2. group tokens by semicentury
+        #tokens_per_text = tokens_per_text.values('text_source__mean_date__semicentury')
+        #3. count how many tokens in each semicentury
+        tokens_per_text = tokens_per_text.count()
+        return tokens_per_text
 
 
 class Consonant(models.Model):
