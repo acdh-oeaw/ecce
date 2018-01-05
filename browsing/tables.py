@@ -148,3 +148,19 @@ class OnSetTable(tables.Table):
         model = OnSet
         fields = ['id', 'rightonset', 'variable']
         attrs = {"class": "table table-responsive table-hover"}
+
+
+class FrequenciesTable(tables.Table):
+    corpus_size = tables.Column(
+        accessor='text_source.related_tokens_amount',
+        verbose_name='Corpus size'
+        )
+    date = tables.Column(
+        accessor='text_source.mean_date.semicentury',
+        verbose_name='Time'
+        )
+
+    class Meta:
+        model = Token
+        sequence = ('date', 'corpus_size')
+        attrs = {"class": "table table-responsive table-hover"}

@@ -75,6 +75,11 @@ class Date(models.Model):
     def get_absolute_url(self):
         return reverse('tokens:date_detail', kwargs={'pk': self.dates})
 
+    # @property
+    # def related_tokens_amount(self):
+    #     tokens = Token.objects.filter(text_source__mean_date=self.id)
+    #     return len(tokens)
+
 
 class Corpus(models.Model):
 
@@ -139,6 +144,11 @@ class Text(models.Model):
 
     def get_absolute_url(self):
         return reverse('tokens:text_detail', kwargs={'pk': self.id})
+
+    @property
+    def related_tokens_amount(self):
+        tokens = Token.objects.filter(text_source=self.id)
+        return len(tokens)
 
 
 class Consonant(models.Model):
