@@ -296,3 +296,11 @@ a .fa-github {
     /*vertical-align: bottom;*/
      border-bottom: 0px; 
 }
+
+
+.table th.asc:after {
+  content: '\0000a0\0025b2';
+}
+.table th.desc:after {
+  content: '\0000a0\0025bc';
+}

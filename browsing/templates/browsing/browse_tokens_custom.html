@@ -9,7 +9,6 @@
 {% block content %}
 <style>
 
-
 </style>
 <script>
     var new_url = old_url.substring(0, window.location.href.indexOf('?'));
@@ -56,6 +55,9 @@ $("#goto option").each(function() {
             <div class="col-md-12">
                 {% with table.paginator.count as total %}
                 <legend>Total results: {{ total }}</legend>
+                <p style="margin-bottom: 30px;">
+                <span class="glyphicon glyphicon-info-sign"></span> Sort results by clicking on column header
+                </p>
                 {% endwith %}
       {% block table %}
       <table{% if table.attrs %} {{ table.attrs.as_html }}{% endif %}>
@@ -65,7 +67,8 @@ $("#goto option").each(function() {
               <tr>
               {% for column in table.columns %}
                   {% if column.orderable %}
-                  <th {{ column.attrs.th.as_html }}><a href="{% querystring table.prefixed_order_by_field=column.order_by_alias.next %}">{{ column.header }}</a></th>
+                  <th {{ column.attrs.th.as_html }}><a href="{% querystring table.prefixed_order_by_field=column.order_by_alias.next %}">{{ column.header }} 
+            </a></th>
                   {% else %}
                   <th {{ column.attrs.th.as_html }}>{{ column.header }}</th>
                   {% endif %}

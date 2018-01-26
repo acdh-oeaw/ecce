@@ -71,8 +71,7 @@ class ConsonantTable(tables.Table):
     class Meta:
         model = Consonant
         fields = [
-            'consonant', 'first_consonant', 'second_consonant',
-            'third_consonant', 'fourth_consonant'
+            'consonant'
         ]
         attrs = {"class": "table table-responsive table-hover"}
 
