@@ -278,10 +278,11 @@ class TokenCustomFilterFormHelper(FormHelper):
                         <button type='button'
                         class='btn btn-default btn-sm' data-toggle='popover' data-html='true'
                         data-content='
-                        <code style="color: #000;"><b>+ld</b></code> finds everything ending with ld<br>
-                        <code style="color: #000;"><b>ld+</b></code> finds everything starting with ld<br>
-                        <code style="color: #000;"><b>h+se</b></code> finds everything starting with h and ending with se<br>
-                        <code style="color: #000;"><b>ld</b></code> finds eveything which contains ld<br>
+                        <code style="color: #000;"><b>+ld+</b></code> finds all cases containing ld inside word<br>
+                        <code style="color: #000;"><b>+ld</b></code> finds all cases ending with ld<br>
+                        <code style="color: #000;"><b>ld+</b></code> finds all cases starting with ld<br>
+                        <code style="color: #000;"><b>l+de</b></code> finds all cases starting with l and ending with de<br>
+                        <code style="color: #000;"><b>ld</b></code> finds all cases containing ld<br>
                         '
                         style="margin-top:0px;">
                         <span class='glyphicon glyphicon-question-sign'></span> wildcard help</button>
