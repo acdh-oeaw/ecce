@@ -8,19 +8,21 @@
         </div>
 <table class="table table-bordered table-hover">
     <tr>
-        <th style="width:20%;">Consonant</th>
+        <th style="width:20%;" title="IPA phonological transcription of the segment involved in cluster composition">
+        Consonant
+        </th>
         <td>{{ object.consonant }}</td>
     </tr>
     <tr>
-        <th>Manner of articulation</th>
+        <th title="Manner of articulation of the segment">Manner of articulation</th>
         <td>{{ object.art_manner }}</td>
     </tr>
     <tr>
-        <th>Place of articulation</th>
+        <th title="Place of articulation of the segment">Place of articulation</th>
         <td>{{ object.art_place }}</td>
     </tr>
     <tr>
-        <th>Voicing</th>
+        <th title="Phonation of the segment">Voicing</th>
         <td>{{object.voice}}</td>
     </tr>
     <tr>
@@ -28,15 +30,15 @@
         <td>{{object.airflow}}</td>
     </tr>
     <tr>
-        <th>Sonority</th>
+        <th title="Ordinal sonority score of the segment">Sonority</th>
         <td>{{object.sonority}}</td>
     </tr>
     <tr>
-        <th>ECCE transcription</th>
+        <th title="ECCE phonological transcription of the segment">ECCE transcription</th>
         <td>{{object.transcription}}</td>
     </tr>
     <tr>
-        <th>Place scale</th>
+        <th title="Ordinal place-of-articulation score of the segment">Place scale</th>
         <td>{{object.place_ord}}</td>
     </tr>
 </table>

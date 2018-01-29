@@ -8,27 +8,27 @@
         </div>
 <table class="table table-bordered table-hover">
     <tr>
-        <th style="width:20%;">Right phonological context</th>
+        <th style="width:20%;" title="Phonological onset of the following word form">Right phonological context</th>
         <td>{{ object.rightonset }}</td>
     </tr>
     <tr>
-        <th>Variability of right context</th>
+        <th title="Stability status of the onset of the following wordform (fixed or variable)">Variability of right context</th>
         <td>{{ object.variable }}</td>
     </tr>
     <tr>
-        <th>Status pre change of context</th>
+        <th title="Phonological value before a potential sound change of the following onset">Status pre change of context</th>
         <td>{{ object.pre_change }}</td>
     </tr>
     <tr>
-        <th>Status post change of context</th>
+        <th title="Phonological value after a potential sound change of the following onset">Status post change of context</th>
         <td>{{object.post_change}}</td>
     </tr>
     <tr>
-        <th>Onset of change</th>
+        <th title="Onset of sound change of the following phonological onset">Onset of change</th>
         <td>{{object.onset}}</td>
     </tr>
     <tr>
-        <th>Offset of change</th>
+        <th title="Offset of sound change of the following phonological onset">Offset of change</th>
         <td>{{object.offset}}</td>
     </tr>
 </table>

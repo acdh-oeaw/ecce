@@ -8,31 +8,31 @@
         </div>
 <table class="table table-bordered table-hover">
     <tr>
-        <th style="width:20%;">Spelling category</th>
+        <th style="width:20%;" title="Graphemic category of the cluster">Spelling category</th>
         <td>{{ object.spelling }}</td>
     </tr>
     <tr>
-        <th>schwa present category</th>
+        <th title="classification of spelling category (for probabilistic estimation only)">schwa present category</th>
         <td>{{ object.schwaprese }}</td>
     </tr>
     <tr>
-        <th>schwa not present</th>
+        <th title="says if schwa is graphemically represented (for probabilistic estimation only)">schwa not present</th>
         <td>{{ object.is_no }}</td>
     </tr>
     <tr>
-        <th>schwa finally present</th>
+        <th title="says if schwa is graphemically represented in word final position (for probabilistic estimation only)">schwa finally present</th>
         <td>{{object.is_final}}</td>
     </tr>
     <tr>
-        <th>schwa finally_V present</th>
+        <th title="says if schwa is graphemically represented in word final position before vowel (for probabilistic estimation only)">schwa finally_V present</th>
         <td>{{object.is_final_v}}</td>
     </tr>
     <tr>
-        <th>checked schwa present</th>
+        <th title="says if schwa is graphemically represented in interconsonantal position (for probabilistic estimation only)">checked schwa present</th>
         <td>{{object.is_checked}}</td>
     </tr>
     <tr>
-        <th>both schwas present</th>
+        <th title="says if schwa is graphemically represented in both positions">both schwas present</th>
         <td>{{object.is_both}}</td>
     </tr>
 </table>
