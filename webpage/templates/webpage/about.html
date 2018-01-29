@@ -4,9 +4,12 @@
 {% block Titel %} About {% endblock %}
 
 {% block content %}
-    <div class="container text-justify">
-        <h1>About {% projects_metadata 'title' %} project</h1>
-        <br>
+<div class="panel panel-default">
+        <div class="panel-heading detail-heading">
+            <h1 style="text-align:center;"><b>About {% projects_metadata 'title' %} project</b></h1>
+        </div>
+
+    <div class="text-justify" style="padding: 25px;">
         <p>The Evolution of Consonant Clusters in English (ECCE) database represents the largest diachronically layered collection of English word-final consonant clusters such as /nd/ in hand – phonologically speaking highly marked structures which are nevertheless abundant in English. The data are derived from two corpora – the Penn-Helsinki Parsed Corpus of Middle English and the Penn-Helsinki Parsed Corpus of Early Modern English, and range from the 12th century to the beginning of the 17th century, thus spanning a period of more than 500 years.</p>
         <p>The database is enriched with a host of morphological, phonological, and lexical features. Every single cluster token in the database is annotated with the following information:
         <ul>
@@ -29,5 +32,6 @@
 		<p>
         Ritt, Nikolaus; Prömer, Christina; Baumann, Andreas. 2017. Evolution of Consonant Clusters in English (ECCE): a diachronic phonotactic database. Department of English and American Studies, University of Vienna. Online publication, version X.X (ecce.acdh.oeaw.ac.at).
         </p>
+    </div>
     </div>
 {% endblock %}
