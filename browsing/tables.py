@@ -119,10 +119,10 @@ class SchwaPresentTable(tables.Table):
         args=[A('pk')], verbose_name='ID'
     )
     spelling = tables.Column(
-        verbose_name='Spelling'
+        verbose_name='Spelling category'
     )
     schwaprese = tables.Column(
-        verbose_name='Schwaprese'
+        verbose_name='Schwa present category'
     )
 
     class Meta:
