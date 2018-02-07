@@ -457,6 +457,9 @@ class Token(models.Model):
     weight_norm = models.FloatField(
         blank=True, null=True, verbose_name="Per semizentury normalized weight",
         help_text="Per million tokens normalized probabilistically derived weigth of the cluster token (normalization based on semicentury-wise subcorpora)")
+    weight_not_norm = models.FloatField(
+        blank=True, null=True, verbose_name="Per semizentury not normalized weight",
+        help_text="Per million tokens weigth of the cluster token")
 
     def __str__(self):
         return "{}".format(self.plain_word)
