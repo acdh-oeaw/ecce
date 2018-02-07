@@ -8,59 +8,61 @@
        <!--  <div class="panel panel-body"> -->
             <table class="table table-bordered table-hover">
                 <tr>
-                    <th style="width:20%;">Consonant</th>
+                    <th style="width:20%;" title="IPA phonological transcription of the cluster">
+                    Consonant
+                    </th>
                     <td>{{ object.consonant }}</td>
                 </tr>
                 {% if object.first_consonant %}
                 <tr>
-                    <th>first_consonant</th>
+                    <th title="IPA phonological transcription of fourth-to-last segment of the cluster (only applies to CCCC)">Fourth-to-last segment</th>
                     <td><a href="{% url 'tokens:consonant_detail' pk=object.first_consonant.id %}">{{ object.first_consonant }}</a></td>
                 </tr>
                 {% endif %}
                 {% if object.second_consonant %}
                 <tr>
-                    <th>second_consonant</th>
+                    <th title="IPA phonological transcription of third-to-last segment of the cluster (only applies to CCC(C))">Third-to-last segment</th>
                     <td><a href="{% url 'tokens:consonant_detail' pk=object.second_consonant.id %}">{{ object.second_consonant }}</a></td>
                 </tr>
                 {% endif %}
                 {% if object.third_consonant %}
                 <tr>
-                    <th>third_consonant</th>
+                    <th title="IPA phonological transcription of penultimate segment of the cluster">Second-to-last segment</th>
                     <td><a href="{% url 'tokens:consonant_detail' pk=object.third_consonant.id %}">{{ object.third_consonant }}</a></td>
                 </tr>
                 {% endif %}
                  {% if object.fourth_consonant %}
                 <tr>
-                    <th>fourth_consonant</th>
+                    <th title="IPA phonological transcription of fourth-to-last segment of the cluster (only applies to CCCC)">Last segment</th>
                     <td><a href="{% url 'tokens:consonant_detail' pk=object.fourth_consonant.id %}">{{ object.fourth_consonant }}</a></td>
                 </tr>
                 {% endif %}
                 <tr>
-                    <th>size</th>
+                    <th title="Number of segments in the cluster">Cluster size</th>
                     <td>{{object.size}}</td>
                 </tr>
                 <tr>
-                    <th>ssp</th>
+                    <th title="Says if sonority sequencing principle is fulfilled for this cluster">SSP fulfilled</th>
                     <td>{{object.ssp}}</td>
                 </tr>
                 <tr>
-                    <th>cv_structure</th>
+                    <th title="Segmental structure of this cluster">cv structure</th>
                     <td>{{object.cv_structure}}</td>
                 </tr>
                 <tr>
-                    <th>preferred_cluster</th>
+                    <th title="Says if cluster is preferred according to net auditory distance (see http://wa.amu.edu.pl/nadcalc/)">NAD preferred</th>
                     <td>{{object.preferred_cluster}}</td>
                 </tr>
                 <tr>
-                    <th>nad_vc</th>
+                    <th title="Net auditory distance between preceding vowel and penultimate segment (see http://wa.amu.edu.pl/nadcalc/)">NAD VC</th>
                     <td>{{object.nad_vc}}</td>
                 </tr>
                 <tr>
-                    <th>nad_c1c2</th>
+                    <th title="Net auditory distance between segment 1 and segment 2 (see http://wa.amu.edu.pl/nadcalc/)">NAD C1C2</th>
                     <td>{{object.nad_c1c2}}</td>
                 </tr>
                 <tr>
-                    <th>nad_c2c3</th>
+                    <th title="Net auditory distance between segment 1 and segment 2 (see http://wa.amu.edu.pl/nadcalc/)">NAD C2C3</th>
                     <td>{{object.nad_vc}}</td>
                 </tr>
                 <tr>

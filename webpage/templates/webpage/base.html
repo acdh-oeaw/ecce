@@ -257,6 +257,11 @@
     {% block scripts %}
     <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'webpage/libraries/bootstrap335/js/bootstrap-tab.js' %}"></script>
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover(); 
+    });
+    </script>
     <!-- cool share -->
     <!--   <script type="text/javascript">
         $(function (){

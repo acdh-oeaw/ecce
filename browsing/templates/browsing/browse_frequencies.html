@@ -7,6 +7,10 @@
 {% block scriptHeader %}
 {% endblock %}
 {% block content %}
+<style>
+
+
+</style>
 <script>
     var new_url = old_url.substring(0, window.location.href.indexOf('?'));
 </script>
@@ -24,26 +28,34 @@ $("#goto option").each(function() {
 
 });
 </script>
+
 <div class="container">
 <div class="panel panel-default">
     <div class="panel-heading procustom-panel-heading">
 
-        <h3><span class="fa fa-search" style="padding-left:10px; padding-right: 10px;"></span>Browse {% class_definition %} {% block list_title %}{% endblock %}</h3>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myFilter">
-          <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
-        </button>
-        <a class ="btn btn-default"  href=".">Reset search</a>
-    {%block customView %}{% endblock %}
+        <h3><span class="fa fa-search" style="padding-left:10px; padding-right: 10px;">
+        </span>Browse {% class_definition %} {% block list_title %}{% endblock %}</h3>
+    
+          {% load django_tables2 crispy_forms_tags %}
+            <form action="." class="uniForm" method="get">
+                {% if togglable_colums %}
+                <br>
+                    <legend>Select additional columns</legend>
+                    {% column_selector  %}
+                    <br>
+                {% endif %}
+
+            {% crispy filter.form filter.form.helper %}
+
+            </form>
+            
     {% block create_button %}{% endblock %}
-    </div>
+ </div>
     <div class="panel-body procustom-panel-body">
         <div class="row">
             <div class="col-md-12">
                 {% with table.paginator.count as total %}
                 <legend>Total results: {{ total }}</legend>
-                <p style="margin-bottom: 30px;">
-                <span class="glyphicon glyphicon-info-sign"></span> Sort results by clicking on column header
-                </p>
                 {% endwith %}
       {% block table %}
       <table{% if table.attrs %} {{ table.attrs.as_html }}{% endif %}>
@@ -187,43 +199,12 @@ $("#goto option").each(function() {
       </ul>
       {% endblock pagination.allpages %}
 
-  </div>
-        </div>
-    </div>
-</div>
-</div>
-
-<div class="modal fade" id="myFilter" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="col-md-12">
-          {% load django_tables2 crispy_forms_tags %}
-            <form action="." class="uniForm" method="get">
-                {% if togglable_colums %}
-                </br>
-                    <legend>Select additional columns</legend>
-                    {% column_selector  %}
-                {% endif %}
-                
-                </br>
-            <legend>Refine your search</legend>
-            {% crispy filter.form filter.form.helper %}
-            </form>
-
-          {% block reset_button %}
-          <a class ="btn btn-default"  href=".">Reset search</a>
-          {% endblock %}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
+  	</div>
   </div>
 </div>
+</div>
+<!-- </div> -->
+
 
 <script type="text/javascript">
   /* attached to jquery */

@@ -71,8 +71,7 @@ class ConsonantTable(tables.Table):
     class Meta:
         model = Consonant
         fields = [
-            'consonant', 'first_consonant', 'second_consonant',
-            'third_consonant', 'fourth_consonant'
+            'consonant'
         ]
         attrs = {"class": "table table-responsive table-hover"}
 
@@ -120,10 +119,10 @@ class SchwaPresentTable(tables.Table):
         args=[A('pk')], verbose_name='ID'
     )
     spelling = tables.Column(
-        verbose_name='Spelling'
+        verbose_name='Spelling category'
     )
     schwaprese = tables.Column(
-        verbose_name='Schwaprese'
+        verbose_name='Schwa present category'
     )
 
     class Meta:
@@ -147,4 +146,24 @@ class OnSetTable(tables.Table):
     class Meta:
         model = OnSet
         fields = ['id', 'rightonset', 'variable']
+        attrs = {"class": "table table-responsive table-hover"}
+
+
+class FrequenciesTable(tables.Table):
+    corpus_size = tables.Column(
+        accessor='text_source.related_tokens_amount',
+        verbose_name='Corpus size'
+        )
+    date = tables.Column(
+        accessor='text_source.mean_date.semicentury',
+        verbose_name='Time'
+        )
+    plain_word = tables.LinkColumn(
+        'tokens:token_detail',
+        args=[A('pk')], verbose_name='Plain Word'
+    )
+
+    class Meta:
+        model = Token
+        sequence = ('date', 'corpus_size', 'plain_word')
         attrs = {"class": "table table-responsive table-hover"}

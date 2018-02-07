@@ -274,8 +274,21 @@ class TokenCustomFilterFormHelper(FormHelper):
                     Div('text_source__mean_date__dates', css_class="col-md-2"),
                     Div(HTML("<p><b>Search spelling string:</b></p>"), css_class="col-md-2"),
                     Div('plain_word', css_class="col-md-2"),
+                    Div(HTML("""
+                        <button type='button'
+                        class='btn btn-default btn-sm' data-toggle='popover' data-html='true'
+                        data-content='
+                        <code style="color: #000;"><b>+ld+</b></code> finds all cases containing ld inside word<br>
+                        <code style="color: #000;"><b>+ld</b></code> finds all cases ending with ld<br>
+                        <code style="color: #000;"><b>ld+</b></code> finds all cases starting with ld<br>
+                        <code style="color: #000;"><b>l+de</b></code> finds all cases starting with l and ending with de<br>
+                        <code style="color: #000;"><b>ld</b></code> finds all cases containing ld<br>
+                        '
+                        style="margin-top:0px;">
+                        <span class='glyphicon glyphicon-question-sign'></span> wildcard help</button>
+                        """), css_class="col-md-4"),
                     css_class="form-group row",
-                    title="Period",
+                    title="Period and Search spelling string",
                     ),
                     Div(
                     Div(HTML("<p><b>MPT Status:</b></p>"), css_class="col-md-2"),

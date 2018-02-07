@@ -140,6 +140,16 @@ class Text(models.Model):
     def get_absolute_url(self):
         return reverse('tokens:text_detail', kwargs={'pk': self.id})
 
+    @property
+    def related_tokens_amount(self):
+        #1. filter all tokens related to text
+        tokens_per_text = Token.objects.filter(text_source=self.id)
+        #2. group tokens by semicentury
+        #tokens_per_text = tokens_per_text.values('text_source__mean_date__semicentury')
+        #3. count how many tokens in each semicentury
+        tokens_per_text = tokens_per_text.count()
+        return tokens_per_text
+
 
 class Consonant(models.Model):
 

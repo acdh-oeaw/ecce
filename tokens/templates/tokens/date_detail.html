@@ -8,31 +8,39 @@
         </div>
 <table class="table table-bordered table-hover">
     <tr>
-        <th style="width:20%;">date</th>
+        <th style="width:20%;" title="Date of source text this token is extracted from">Date</th>
         <td>{{ object.dates }}</td>
     </tr>
     <tr>
-        <th>decade</th>
+        <th title="Decade of source text this token is extracted from">Decade</th>
         <td>{{ object.decade }}</td>
     </tr>
     <tr>
-        <th>semicentury</th>
+        <th title="50-year period of source text this token is extracted from (e.g. 1250 stands for 1250-1300)">Semicentury</th>
         <td>{{ object.semicentury }}</td>
     </tr>
     <tr>
-        <th>pr_cc_checekd</th>
-        <td>{{object.pr_cc_checekd}}</td>
+        <th title="Century of source text this token is extracted from">Century</th>
+        <td>{{ object.century }}</td>
     </tr>
     <tr>
-        <th>pr_cc_final_V</th>
+        <th title="probability estimate of graphemically checked cluster for this year (for probabilistic estimation only)">pr_cc_checekd</th>
+        <td>{{object.pr_cc_checekd}}</td>
+    </tr>
+       <tr>
+        <th title="probability estimate of cluster with graphemic final schwa for this year (for probabilistic estimation only)">pr_cc_final</th>
+        <td>{{object.pr_cc_final}}</td>
+    </tr>
+    <tr>
+        <th title="probability estimate of cluster with graphemic final and checked schwa for this year (for probabilistic estimation only)">pr_cc_final_V</th>
         <td>{{object.pr_cc_final_V}}</td>
     </tr>
     <tr>
-        <th>pr_cc_both</th>
+        <th title="probability estimate of cluster with graphemic final schwa before vowel for this year (for probabilistic estimation only)">pr_cc_both</th>
         <td>{{object.pr_cc_both}}</td>
     </tr>
     <tr>
-        <th>pr_cc_no</th>
+        <th title="probability estimate of graphemic cluster for this year (for probabilistic estimation only)">pr_cc_no</th>
         <td>{{object.pr_cc_no}}</td>
     </tr>
 </table>

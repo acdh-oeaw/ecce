@@ -442,7 +442,7 @@ class TokenCustomFilter(django_filters.FilterSet):
         label=""
         )
     #POS
-    pos = django_filters.ModelChoiceFilter(
+    pos = django_filters.ModelMultipleChoiceFilter(
         queryset=SkosConcept.objects.filter(scheme__dc_title__iexact='ecce-pos'),
         label=""
         )
