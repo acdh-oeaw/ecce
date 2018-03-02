@@ -58,7 +58,7 @@
     <tr>
         <th title="Onset of the following word form">Right phonological context</th>
         <td>{{object.rightonset}}</td>
-    </tr> 
+    </tr>
     <tr>
         <th title="Lemma of the word form the cluster is part of">Word lemma</th>
         <td>{{object.lemma}}</td>
@@ -71,6 +71,11 @@
         <th title="Per million tokens normalized probabilistically derived weigth of the cluster token (normalization based on semicentury-wise subcorpora)")>Per semizentury normalized weight</th>
         <td>{{object.weight_norm}}</td>
     </tr>
+    <tr>
+        <th title="Per million tokens weigth of the cluster token")>Per semizentury not normalized weight</th>
+        <td>{{object.weight_not_norm}}</td>
+    </tr>
+
     {% if user.is_authenticated %}
     <tr>
         <th title="Comments for internal usage">Internal comments</th>
@@ -80,7 +85,7 @@
         <th title="Internal file name used for data analysis">Internal analysis file</th>
         <td>{{object.file}}</td>
     </tr>
-    {% endif %}   
+    {% endif %}
 </table>
  {% if user.is_authenticated %}
 <div class="panel-body">
