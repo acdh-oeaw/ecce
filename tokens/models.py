@@ -360,11 +360,11 @@ class OnSet(models.Model):
         help_text="Stability status of the onset of the following wordform (fixed or variable)"
     )
     pre_change = models.CharField(
-        blank=True, null=True, max_length=15, verbose_name="Status pre change of context",
+        blank=True, null=True, max_length=150, verbose_name="Status pre change of context",
         help_text="Phonological value before a potential sound change of the following onset"
     )
     post_change = models.CharField(
-        blank=True, null=True, max_length=15, verbose_name="Status post change of context",
+        blank=True, null=True, max_length=150, verbose_name="Status post change of context",
         help_text="Phonological value after a potential sound change of the following onset"
     )
     onset = models.CharField(
