@@ -23,6 +23,17 @@ django_filters.filters.LOOKUP_TYPES = [
     ('not_contains', 'Does not contain'),
 ]
 
+def build_consonant_choices():
+    cons = Consonant.objects.all()
+    cons_dict = [('NULL', 'NO VALUE')]
+    for x in cons:
+       new = (x.id, x.consonant)
+       cons_dict.append(new)
+    return cons_dict
+
+CONS_CHOICES = build_consonant_choices()
+
+
 
 class TokenListFilter(django_filters.FilterSet):
     legacy_id = django_filters.CharFilter(
@@ -354,24 +365,26 @@ class OnSetListFilter(django_filters.FilterSet):
         fields = "__all__"
 
 
-
 class TokenCustomFilter(django_filters.FilterSet):
     #Consonants
-    cluster__first_consonant__consonant = django_filters.ModelChoiceFilter(
-        queryset=Consonant.objects.all(),
-        label="C1"
+    cluster__first_consonant__consonant = django_filters.ChoiceFilter(
+        choices=CONS_CHOICES,
+        label="C1",
+        method='filter_by_null'
         )
-    cluster__second_consonant__consonant = django_filters.ModelChoiceFilter(
-        queryset=Consonant.objects.all(),
-        label="C2"
+    cluster__second_consonant__consonant = django_filters.ChoiceFilter(
+        choices=CONS_CHOICES,
+        label="C2",
+        method='filter_by_null')
+    cluster__third_consonant__consonant = django_filters.ChoiceFilter(
+        choices=CONS_CHOICES,
+        label="C3",
+        method='filter_by_null'
         )
-    cluster__third_consonant__consonant = django_filters.ModelChoiceFilter(
-        queryset=Consonant.objects.all(),
-        label="C3"
-        )
-    cluster__fourth_consonant__consonant = django_filters.ModelChoiceFilter(
-        queryset=Consonant.objects.all(),
-        label="C4"
+    cluster__fourth_consonant__consonant = django_filters.ChoiceFilter(
+        choices=CONS_CHOICES,
+        label="C4",
+        method='filter_by_null'
         )
     #Art manner
     cluster__first_consonant__art_manner = django_filters.ModelChoiceFilter(
@@ -609,32 +622,43 @@ class TokenCustomFilter(django_filters.FilterSet):
         )
 
 
+    def filter_by_null(self, qs, name, value):
+        if value == 'NULL':
+            lookup = '__'.join([name, 'isnull'])
+            qs = qs.filter(**{lookup: True})
+        else:
+            print("NO EMTPY LABEL")
+            lookup = name.replace('__consonant', '__id')
+            qs = qs.filter(**{lookup: value})
+        return qs
+
+
     def filter_wildcard(self, qs, name, value):
         #for cases like '+c+' - query all words with 'c' inside the word
         if value.startswith('+') and value.endswith('+'):
             newvalue = value[1:-1]
-            qs = Token.objects.filter(plain_word__icontains=newvalue)\
+            qs = qs.filter(plain_word__icontains=newvalue)\
             .exclude(plain_word__istartswith=newvalue)\
             .exclude(plain_word__iendswith=newvalue)
         #for cases like '+nd' - query all words which end with 'nd'
         elif value.startswith('+'):
             newvalue = value.split('+')[1]
-            qs = Token.objects.filter(plain_word__iendswith=newvalue)
+            qs = qs.filter(plain_word__iendswith=newvalue)
         #for cases like 'a+' - query all words which start with 'a'
         elif value.endswith('+'):
             newvalue = value.split('+')[0]
-            qs = Token.objects.filter(plain_word__istartswith=newvalue)
+            qs = qs.filter(plain_word__istartswith=newvalue)
         else:
             #for cases like 's+e' - query all words which start with 's' and end with 'e'
             if '+' in value:
                 newvalue = value.split('+')
                 startvalue = newvalue[0]
                 endvalue = newvalue[-1]
-                qs = Token.objects.filter(plain_word__istartswith=startvalue)\
+                qs = qs.filter(plain_word__istartswith=startvalue)\
                 .filter(plain_word__iendswith=endvalue)
             else:
                 #for all rest cases including whole word search
-                qs = Token.objects.filter(plain_word__icontains=value)
+                qs = qs.filter(plain_word__icontains=value)
         return qs
 
 
