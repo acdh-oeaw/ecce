@@ -27,3 +27,5 @@ __pycache__/
 /ecce/settings/pg._localpy
 /ecce/settings/pg_local.py
 /data/tblTokensNew_171219.xlsx
+/ecce/settings/pg_dev.py
+/ecce/settings/pg_devdb.py
