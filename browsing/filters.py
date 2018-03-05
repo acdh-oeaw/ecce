@@ -23,16 +23,20 @@ django_filters.filters.LOOKUP_TYPES = [
     ('not_contains', 'Does not contain'),
 ]
 
+
 def build_consonant_choices():
     cons = Consonant.objects.all()
     cons_dict = [('NULL', 'NO VALUE')]
-    for x in cons:
-       new = (x.id, x.consonant)
-       cons_dict.append(new)
+    try:
+        for x in cons:
+            new = (x.id, x.consonant)
+            cons_dict.append(new)
+    except:
+        pass
     return cons_dict
 
-CONS_CHOICES = build_consonant_choices()
 
+CONS_CHOICES = build_consonant_choices()
 
 
 class TokenListFilter(django_filters.FilterSet):
@@ -259,7 +263,7 @@ class LemmaListFilter(django_filters.FilterSet):
     class Meta:
         model = Lemma
         fields = "__all__"
-        
+
 
 class DateListFilter(django_filters.FilterSet):
 
