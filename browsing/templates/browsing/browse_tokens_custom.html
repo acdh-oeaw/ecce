@@ -49,15 +49,21 @@ $("#goto option").each(function() {
             </form>
             
     {% block create_button %}{% endblock %}
+
  </div>
     <div class="panel-body procustom-panel-body">
         <div class="row">
             <div class="col-md-12">
                 {% with table.paginator.count as total %}
                 <legend>Total results: {{ total }}</legend>
-                <p style="margin-bottom: 30px;">
+                
+                <p style="margin-bottom: 10px;">
                 <span class="glyphicon glyphicon-info-sign"></span> Sort results by clicking on column header
                 </p>
+                
+                <a class ="btn btn-default"  href="{% url 'browsing:browse_tokens_frequencies' %}{% querystring %}" style="margin-bottom: 20px;"><i class="fa fa-arrow-right"></i> See frequencies table</a>
+  
+
                 {% endwith %}
       {% block table %}
       <table{% if table.attrs %} {{ table.attrs.as_html }}{% endif %}>
