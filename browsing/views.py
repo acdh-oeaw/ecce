@@ -6,6 +6,11 @@ from .tables import *
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse
 import pandas as pd
+import csv
+import re
+import time
+import datetime
+import requests
 
 
 class GenericListView(SingleTableView):
@@ -184,3 +189,68 @@ class FrequenciesView(GenericListView):
         context["freq_table"] = out.to_html(classes="freq-table table table-responsive")
         #context["freq_table"] = out.to_json()
         return context
+
+
+class FrequenciesDownloadView(GenericListView):
+    model = Token
+    filter_class = TokenCustomFilter
+    table_class = FrequenciesTable
+    formhelper_class = TokenCustomFilterFormHelper
+    template_name = 'browsing/browse_frequencies.html'
+
+
+    def render_to_response(self, context, **kwargs):
+        timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
+        response = HttpResponse(content_type='text/csv')
+        filename = "ecce_export_{}".format(timestamp)
+        response['Content-Disposition'] = 'attachment; filename="{}.csv"'.format(filename)
+        tokens_grouped = pd.DataFrame(list(self.get_queryset().values_list(
+            'legacy_id',
+            'text_source__mean_date__semicentury',
+            'text_source__mean_date__pr_cc_final_V',
+            'text_source__mean_date__pr_cc_both',
+            'text_source__mean_date__pr_cc_no'
+        ),), columns = ["legacy_id", "semicentury", "pr_cc_final_V", "pr_cc_both", "pr_cc_no"]).groupby('semicentury')
+        semicentury = tokens_grouped['semicentury'].unique().astype(int)
+        norm_prob = tokens_grouped['pr_cc_final_V'].sum()
+        norm_full = tokens_grouped['pr_cc_both'].sum()
+        norm_no = tokens_grouped['pr_cc_no'].sum()
+        raw_count = tokens_grouped.size().rename('tokens count')
+        out = pd.concat([semicentury, raw_count, norm_prob, norm_full, norm_no], axis=1)
+        out.loc["Total"] = ["Total", sum(raw_count), sum(norm_prob), sum(norm_full),  sum(norm_no)]
+        #out.loc["Total"] = [x.sum() for x in [semicentury, raw_count, norm_prob , norm_full , norm_no]]
+        out.to_csv(path_or_buf=response, sep=',', index=False, decimal=".",
+            header=["semicentury", "tokens count", "pr_cc_final_V", "pr_cc_both", "pr_cc_no"]) 
+        return response
+
+
+class TokenDownloadView(GenericListView):
+    model = Token
+    table_class = TokenTable
+    filter_class = TokenCustomFilter
+    formhelper_class = TokenCustomFilterFormHelper
+    template_name = 'browsing/browse_tokens_custom.html'
+
+    def render_to_response(self, context, **kwargs):
+        timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
+        response = HttpResponse(content_type='text/csv')
+        filename = "ecce_export_{}".format(timestamp)
+        response['Content-Disposition'] = 'attachment; filename="{}.csv"'.format(filename)
+        writer = csv.writer(response, delimiter=",")
+        writer.writerow([
+            'Identifier', 'Plain Word',
+            'Part Of Speech', 'Word Lemma',
+            'Cluster', 'Morphological Status',
+            'Date'
+            ]
+        )
+        for obj in self.get_queryset()[:1000]:
+            writer.writerow([
+                obj.legacy_id, obj.plain_word,
+                obj.pos,
+                obj.lemma,
+                obj.cluster,
+                obj.label,
+                obj.text_source.mean_date.dates
+                ])
+        return response

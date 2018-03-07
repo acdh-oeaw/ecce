@@ -12,4 +12,6 @@ urlpatterns = [
     url(r'schwapresents/$', views.SchwaPresentListView.as_view(), name='browse_schwapresents'),
     url(r'onsets/$', views.OnSetListView.as_view(), name='browse_onsets'),
     url(r'tokens-frequencies/$', views.FrequenciesView.as_view(), name='browse_tokens_frequencies'),
+    url(r'tokens-download/$', views.TokenDownloadView.as_view(), name='tokens_download'),
+    url(r'frequencies-download/$', views.FrequenciesDownloadView.as_view(), name='frequencies_download'),
 ]
