@@ -136,7 +136,7 @@ class TokenCustomView(GenericListView):
     filter_class = TokenCustomFilter
     formhelper_class = TokenCustomFilterFormHelper
     template_name = 'browsing/browse_tokens_custom.html'
-    init_columns = ['legacy_id', 'plain_word', 'pos', 'lemma', 'cluster',
+    init_columns = ['left_context', 'plain_word', 'right_context', 'lemma', 'cluster',
                     'label', 'date']
 
     def get_all_cols(self):
@@ -202,7 +202,7 @@ class FrequenciesDownloadView(GenericListView):
     def render_to_response(self, context, **kwargs):
         timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
         response = HttpResponse(content_type='text/csv')
-        filename = "ecce_export_{}".format(timestamp)
+        filename = "ecce_fq_export_{}".format(timestamp)
         response['Content-Disposition'] = 'attachment; filename="{}.csv"'.format(filename)
         tokens_grouped = pd.DataFrame(list(self.get_queryset().values_list(
             'legacy_id',
@@ -216,10 +216,10 @@ class FrequenciesDownloadView(GenericListView):
         norm_full = tokens_grouped['Normalized'].sum()
         norm_no = tokens_grouped['Weighted'].sum()
         raw_count = tokens_grouped.size().rename('Tokens')
-        out = pd.concat([semicentury, raw_count, norm_prob, norm_full, norm_no], axis=1)
+        out = pd.concat([semicentury, raw_count, norm_no, norm_prob, norm_full], axis=1)
         out.loc["Total"] = ["Total", sum(raw_count), sum(norm_prob), sum(norm_full),  sum(norm_no)]
         #out.loc["Total"] = [x.sum() for x in [semicentury, raw_count, norm_prob , norm_full , norm_no]]
-        out.to_csv(path_or_buf=response, sep=',', index=False, decimal=".")
+        out.to_csv(path_or_buf=response, sep=',', index=False)
         return response
 
 
@@ -237,16 +237,18 @@ class TokenDownloadView(GenericListView):
         response['Content-Disposition'] = 'attachment; filename="{}.csv"'.format(filename)
         writer = csv.writer(response, delimiter=",")
         writer.writerow([
-            'Identifier', 'Plain Word',
-            'Part Of Speech', 'Word Lemma',
-            'Cluster', 'Morphological Status',
+            'Left Context', 'Plain Word',
+            'Right Context',
+            'Word Lemma',
+            'Cluster',
+            'Morphological Status',
             'Date'
             ]
         )
         for obj in self.get_queryset()[:1000]:
             writer.writerow([
-                obj.legacy_id, obj.plain_word,
-                obj.pos,
+                obj.left_context, obj.plain_word,
+                obj.right_context,
                 obj.lemma,
                 obj.cluster,
                 obj.label,

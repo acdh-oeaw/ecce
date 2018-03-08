@@ -6,16 +6,20 @@ from tokens.models import *
 class TokenTable(tables.Table):
     plain_word = tables.LinkColumn(
         'tokens:token_detail',
-        args=[A('pk')], verbose_name='Plain Word'
-    )
+        args=[A('pk')], verbose_name='Plain Word')
+    #pos = tables.Column()
     lemma = tables.RelatedLinkColumn()
     cluster = tables.RelatedLinkColumn()
     label = tables.RelatedLinkColumn()
-    date = tables.RelatedLinkColumn(accessor='text_source.mean_date', verbose_name='Date')
+    date = tables.RelatedLinkColumn(accessor='text_source.mean_date',
+        verbose_name='Date',
+        )
+    left_context = tables.Column()
+    right_context = tables.Column()
 
     class Meta:
         model = Token
-        sequence = ('legacy_id', 'plain_word', 'pos', 'lemma', 'cluster',
+        sequence = ('left_context', 'plain_word', 'right_context', 'lemma', 'cluster',
                     'label', 'date')
         attrs = {"class": "table table-responsive table-hover"}
 

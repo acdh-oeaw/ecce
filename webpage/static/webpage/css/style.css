@@ -304,3 +304,6 @@ a .fa-github {
 .table th.desc:after {
   content: '\0000a0\0025bc';
 }
+.freq-table th {
+    width: 20%;
+}
