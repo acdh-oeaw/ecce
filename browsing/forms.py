@@ -239,6 +239,7 @@ class TokenCustomFilterFormHelper(FormHelper):
                     Div('cluster__second_consonant__consonant', css_class="col-md-2"),
                     Div('cluster__third_consonant__consonant', css_class="col-md-2"),
                     Div('cluster__fourth_consonant__consonant', css_class="col-md-2"),
+                    Div(HTML("<br><p><b>#</b></p>"), css_class="col-md-2"),
                     css_class="form-group row",
                     title="Phoneme",
                     ),

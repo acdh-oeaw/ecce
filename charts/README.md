@@ -6,12 +6,13 @@ Start a django-shell session
 and execute the following
 
 ```
+from browsing.filters import TokenListFilter
 from charts import chart_conf_creator
-charts = chart_conf_creator.create()
+load_charts = chart_conf_creator.ChartConfigurator(TokenListFilter)
 ```
 
 This will create a file `charts\chart_config.py`. You can define the filename by adding a parameter to create() like, e.g.
 
-> chart_conf_creator.create("whateverYouLike.py")
+> load_charts.create("whateverYouLike.py")
 
-Now run `charts.store_config()` to create database entries form the config file created before.
+Now run `load_charts.store_config()` to create database entries form the config file created before.
