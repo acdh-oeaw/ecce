@@ -174,18 +174,18 @@ class FrequenciesView(GenericListView):
         tokens_grouped = pd.DataFrame(list(self.get_queryset().values_list(
             'legacy_id',
             'text_source__mean_date__semicentury',
-            'text_source__mean_date__pr_cc_final_V',
-            'text_source__mean_date__pr_cc_both',
-            'text_source__mean_date__pr_cc_no'
-        ),), columns = ["legacy_id", "semicentury", "pr_cc_final_V", "pr_cc_both", "pr_cc_no"]).groupby('semicentury')
-        
-        norm_prob = tokens_grouped['pr_cc_final_V'].sum()
-        norm_full = tokens_grouped['pr_cc_both'].sum()
-        norm_no = tokens_grouped['pr_cc_no'].sum()
-        raw_count = tokens_grouped.size().rename('tokens count')
-        out = pd.concat([raw_count, norm_prob, norm_full, norm_no], axis=1)
+            'weight',
+            'weight_norm',
+            'weight_not_norm'
+        ),), columns = ["legacy_id", "Semicentury", "Weighted", "Normalized and weighted", "Normalized"]).groupby('Semicentury')
+
+        norm_prob = tokens_grouped['Normalized and weighted'].sum()
+        norm_full = tokens_grouped['Normalized'].sum()
+        norm_no = tokens_grouped['Weighted'].sum()
+        raw_count = tokens_grouped.size().rename('Tokens')
+        out = pd.concat([raw_count, norm_no, norm_prob, norm_full], axis=1)
         #to remove trailing zeroes in all columns  - convert to string .astype(str)
-        out.loc["Total"] = [x.sum() for x in [raw_count, norm_prob , norm_full , norm_no]]
+        out.loc["Total"] = [x.sum() for x in [raw_count, norm_no, norm_prob, norm_full]]
         context["freq_table"] = out.to_html(classes="freq-table table table-responsive")
         #context["freq_table"] = out.to_json()
         return context
@@ -220,7 +220,7 @@ class FrequenciesDownloadView(GenericListView):
         out.loc["Total"] = ["Total", sum(raw_count), sum(norm_prob), sum(norm_full),  sum(norm_no)]
         #out.loc["Total"] = [x.sum() for x in [semicentury, raw_count, norm_prob , norm_full , norm_no]]
         out.to_csv(path_or_buf=response, sep=',', index=False, decimal=".",
-            header=["semicentury", "tokens count", "pr_cc_final_V", "pr_cc_both", "pr_cc_no"]) 
+            header=["semicentury", "tokens count", "pr_cc_final_V", "pr_cc_both", "pr_cc_no"])
         return response
 
 

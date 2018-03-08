@@ -461,14 +461,14 @@ class Token(models.Model):
         help_text="Lemma of the word form the cluster is part of"
     )
     weight = models.FloatField(
-        blank=True, null=True, verbose_name="Weight",
+        blank=True, null=True, verbose_name="Weighted",
         help_text="Probabilistically derived weight of the cluster token"
     )
     weight_norm = models.FloatField(
-        blank=True, null=True, verbose_name="Per semizentury normalized weight",
+        blank=True, null=True, verbose_name="Weighted and Normalized",
         help_text="Per million tokens normalized probabilistically derived weigth of the cluster token (normalization based on semicentury-wise subcorpora)")
     weight_not_norm = models.FloatField(
-        blank=True, null=True, verbose_name="Per semizentury not normalized weight",
+        blank=True, null=True, verbose_name="Normalized",
         help_text="Per million tokens weigth of the cluster token")
 
     def __str__(self):
