@@ -109,16 +109,15 @@ footer {
     padding-bottom: 10px;
     position: relative;
     text-align: justify;
-    color: #fff;
+    color: #000000;
+    background-color: #fff;
     box-shadow: 2px 2px 24px 0 rgba(0, 0, 0, .1);
 
-    font-weight: 800;
-    text-align: center;
 }
 
 .grid-item>a,
 .grid-item>hr {
-    color: #fff;
+    color: #cf6766;
 }
 
 .grid-item:hover {
@@ -154,8 +153,8 @@ footer {
 
 }
 .div-tile {
-    width: 100%;
-    height: 120px;
+    /*width: 100%;
+    height: 120px;*/
 }
 .type-one {
     background: #cf6766;
@@ -163,9 +162,7 @@ footer {
 .type-two {
     background: #8eaebd;
 }
-.hrtile {
-    width: 70%;
-}
+
 #index-jumbo {
     margin-top: -25px;
     padding: 50px;
@@ -262,12 +259,10 @@ Label the data
 
 .btn {
     line-height: 36px;
-
     height: 36px;
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 0 2rem;
-
     white-space: normal;
     letter-spacing: .5px;
     text-transform: uppercase;
@@ -307,3 +302,65 @@ a .fa-github {
 .freq-table th {
     width: 20%;
 }
+.empty-div {
+    height: 100px;
+    width: auto;
+}
+
+/*index flexbox*/
+.main-flexbox {
+    display: flex;
+    /*margin: 0;*/
+    padding: 0;
+    flex-flow: row;
+    flex: 1 0 0;
+    margin-top:-80px;
+z-index: 1;
+    }
+.main-flexbox > .card {
+    /*height: 100%;*/ /*all cards are the same height*/
+    margin: 10px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 2px 2px 24px 0 rgba(0, 0, 0, .2);
+    flex: 3 1 50%;
+    order: 0;
+    /*border: 3px solid #cf6766;*/
+    }
+
+/* Too narrow to support two columns, make one */
+@media all and (max-width: 640px) {
+    .main-flexbox {
+        display: block;
+        flex-direction: column;
+    }
+    .main-flexbox>.card {
+        margin: 10px;
+        padding: 20px;
+        /* Return them to document order */
+        order: 0;
+    }
+}
+.main-flexbox>.card:hover {
+    box-shadow: 2px 2px 24px 0 rgba(0, 0, 0, .4);
+}
+
+.main-flexbox > .card > h2 {
+   /* font-weight: 800;*/
+}
+
+.hrtile {
+    width: 70%;
+    border: 2px solid #cf6766;
+}
+.index-button {
+    background-color: #cf6766;
+    color: #ffffff;
+    font-weight: bold;
+    white-space: normal;
+
+
+}
+.index-button:hover {
+/*box-shadow: 2px 2px 24px 0 rgba(0, 0, 0, .4);*/
+ }

@@ -4,88 +4,46 @@
 
 
 {% block index-content %}
-<div class="container jumbotron text-center" id="index-jumbo">
+<div class="jumbotron text-center" id="index-jumbo">
   <h1>ECCE</h1>
-  <h2>EVOLUTION OF CONSONANT CLUSTERS IN ENGLISH</h2>
-  <hr style="width: 60%; border: 2px solid #fff;">
-  <p class="text-muted" align="justify">One of the main purposes of this project is to produce an interactive database of English word-final consonant clusters – phonologically speaking highly marked structures which are nevertheless abundant in English. Our aim is to enrich the scientific landscape of phonology with up to now unexplored diachronic aspects of cluster development, showing how coda clusters emerged and why they are historically speaking stable despite their marked status.</p>
-
+  <h2>evolution of consonant clusters in English</h2>
+  <hr style="width: 60%; border: 1px solid #fff;">
+  <h2><b>AN INTERACTIVE DATABASE OF ENGLISH WORD-FINAL CONSONANT CLUSTERS</b></h2>
+  <div class="empty-div"></div>
 </div>
 {% endblock %}
 
 {% block content %}
-<h1 style="text-align: center; color: #44546d;"><b>EXPLORE</b></h1>
-<hr style="width: 60%; border: 2px solid #44546d;">
-<div class="grid">
-
-    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-one">
-    <a href="{% url 'browsing:browse_tokens' %}">
-        <div class="div-tile">
-            <h2>Tokens</h2>
+<div class="main-flexbox">    
+        <div class="card">
+            <h2 class="text-center">What?</h2>
             <hr class="hrtile">
-            <h2>{% tokens_count %}</h2>
-        </div>
-        </a>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-two">
-    <a href="{% url 'browsing:browse_dates' %}">
-        <div class="div-tile">
-            <h2>Dates</h2>
+            <p class="text-justify">The data for compiling the database was derived from the <b>Penn-Helsinki Parsed Corpus of Middle English
+            </b>
+            (Kroch & Taylor 2000) and the <b>Penn-Helsinki Parsed Corpus of Early Modern English</b> (Kroch et al. 2004).
+            These diachronic corpora cover the period from <b>1150-1720</b> and include both preand post-schwa-loss data.</p>
+        </div>    
+        <div class="card">
+            <h2 class="text-center">How?</h2>
             <hr class="hrtile">
-
-            <h2>{% dates_count %}</h2>
-        </div>
-        </a>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-one">
-    <a href="{% url 'browsing:browse_corpora' %}">
-        <div class="div-tile">
-            <h2>Corpora</h2>
+            <p class="text-justify">
+            <b>DECCE includes:</b><br>
+            <b>(a)</b> Word forms that ended in consonant clusters at the time of their attestation,<br>
+            <b>(b)</b> Word forms that had the potential of ending in clusters after schwa loss,<br>
+            <b>(c)</b> Word forms that had lost a cluster which had been present in their predecessors (e.g. /klaɪm/ from /klɪ:mb/ after final consonant deletion).
+            </p>
+        </div>   
+        <div class="card">
+            <h2 class="text-center">Why?</h2>
             <hr class="hrtile">
-
-            <h2>{% corpora_count %}</h2>
-        </div>
-        </a>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-two">
-    <a href="{% url 'browsing:browse_texts' %}">
-        <div class="div-tile">
-            <h2>Texts</h2>
-             <hr class="hrtile">
-
-            <h2>{% texts_count %}</h2>
-        </div>
-        </a>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-one">
-    <a href="{% url 'browsing:browse_consonants' %}">
-        <div class="div-tile">
-            <h2><b>Consonants</b></h2>
-             <hr class="hrtile">
-
-            <h2>{% consonants_count %}</h2>
-        </div>
-        </a>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-6 grid-item type-two">
-    <a href="{% url 'browsing:browse_clusters' %}">
-        <div class="div-tile">
-            <h2>Cluster</h2>
-             <hr class="hrtile">
-
-            <h2>{% clusters_count %}</h2>
-        </div>
-        </a>
-    </div>
+            <p class="text-justify">
+            Consonant clusters are phonologically speaking <b>highly marked</b> structures which are nevertheless
+            <b>abundant in English</b>. Our aim is to enrich the scientific landscape of phonology with up to now <b>unexplored diachronic aspects of cluster development</b>, showing how coda clusters emerged and why they are historically
+            speaking stable despite their marked status.
+            </p>
+        </div>   
 </div>
 
-<script type="text/javascript">
 
-$(window).on('load resize scroll', function (){
-$('.grid').masonry({
-  itemSelector: '.grid-item',
-});
-});
-</script>
 
 {% endblock %}
