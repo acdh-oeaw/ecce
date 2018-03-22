@@ -56,9 +56,9 @@ $("#goto option").each(function() {
      <a class ="btn btn-default"  href="{% url 'browsing:browse_tokens' %}{% querystring %}" style="margin-bottom: 20px;"><i class="fa fa-arrow-left"></i> Back to Total results</a>
      <a class ="btn btn-default"  href="{% url 'browsing:frequencies_download' %}{% querystring %}" style="margin-bottom: 20px;"><span class="glyphicon glyphicon-download-alt"></span> Download</a>
 
-    {{ freq_table|safe }}
+{{ freq_table|safe }}
    
-
+ 
 </div>
 </div>
 </div>

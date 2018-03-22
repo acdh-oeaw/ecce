@@ -11,6 +11,7 @@ import re
 import time
 import datetime
 import requests
+import json
 
 
 class GenericListView(SingleTableView):
@@ -186,8 +187,10 @@ class FrequenciesView(GenericListView):
         out = pd.concat([raw_count, norm_no, norm_prob, norm_full], axis=1)
         #to remove trailing zeroes in all columns  - convert to string .astype(str)
         out.loc["Total"] = [x.sum() for x in [raw_count, norm_no, norm_prob, norm_full]]
+        #total = out.loc["Total"]
+        #out = out.append(total)
         context["freq_table"] = out.to_html(classes="freq-table table table-responsive")
-        #context["freq_table"] = out.to_json()
+        #context["freq_table"] = out.to_dict()
         return context
 
 

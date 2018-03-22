@@ -239,7 +239,29 @@ class TokenCustomFilterFormHelper(FormHelper):
                     Div('cluster__second_consonant__consonant', css_class="col-md-2"),
                     Div('cluster__third_consonant__consonant', css_class="col-md-2"),
                     Div('cluster__fourth_consonant__consonant', css_class="col-md-2"),
-                    Div(HTML("<br><p><b>#</b></p>"), css_class="col-md-2"),
+                    Div(HTML("""
+                        <label>#</label>
+                        <br>
+                        <button type='button'
+                        class='btn btn-default btn-sm' data-toggle='popover' data-placement='bottom' data-html='true'
+                        data-content='
+                        <b>C4</b> is the <b>word-final</b> consonant.
+                        For looking for e.g. /nd/-clusters (as in <i>and</i>),
+                        fill in like this:<br>
+                        C1: ANY PHONEME<br>
+                        C2: ANY PHONEME<br>
+                        C3: n<br>
+                        C4: d<br>
+                        <b>Another example:</b><br>
+                        <i>worlds</i><br>
+                        C1: r<br>
+                        C2: l<br>
+                        C3: d<br>
+                        C4: s<br>
+                        '
+                        style="margin-top:0px;">
+                        <span class='glyphicon glyphicon-question-sign'></span> fill-in help</button>
+                        """), css_class="col-md-2"),
                     css_class="form-group row",
                     title="Phoneme",
                     ),

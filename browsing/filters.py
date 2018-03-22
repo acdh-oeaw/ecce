@@ -374,21 +374,26 @@ class TokenCustomFilter(django_filters.FilterSet):
     cluster__first_consonant__consonant = django_filters.ChoiceFilter(
         choices=CONS_CHOICES,
         label="C1",
-        method='filter_by_null'
+        method='filter_by_null',
+        empty_label="ANY PHONEME"
         )
     cluster__second_consonant__consonant = django_filters.ChoiceFilter(
         choices=CONS_CHOICES,
         label="C2",
-        method='filter_by_null')
+        method='filter_by_null',
+        empty_label="ANY PHONEME"
+        )
     cluster__third_consonant__consonant = django_filters.ChoiceFilter(
         choices=CONS_CHOICES,
         label="C3",
-        method='filter_by_null'
+        method='filter_by_null',
+        empty_label="ANY PHONEME"
         )
     cluster__fourth_consonant__consonant = django_filters.ChoiceFilter(
         choices=CONS_CHOICES,
         label="C4",
-        method='filter_by_null'
+        method='filter_by_null',
+        empty_label="ANY PHONEME"
         )
     #Art manner
     cluster__first_consonant__art_manner = django_filters.ModelChoiceFilter(
