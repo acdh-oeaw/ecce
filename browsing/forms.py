@@ -260,7 +260,7 @@ class TokenCustomFilterFormHelper(FormHelper):
                         C4: s<br>
                         '
                         style="margin-top:0px;">
-                        <span class='glyphicon glyphicon-question-sign'></span> fill-in help</button>
+                        <span class='glyphicon glyphicon-question-sign'></span>    fill-in help</button>
                         """), css_class="col-md-2"),
                     css_class="form-group row",
                     title="Phoneme",

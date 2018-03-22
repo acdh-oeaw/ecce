@@ -43,7 +43,18 @@
             </p>
         </div>   
 </div>
-
+<div class="row">
+<div class="col-sm-6 text-center">
+<a href="{% url 'browsing:browse_tokens' %}" class="button index-button">
+<span>explore the database</span>
+</a>
+</div>
+<div class="col-sm-6 text-center">
+<a href="{% url 'webpage:manual' %}" class="button index-button">
+<span>read the user manual</span>
+        </a>
+</div>
+</div>
 
 
 {% endblock %}

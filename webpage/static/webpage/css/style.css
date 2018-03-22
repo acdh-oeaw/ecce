@@ -259,13 +259,14 @@ Label the data
 
 .btn {
     line-height: 36px;
-    height: 36px;
+    height: 36px;  
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 0 2rem;
     white-space: normal;
     letter-spacing: .5px;
     text-transform: uppercase;
+    /*padding: 7px 20px 7px 20px;*/
 }
 
 .panel-default>.panel-heading {
@@ -303,7 +304,7 @@ a .fa-github {
     width: 20%;
 }
 .empty-div {
-    height: 100px;
+    height: 50px;
     width: auto;
 }
 
@@ -342,11 +343,11 @@ z-index: 1;
     }
 }
 .main-flexbox>.card:hover {
-    box-shadow: 2px 2px 24px 0 rgba(0, 0, 0, .4);
+    /*box-shadow: 2px 2px 24px 0 rgba(0, 0, 0, .4);*/
 }
 
-.main-flexbox > .card > h2 {
-   /* font-weight: 800;*/
+.main-flexbox > .card > p {
+   /*font-size: 18px;*/
 }
 
 .hrtile {
@@ -358,9 +359,81 @@ z-index: 1;
     color: #ffffff;
     font-weight: bold;
     white-space: normal;
+    padding: 20px 50px 20px 50px;
+    display: inline-block;
+    font-size: 20px;
+    margin: 20px 20px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 80%;
+    box-shadow: 2px 2px 24px 0 rgba(0, 0, 0, .2);
 
-
+    transition: all 0.5s;
 }
-.index-button:hover {
-/*box-shadow: 2px 2px 24px 0 rgba(0, 0, 0, .4);*/
- }
+
+.index-button:hover,
+.index-button:active {
+
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.index-button:active > a {
+ color: #ffffff;
+}
+
+.index-button:focus,
+.index-button:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+/*OL { counter-reset: item }
+LI { display: block }
+LI:before { content: counters(item, ".") " "; counter-increment: item }*/
+
+
+ol {
+    counter-reset: item;
+}
+
+ol > li {
+    counter-increment: item;
+}
+
+ol ol > li {
+    display: block;
+}
+
+ol ol > li:before {
+    content: counters(item, ".") ". ";
+    margin-left: -20px;
+}
+
