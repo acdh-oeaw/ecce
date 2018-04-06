@@ -5,7 +5,7 @@
 {% block content %}
 <div class="panel panel-default">
         <div class="panel-heading detail-heading">
-            <h1 style="text-align:center;"><b>DECCE database – user manual</b></h1>
+            <h1 style="text-align:center;"><b>ECCE database – user manual</b></h1>
         </div>
         <div class="panel-body">
         <p class="text-muted">Andreas Baumann, Christina Prömer, Nikolaus Ritt<br>
@@ -66,7 +66,7 @@
 		     </ol>
 		  </li>
 	      <li><a href="#charts">Charts</a></li>
-	      <li><a href="#using-decce">Using DECCE for simulating virtual post schwa loss varieties</a></li>
+	      <li><a href="#using-decce">Using ECCE database for simulating virtual post schwa loss varieties</a></li>
 	      <li><a href="#downloading-results">Downloading search results for further processing and analysis</a></li>
 	      <li><a href="#disclaimers">Envoy and some disclaimers</a></li>
 	      <li><a href="#references">References</a></li>
@@ -77,7 +77,7 @@
 		<!--content sections-->
 		<div id="introduction">
 		<h2>1 Introduction</h2>
-		<p>DECCE is a diachronic database designed to study the evolution of word final consonant clusters in English between the 12th and the 18th century. It is based on searches in the Penn Helsinki Parsed Corpora of Middle and Early Modern English and contains attestations of word forms that either actually ended in clusters at the time of their attestation, or that had the potential to do so at any point during the observation period. Some examples of the former are</p>
+		<p>ECCE database is a diachronic database designed to study the evolution of word final consonant clusters in English between the 12th and the 18th century. It is based on searches in the Penn Helsinki Parsed Corpora of Middle and Early Modern English and contains attestations of word forms that either actually ended in clusters at the time of their attestation, or that had the potential to do so at any point during the observation period. Some examples of the former are</p>
 		<p>(1) <i>against 1743 (P): ends in /nst/<br>
 		ald 1200 (A) ‘old’: /ld/<br>
 		merchants 1612 (N PL): /nts/<br>
@@ -96,22 +96,22 @@
 		</i>
 		</p>
 		<p>After retrieval, word forms were (a) analysed phonologically and morphologically, as well as (b) lemmatized, and the information thus gained was entered into the database. Additionally (c), our database provides estimates of the probability that a cluster potentially resulting from schwa loss was actually realized as one (see below <a href="#additional-search-fields">Weight</a>). These estimates were derived from a model of gradual schwa loss implementation that calibrated an s-curve against metrical evidence of verse from different stages of our observation period. For a detailed account of this method see Baumann, Prömer & Ritt forthc..</p>
-		<p>Enriched in this way, the DECCE database makes it possible to investigate the development of word final consonant clusters in Middle and Early Modern English systematically and in considerable detail.</p>
-		<p>This introduction cum manual briefly introduces the search fields in the DECCE database, the information they provide, and the analytic principles that information reflects. It also introduces the online interface and explains how search results can be exported for further analysis.</p>
+		<p>Enriched in this way, the ECCE database makes it possible to investigate the development of word final consonant clusters in Middle and Early Modern English systematically and in considerable detail.</p>
+		<p>This introduction cum manual briefly introduces the search fields in the ECCE database, the information they provide, and the analytic principles that information reflects. It also introduces the online interface and explains how search results can be exported for further analysis.</p>
 
 		</div>
 		<div id="major-search-fields">
 		<h2>2 Major search fields</h2>
 			<div id="cluster-fields">
 			<h3>2.1 Cluster Fields</h3>
-			<p>These fields represent the core of DECCE. They make it possible to search for coda clusters in a variety of different ways. Basically, the database represents clusters as sequences of segments. The maximal length of clusters in our data is four, so the DECCE search mask contains four columns of search fields, one column for each segment. Column 4 represents the word final segment in a cluster, column 3 the penultimate one, and so on.  Each column contains four rows, in which the properties of cluster constituents are represented in four different ways. The first row represents segments as phonemes in IPA notation. The second row specifies their manner of articulation, the third one their place of articulation, and the final one their phonation type (i.e voiced or voiceless). All of the columns may be used in searches for cluster types at different levels of abstraction.</p>
+			<p>These fields represent the core of ECCE database. They make it possible to search for coda clusters in a variety of different ways. Basically, the database represents clusters as sequences of segments. The maximal length of clusters in our data is four, so the ECCE database search mask contains four columns of search fields, one column for each segment. Column 4 represents the word final segment in a cluster, column 3 the penultimate one, and so on.  Each column contains four rows, in which the properties of cluster constituents are represented in four different ways. The first row represents segments as phonemes in IPA notation. The second row specifies their manner of articulation, the third one their place of articulation, and the final one their phonation type (i.e voiced or voiceless). All of the columns may be used in searches for cluster types at different levels of abstraction.</p>
 			<p>Figure 1 below shows a way of searching for words ending in /rld/ clusters (e.g. world) by looking for sequences of two liquids and a voiced alveolar stop. </p>
 			<p>(1)</p>
 			<img src="{% static 'webpage/img/resource1.png' %}" style="width: 80%"/>
 			<p>The same clusters would also be returned if one were to search for the final sequence /r/ /l/ /d/, as in figure 2:</p>
 			<p>(2)</p>
 			<img src="{% static 'webpage/img/resource2.png' %}" style="width: 80%"/>
-			<p>In fact, search fields can be used in any combination. For instance, tokens of world will also be found if one searches for clusters consisting of two liquids followed by /d/, for example, or for clusters consisting of /r/, a liquid, and a final alveolar stop, or for other appropriate combinations. Thus, DECCE makes it possible to search for clusters at various levels of phonological abstraction, and facilitates the investigation of developments that might reflect the impact of markedness constraints on the evolutionary stability of coda clusters. For instance, sonorant-stop clusters (as in old or went) count as less marked than stop-stop clusters (as in act or lagged), and their diachronic stability might reflect this. But this is just an example. The number of phonological hypotheses to test is large.</p>
+			<p>In fact, search fields can be used in any combination. For instance, tokens of world will also be found if one searches for clusters consisting of two liquids followed by /d/, for example, or for clusters consisting of /r/, a liquid, and a final alveolar stop, or for other appropriate combinations. Thus, ECCE makes it possible to search for clusters at various levels of phonological abstraction, and facilitates the investigation of developments that might reflect the impact of markedness constraints on the evolutionary stability of coda clusters. For instance, sonorant-stop clusters (as in old or went) count as less marked than stop-stop clusters (as in act or lagged), and their diachronic stability might reflect this. But this is just an example. The number of phonological hypotheses to test is large.</p>
 			</div>
 			<h3>To be continued ...</h3>
 		</div>
