@@ -178,19 +178,22 @@ class FrequenciesView(GenericListView):
             'weight',
             'weight_norm',
             'weight_not_norm'
-        ),), columns = ["legacy_id", "Semicentury", "Weighted", "Normalized and weighted", "Normalized"]).groupby('Semicentury')
+        ),), columns=[
+            "legacy_id", "Semicentury", "Weighted",
+            "Normalized and weighted", "Normalized"
+            ]).groupby('Semicentury')
 
         norm_prob = tokens_grouped['Normalized and weighted'].sum()
         norm_full = tokens_grouped['Normalized'].sum()
         norm_no = tokens_grouped['Weighted'].sum()
         raw_count = tokens_grouped.size().rename('Tokens')
         out = pd.concat([raw_count, norm_no, norm_prob, norm_full], axis=1)
-        #to remove trailing zeroes in all columns  - convert to string .astype(str)
+        # to remove trailing zeroes in all columns  - convert to string .astype(str)
         out.loc["Total"] = [x.sum() for x in [raw_count, norm_no, norm_prob, norm_full]]
-        #total = out.loc["Total"]
-        #out = out.append(total)
+        # total = out.loc["Total"]
+        # out = out.append(total)
         context["freq_table"] = out.to_html(classes="freq-table table table-responsive")
-        #context["freq_table"] = out.to_dict()
+        # context["freq_table"] = out.to_dict()
         return context
 
 
@@ -200,7 +203,6 @@ class FrequenciesDownloadView(GenericListView):
     table_class = FrequenciesTable
     formhelper_class = TokenCustomFilterFormHelper
     template_name = 'browsing/browse_frequencies.html'
-
 
     def render_to_response(self, context, **kwargs):
         timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
@@ -213,7 +215,9 @@ class FrequenciesDownloadView(GenericListView):
             'weight',
             'weight_norm',
             'weight_not_norm'
-        ),), columns = ["legacy_id", "Semicentury", "Weighted", "Normalized and weighted", "Normalized"]).groupby('Semicentury')
+        ),), columns=[
+            "legacy_id", "Semicentury", "Weighted", "Normalized and weighted", "Normalized"
+            ]).groupby('Semicentury')
         semicentury = tokens_grouped['Semicentury'].unique().astype(int)
         norm_prob = tokens_grouped['Normalized and weighted'].sum()
         norm_full = tokens_grouped['Normalized'].sum()
@@ -221,7 +225,6 @@ class FrequenciesDownloadView(GenericListView):
         raw_count = tokens_grouped.size().rename('Tokens')
         out = pd.concat([semicentury, raw_count, norm_no, norm_prob, norm_full], axis=1)
         out.loc["Total"] = ["Total", sum(raw_count), sum(norm_prob), sum(norm_full),  sum(norm_no)]
-        #out.loc["Total"] = [x.sum() for x in [semicentury, raw_count, norm_prob , norm_full , norm_no]]
         out.to_csv(path_or_buf=response, sep=',', index=False)
         return response
 
