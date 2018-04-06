@@ -5,15 +5,32 @@
 {% load i18n %}
 {% block Titel %} Browse {{ class_name }} {% endblock %}
 {% block scriptHeader %}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.16/b-1.4.2/b-html5-1.4.2/b-print-1.4.2/datatables.min.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.16/b-1.4.2/b-html5-1.4.2/b-print-1.4.2/datatables.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script>
+    #container {
+        min-width: 310px;
+        max-width: 800px;
+        height: 400px;
+        margin: 0 auto
+    }
+</script>
+
+
 {% endblock %}
 {% block content %}
 <style>
 
 
 </style>
-<script>
-    var new_url = old_url.substring(0, window.location.href.indexOf('?'));
-</script>
+
 
 <script type="text/javascript">
 
@@ -35,7 +52,7 @@ $("#goto option").each(function() {
 
         <h3><span class="fa fa-search" style="padding-left:10px; padding-right: 10px;">
         </span>Browse {% class_definition %} {% block list_title %}{% endblock %}</h3>
-    
+
           {% load django_tables2 crispy_forms_tags %}
             <form action="." class="uniForm" method="get">
                 {% if togglable_colums %}
@@ -48,20 +65,122 @@ $("#goto option").each(function() {
             {% crispy filter.form filter.form.helper %}
 
             </form>
-            
+
     {% block create_button %}{% endblock %}
  </div>
     <div class="panel-body procustom-panel-body">
     <legend>Frequencies</legend>
      <a class ="btn btn-default"  href="{% url 'browsing:browse_tokens' %}{% querystring %}" style="margin-bottom: 20px;"><i class="fa fa-arrow-left"></i> Back to Total results</a>
-     <a class ="btn btn-default"  href="{% url 'browsing:frequencies_download' %}{% querystring %}" style="margin-bottom: 20px;"><span class="glyphicon glyphicon-download-alt"></span> Download</a>
 
-{{ freq_table|safe }}
-   
- 
+     <table id="myTable" class="table table-striped table-condensed table-hover">
+         <thead>
+             <tr>
+                 <th>
+                    Semicentury
+                 </th>
+                 <th>
+                    Tokens
+                 </th>
+                 <th>
+                    Weighted
+                 </th>
+                 <th>
+                    Normalized and weighted
+                 </th>
+                 <th>
+                    Token Normalized
+                 </th>
+             </tr>
+         </thead>
+         <tbody id="myTableBody">
+             {% for x in rows %}
+                 <tr>
+                    {% for y in x %}
+                        <td>
+                            {{ y }}
+                        </td>
+                    {% endfor %}
+                 </tr>
+             {% endfor %}
+                <tr>
+                    <td>
+                        Total
+                    </td>
+                    {% for cell in total %}
+
+                        <td>
+                            {{ cell }}
+                        </td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+     </table>
+     <div id="container"></div>
+
 </div>
 </div>
 </div>
+<script>
+    var table = $('#myTable').DataTable(
+        {
+            pageLength: 50,
+            keepConditions: true,
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'excel', 'pdf'
+            ]
+        }
+    );
+</script>
+<script>
+
+var table = $('#myTable').DataTable();
+var years = table.columns().data()[0].slice(0, -1)
+var nor_wei = table.columns().data()[3].map(Number).slice(0, -1)
+var nor = table.columns().data()[4].map(Number).slice(0, -1)
+var wei = table.columns().data()[2].map(Number).slice(0, -1)
+console.log(nor_wei);
+
+Highcharts.chart('container', {
+    chart: {
+        type: 'line',
+        zoomType: 'x'
+    },
+    title: {
+        text: 'Token Frequency'
+    },
+    xAxis: {
+        categories: years
+    },
+    yAxis: {
+        title: {
+            text: 'Numbe of Tokens'
+        }
+    },
+    plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: true
+            },
+            enableMouseTracking: false
+        }
+    },
+    series: [
+        {
+            name: 'Normalized Weighted',
+            data: nor_wei
+        },
+        {
+            name: 'Normalized',
+            data: nor
+        },
+        {
+            name: 'Weighted',
+            data: wei
+        }
+]
+});
+</script>
 
 
 <script type="text/javascript">

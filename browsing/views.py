@@ -188,12 +188,10 @@ class FrequenciesView(GenericListView):
         norm_no = tokens_grouped['Weighted'].sum()
         raw_count = tokens_grouped.size().rename('Tokens')
         out = pd.concat([raw_count, norm_no, norm_prob, norm_full], axis=1)
-        # to remove trailing zeroes in all columns  - convert to string .astype(str)
-        out.loc["Total"] = [x.sum() for x in [raw_count, norm_no, norm_prob, norm_full]]
-        # total = out.loc["Total"]
-        # out = out.append(total)
-        context["freq_table"] = out.to_html(classes="freq-table table table-responsive")
-        # context["freq_table"] = out.to_dict()
+        context['cols'] = [out.index.name] + [i for i in out.columns]
+        context['rows'] = [[i for i in row] for row in out.itertuples()]
+        context['total'] = [x.sum() for x in [raw_count, norm_no, norm_prob, norm_full]]
+        context['norm_prob'] = norm_prob
         return context
 
 
