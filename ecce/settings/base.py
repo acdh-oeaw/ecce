@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'tokens',
     'browsing',
     'charts',
+    'rest_framework_swagger',
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap3"

@@ -3,6 +3,10 @@ from django.contrib import admin
 from rest_framework import routers
 from vocabs.api_views import *
 from tokens.api_views import *
+from rest_framework_swagger.views import get_swagger_view
+
+
+schema_view = get_swagger_view(title='ECCE API')
 
 
 router = routers.DefaultRouter()
@@ -33,4 +37,5 @@ urlpatterns = [
     url(r'^browsing/', include('browsing.urls', namespace='browsing')),
     url(r'^autocomplete/', include('tokens.dal_urls', namespace='dal_ac')),
     url(r'^datamodel/', include('django_spaghetti.urls', namespace='datamodel')),
+    url(r'^api/docs/', schema_view, name='docs'),
 ]
