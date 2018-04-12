@@ -1,0 +1,40 @@
+{% extends "webpage/base.html" %}
+{% load staticfiles %}
+{% load webpage_extras %}
+{% block Titel %} Acknowledgements {% endblock %}
+
+{% block content %}
+<div class="panel panel-default">
+        <div class="panel-heading detail-heading">
+            <h1 style="text-align:center;"><b>Acknowledgements</b></h1>
+        </div>
+
+    <div class="text-justify" style="padding: 25px;">
+        <p>
+        The ECCE database was designed and set up by the <a href="http://ecce.univie.ac.at/">ECCE project</a> team (funded by the Austrian Science Fund, Grant No. P 27592). The bulk of the work was done by <b>Andreas Baumann</b> (whose major responsibilities included the design of the database, all quantitative aspects of the data analysis and modelling) and <b>Christina Prömer</b> (who was in charge of qualitative aspects of the data analysis and acted as project coordinator). 
+        </p>
+        <p>
+        In the qualitative data analysis we were supported by <b>Kamil Kaźmierski</b>, <b>Paula Orzechowska</b>, and <b>Pauina Zydorowicz</b> from the Adam Mickiewicz University in Poznan, and by Ines Nitsche, from the University of Vienna.
+        </p>
+        <p>
+        The implementation of ECCE as an online database would not have been possible without the support of the Austrian Centre for Digital Humanities. Our particular thanks go to <b>Peter Andorfer</b>, <b>Daniel Schopper</b>, <b>Tanja Wissik</b>, and <b>Ksenia Zaytseva</b>.
+        </p>
+        <p>
+        For concepts and hypotheses that have inspired the project we owe particular gratitude to <b>Wolfgang U. Dressler</b> (University of Vienna) and <b>Katarzyna Dziubalska-Kołaczyk</b> (Adam Mickiewicz University, Poznan), and for advice during various phases of the projects we ow particular thanks to <b>Rhona Alcorn</b> (Angus McIntosh Centre for Historical Linguistics).
+        </p>
+        <p>
+        We are grateful to the designers of the <a href="http://www.ling.upenn.edu/histcorpora/PPCME2-RELEASE-4/">Penn-Helsinki Parsed Corpora of Middle</a> and <a href="http://www.ling.upenn.edu/histcorpora/PPCEME-RELEASE-3/">Early Modern English</a> (Anthony Kroch, Ann Taylor, Beatrice Santorini & Lauren Delfs) both for the corpora themselves and for allowing us to make our search results accessible in the database.
+        </p>
+        <p>
+        The responsibility for any errors and shortcomings in the database is Nikolaus Ritt’s.
+        </p>
+        <h3 style="text-align:center;">References</h3>
+        <p>
+        Kroch, Anthony & Ann Taylor. 2000. Penn-Helsinki Parsed Corpus of Middle English. http://www.ling.upenn.edu/hist-corpora/.
+        </p>
+        <p>
+        Kroch, Anthony, Beatrice Santorini & Lauren Delfs. 2004. Penn-Helsinki Parsed Corpus of Early Modern English. http://www.ling.upenn.edu/hist-corpora/.
+        </p>
+    </div>
+    </div>
+{% endblock %}

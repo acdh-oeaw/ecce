@@ -21,6 +21,10 @@ class ManualView(TemplateView):
     template_name = "webpage/manual.html"
 
 
+class AcknowledgementsView(TemplateView):
+    template_name = "webpage/acknowledgements.html"
+
+
 #################################################################
 #               views for login/logout                          #
 #################################################################
