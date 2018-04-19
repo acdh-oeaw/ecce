@@ -29,3 +29,4 @@ __pycache__/
 /data/tblTokensNew_171219.xlsx
 /ecce/settings/pg_dev.py
 /ecce/settings/pg_devdb.py
+/custom.txt

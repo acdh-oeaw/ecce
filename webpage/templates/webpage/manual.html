@@ -8,9 +8,9 @@
             <h1 style="text-align:center;"><b>ECCE database – user manual</b></h1>
         </div>
         <div class="panel-body">
-        <p class="text-muted">Andreas Baumann, Christina Prömer, Nikolaus Ritt<br>
-		University of Vienna, Austria
-		</p>
+        	<p class="text-muted">Andreas Baumann, Christina Prömer, Nikolaus Ritt</p>
+        	<p>University of Vienna, Austria</p>
+		
 
 		<!--Navigation block-->
 		<ol id="manual-outline">
@@ -77,56 +77,194 @@
 		<!--content sections-->
 		<div id="introduction">
 		<h2>1 Introduction</h2>
-		<p>ECCE database is a diachronic database designed to study the evolution of word final consonant clusters in English between the 12th and the 18th century. It is based on searches in the Penn Helsinki Parsed Corpora of Middle and Early Modern English and contains attestations of word forms that either actually ended in clusters at the time of their attestation, or that had the potential to do so at any point during the observation period. Some examples of the former are</p>
-		<p>(1) <i>against 1743 (P): ends in /nst/<br>
-		ald 1200 (A) ‘old’: /ld/<br>
-		merchants 1612 (N PL): /nts/<br>
-		prescrib'd 1624 (PPL): /bd/<br>
-		realm: 1571 /lm/<br>
-		þoht 1213 (N) ‘thought’: /Xt/<br>
-		</i></p>
+			<p>ECCE is a diachronic database designed to study the evolution of word final consonant clusters in English between the 12th and the 18th century. It is based on searches in the Penn Helsinki Parsed Corpora of Middle and Early Modern English and contains attestations of word forms that either actually ended in clusters at the time of their attestation, or that had the potential to do so at any point during the observation period. Some examples of the former are</p>
+			<p>(1) <i>against</i> 1743 (P): ends in /nst/</br>
+				<i>ald</i> 1200 (A) ‘old’: /ld/</br>
+				<i>merchants</i> 1612 (N PL): /nts/</br>
+				<i>prescrib'd</i> 1624 (PPL): /bd/</br>
+				<i>realm</i>: 1571 /lm/</br>
+				<i>þoht</i> 1213 (N) ‘thought’: /Xt/
+		</p>
 		<p>Among the latter two types can be distinguished. First, there are attestations that are unlikely to have represent final consonant clusters at the time of their attestation, but had descendants or ancestors that did. Examples are in (2):</p>
 		<p>(2)<i>
-		daynede 1340 (V PT) ‘deigned’: ended in /nd/ only after schwas in /dainədə/ were lost<br>
-		climb 1698 (V): ended in /mb/ before final cluster simplification (/mb/ > /m)<br>
-		giltes 1213 (N PL) ‘guilts’: /lts/ but only after schwa in /giltəs/ was lost<br>
-		moneþ 1200 (N) ‘month’: /nθ/ only after schwa loss<br>
-		thought  1696 (N): /Xt/ but only before /X/-vocalisation<br>
-		tunes 1150 (N PL) ‘towns’: /ns/<br>	
-		</i>
+			daynede</i> 1340 (V PT) ‘deigned’: ended in /nd/ only after schwas in /dainədə/ were lost</br>
+			<i>climb</i> 1698 (V): ended in /mb/ before final cluster simplification (/mb/ > /m)</br>
+			<i>giltes</i> 1213 (N PL) ‘guilts’: /lts/ but only after schwa in /giltəs/ was lost</br>
+			<i>moneþ</i> 1200 (N) ‘month’: /nθ/ only after schwa loss</br>
+			<i>thought</i>  1696 (N): /Xt/ but only before /X/-vocalisation</br>
+			<i>tunes</i> 1150 (N PL) ‘towns’: /ns/
 		</p>
-		<p>After retrieval, word forms were (a) analysed phonologically and morphologically, as well as (b) lemmatized, and the information thus gained was entered into the database. Additionally (c), our database provides estimates of the probability that a cluster potentially resulting from schwa loss was actually realized as one (see below <a href="#additional-search-fields">Weight</a>). These estimates were derived from a model of gradual schwa loss implementation that calibrated an s-curve against metrical evidence of verse from different stages of our observation period. For a detailed account of this method see Baumann, Prömer & Ritt forthc..</p>
+			<p>Finally, there are items whose potential of ending in a cluster was probably never realised, as the ones in (3)</p>
+			<p>(3)	
+				<i>bezechiþ</i> 1340 (V 3SG PR) ‘beseech’: /tʃθ/</br>
+				<i>gelimpeð</i> 1213 (V 3SG PR) ‘limp’: /mpθ/ </br>
+				<i>knowlecheth</i> 1390 (V 3 SG PR) ‘acknowledge’: /dʒð/</br>
+				<i>wishes</i> 1630 (N PL): /ʃs/ - not realised because schwa loss was blocked</p>
+			<p>After retrieval, word forms were (a) analysed phonologically and morphologically, as well as (b) lemmatized, and the information thus gained was entered into the database. Additionally (c), our database provides estimates of the probability that a cluster potentially resulting from schwa loss was actually realized as one (see below <a href="#additional-result-fields">Weight</a>). These estimates were derived from a model of gradual schwa loss implementation that calibrated an s-curve against metrical evidence of verse from different stages of our observation period. For a detailed account of this method see Baumann, Prömer &amp; Ritt forthc..</p>
 		<p>Enriched in this way, the ECCE database makes it possible to investigate the development of word final consonant clusters in Middle and Early Modern English systematically and in considerable detail.</p>
-		<p>This introduction cum manual briefly introduces the search fields in the ECCE database, the information they provide, and the analytic principles that information reflects. It also introduces the online interface and explains how search results can be exported for further analysis.</p>
-
+		<p>This introduction <i>cum</i> manual briefly introduces the search fields in the ECCE database, the information they provide, and the analytic principles that information reflects. It also introduces the online interface and explains how search results can be exported for further analysis.</p>
 		</div>
 		<div id="major-search-fields">
 		<h2>2 Major search fields</h2>
 			<div id="cluster-fields">
 			<h3>2.1 Cluster Fields</h3>
 			<p>These fields represent the core of ECCE database. They make it possible to search for coda clusters in a variety of different ways. Basically, the database represents clusters as sequences of segments. The maximal length of clusters in our data is four, so the ECCE database search mask contains four columns of search fields, one column for each segment. Column 4 represents the word final segment in a cluster, column 3 the penultimate one, and so on.  Each column contains four rows, in which the properties of cluster constituents are represented in four different ways. The first row represents segments as phonemes in IPA notation. The second row specifies their manner of articulation, the third one their place of articulation, and the final one their phonation type (i.e voiced or voiceless). All of the columns may be used in searches for cluster types at different levels of abstraction.</p>
-			<p>Figure 1 below shows a way of searching for words ending in /rld/ clusters (e.g. world) by looking for sequences of two liquids and a voiced alveolar stop. </p>
+			<p>Figure 1 below shows a way of searching for words ending in /rld/ clusters (e.g. <i>world</i>) by looking for sequences of two liquids and a voiced alveolar stop. </p>
 			<p>(1)</p>
 			<img src="{% static 'webpage/img/resource1.png' %}" style="width: 80%"/>
 			<p>The same clusters would also be returned if one were to search for the final sequence /r/ /l/ /d/, as in figure 2:</p>
 			<p>(2)</p>
 			<img src="{% static 'webpage/img/resource2.png' %}" style="width: 80%"/>
-			<p>In fact, search fields can be used in any combination. For instance, tokens of world will also be found if one searches for clusters consisting of two liquids followed by /d/, for example, or for clusters consisting of /r/, a liquid, and a final alveolar stop, or for other appropriate combinations. Thus, ECCE makes it possible to search for clusters at various levels of phonological abstraction, and facilitates the investigation of developments that might reflect the impact of markedness constraints on the evolutionary stability of coda clusters. For instance, sonorant-stop clusters (as in old or went) count as less marked than stop-stop clusters (as in act or lagged), and their diachronic stability might reflect this. But this is just an example. The number of phonological hypotheses to test is large.</p>
+			<p>In fact, search fields can be used in any combination. For instance, tokens of <i>world</i> will also be found if one searches for clusters consisting of two liquids followed by /d/, for example, or for clusters consisting of /r/, a liquid, and a final alveolar stop, or for other appropriate combinations. Thus, ECCE makes it possible to search for clusters at various levels of phonological abstraction, and facilitates the investigation of developments that might reflect the impact of markedness constraints on the evolutionary stability of coda clusters. For instance, sonorant-stop clusters (as in <i>old</i> or <i>went</i>) count as less marked than stop-stop clusters (as in <i>act</i> or <i>lagged</i>), and their diachronic stability might reflect this. But this is just an example. The number of phonological hypotheses to test is large.</p>
 			</div>
-			<h3>To be continued ...</h3>
+			<div id="the-mpt-status-field">
+			<h3>2.2	The MPT status field</h3>
+			<p>This is the second most important search field in ECCE. It indicates whether clusters are morphotactically compositional or not, and if they are in what way and to what degree. In this field the following categories are distinguished:</p>
+			<ol type="a">
+				<li>Morpheme-internal clusters that are licenced by lexical phonotactics, such as /nd/ in wind, or /lp/ in help. They receive the label <b>L</b>.</li>
+				<li>Clusters that come about through and regular inflectional processes, and that span a transparent boundary between stem and suffix, such as /lp+d/ in <i>helped</i>, or /g+z/ in <i>eggs</i>. They receive the label <b>I</b>.</li>
+				<li>Clusters that reflect inflectional processes, but not transparently so. They can count as (partly) lexicalised and receive the label <b>LI</b>.</li>
+				<li>Clusters that come about through derivation, and that span a transparent boundary between stem and suffix, such as /n+θ/ in <i>tenth</i>, or /n+t/ in <i>complaint</i>. g+z/ in <i>eggs</i>. They receive the label <b>D</b>.</li>
+				<li>Clusters that reflect derivational processes, but not transparently so, for instance /l+θ/ in filth or /p+t/ in concept. They can count as (partly) lexicalised and receive the label <b>LD</b>.</li>
+				<li>Clusters within transparent inflectional suffixes, such as the /st/ in <i>goest</i> ‘go’ 2SG, or the /nd/ in <i>lovand</i> ‘loving’ are labelled <b>IS</b>.</li>
+				<li>Word final clusters reflecting inflectional suffixes that have merged with their stems and/or are no longer transparent, such as the /st/ in <i>worst</i> or <i>first</i> are considered lexicalised and labelled <b>LIS</b>.</li>
+				<li>Clusters within transparent derivational suffixes, such as the /nt/ in <i>judgement</i> are labelled <b>DS</b>.</li>
+				<li>Word final clusters reflecting derivational suffixes that have merged with their stems and/or are no longer transparent, such as the /nt/ in <i>parliament</i> are considered lexicalised and labelled <b>LDS</b>.</li>
+			</ol>
+			<p>The possibility of distinguishing, and searching separately, for clusters of different morphotactic categories makes it possible to investigate whether differences in this respect affect the historical stability of clusters. Various theories of morphonology or morphonotactics imply that they should.</p>
+			</div>
+				<div id="period-fields">
+			<h3>2.3	Period fields</h3>
+			<p>Two fields, one representing a starting point and the other an end point, make it possible to limit searches to subsections of the observation period. This allows one to compare coda cluster frequencies and distributions at different historical stages and to identify changes in them. </p>
+				</div>
+					<div id="the-pos-fields">
+					<h3>2.4	The POS field</h3>
+			<p>This field makes it possible to limit searches to specific parts of speech. Labels have been taken over from the Penn Helsinki Parsed corpora, and can be looked up at <a href="https://www.ling.upenn.edu/hist-corpora/annotation/index.html">https://www.ling.upenn.edu/hist-corpora/annotation/index.html</a>. This makes it possible to investigate the distribution of coda clusters among different word classes, and to identify possible correlations and changes in them.</p>
+						<div id="the-spelling-string-field">
+						<h3>2.5	The spelling-string field</h3>
+			<p>Makes it possible to search for word tokens by their spelling, this field allows wild card searches. Note the conventions in the help field.</p>
+		</div></div></div>
+        
+		<div id="additional-search-fields">
+			<h2>3 Additional (minor) search fields</h2>
+			<p>On the page with the main search interface, the symbol <img src="{% static 'webpage/img/resource3.png' %}"/> opens a window that leads to a number of further search filters. Some of them have been implemented merely for testing purposes, may not be particularly useful in practice, and may even be removed in upcoming versions of the data base. For now we recommend to ignore them. Others provide interesting search options, however, and will be briefly described here.</p>
+			<div id="basic-options">
+			<h3>3.1	Basic options: Spelling category</h3>
+			<p>In this field it is possible to specify the structure of clusters in terms of spelling types. ‘C’ stands for consonant graphemes, and ‘E’ for vowel graphs representing likely schwas. Additionally, the symbol ‘_V’ identifies sequences that occur before words beginning with vowel graphs. For example, the filter ‘CCCE_V’ will return tokens like worlde, but only those that are followed by vowels in the text, as in the phrase <i>worlde of sinners</i>.</p>
+				</div><div id="lexicon-related">
+				<h3>3.2	Lexicon related search options: Lemma</h3>
+					<p>This section of filters makes it possible to search for word form lemmas. We have found it to be only mildly useful for the main purposes of the database. In order to use it, one needs to be familiar with the specific lemmatization conventions of ECCE (see below &rarr; <a href="#word-lemma">word lemma</a>). If one is, however, this fields allows one to search for spelling variants of specific word types.</p>
+					</div><div id="morphology-related">
+					<h3>3.3	Morphology related search options: Morphonotactic status</h3>
+			<p>This field allows global searches for ‘unambiguously morphonotactic clusters’ (I and D), unambiguously morpheme internal, or ‘lexical’ ones (L, IS and DS), and ‘weakly morphonotactic’ ones (LI, LD, LIS, and LDS).</p>
+						</div><div id="phonology-related">
+						<h3>3.4	Phonology related search options: Right phonological context</h3>
+			<p>Here one can look for clusters that occur before specific consonants in onset of the next word.</p>
+							</div><div id="phonotactics">		
+			<h3>3.5	Phonotactics related search options</h3>
+								</div><div id="cluster-size">					
+			<h4>3.5.1 Cluster size</h4>
+			<p>This field provides a quick way of searching for clusters of different sizes, i.e. for clusters of two, three or four segments.</p>
+								</div>	<div id="ssp-fulfilled">				
+			<h4>3.5.2 SSP fulfilled</h4>
+			<p>This field searches for clusters that do or do not fulfil the sonority sequencing principle (Sonority falls towards the end of a cluster, as in /rnd/ as in <i>burned</i>, but not in /pts/ as in <i>adopts</i>).</p>
+										</div><div id="nad">
+										<h4>3.5.3 NAD VC, NAD C1C2, NAD C2C3, and NAD preferred</h4>
+			<p>These fields search for clusters with specific ‘net auditory distances’ (NAD) between their segments. For the concept and how it is measured see <a href="http://wa.amu.edu.pl/nadcalc/">http://wa.amu.edu.pl/nadcalc/</a>.</p>
+											</div><div id="text-related">
+											<h3>3.6	Text related search options</h3>
+			<p>These allow searches to be restricted to texts of specific genres, specific dialectal regions, or to specific texts. Text identifiers and categorisations are those employed in the Penn Helsinki Parsed Corpora (<a href="https://www.ling.upenn.edu/hist-corpora">https://www.ling.upenn.edu/hist-corpora</a>).</p>
+		</div></div>
+		<div id="result-fields">
+			<h2>4 Result fields</h2>
+			<p>Search results are presented (a) as token lists and (b) as frequency tables. When you click on the search button, a token list is returned at the bottom of the page. In order to see frequency tables, the button labelled ‘See frequency table’ needs to be clicked. It is possible to toggle back and forth between token and frequency views.</p>
+			<div id="token-list">
+			<h3>4.1	Token list</h3>
+			<p>By default the token list will show the following fields:</p>
+				</div><div id="plain-word">
+			<h4>4.1.1 Plain word</h4>
+			<p>Contains tokens as retrieved from the corpora. The only visible difference is that – for technical reasons - the Penn-Helsinki diacritic ‘+’ is replaced by ‘&amp;’, so that thorn <þ> is now represented as ‘&amp;t’, eth <ð> as ‘&amp;d’, ash <æ> as ‘&amp;a’, and yogh <ʒ> as ‘&amp;g>.</p>
+				</div>	<div id="right-left-context">
+					<h4>4.1.2 Right context, Left context</h4>
+						<p>Reproduce a bit of the contexts as returned in the POS-tagged files of the Penn-Helsinki corpora. Their purpose is to help users recognize word forms. They do not otherwise figure in the analysis. But see &rarr; <a href="#additional-result-fields">Right Onset</a>.</p>
+						</div><div id="word-lemma">
+						<h4>4.1.3 Word lemma</h4>
+			<p>Contains ‘lemmas’. We defined as word-form types, rather than as lexemes. Different inflectional forms of a word receive separate lemmas. E.g. <i>wepte</i>, <i>wepest</i>, and <i>wepeþ</i> do not all receive the lemma ‘weep’, but ‘weep (vbd)’, ‘weep (vbp (2sg))’, and ‘weep (vbp (3sg))’ respectively. The morphosyntactic tags we used for the purpose are usually taken over from the Penn Helsinki Corpora (<a href="http://www.ling.upenn.edu/histcorpora/annotation/index.html">http://www.ling.upenn.edu/histcorpora/annotation/index.html</a>), but some information is added, so that the tags in the ECCE lemmas are sometimes more fine grained. For instance, verbal present tense forms are tagged as ‘VBP’ in the corpora, but we have added person and number as well. For instance, <i>abydest</i> ‘abide.2SG’ is tagged ‘VBP’ (verbal present) in the corpus, but gets the lemma ‘abide (vbp(2sg))’ in ECCE, and the lemma of <i>schuldest</i> ‘should.2SG’  is ‘shall (md(pst.2sg))’. Other conventions we adopted were these:</p>
+		<ol type="1">
+			<li>Verbs (including modals and auxiliaries) were lemmatized in their base forms, and additional information such as person or tense is added in the tag (as shown above). E.g. <i>tellen</i> ‘to tell’ → tell(vb); <i>habbe&amp;d</i> ‘he has’ → have(VBP(3sg)); <i>chaungid</i> ‘changed’ → change(vbd) etc.</li>
+			<li>Adjectives and adverbs are lemmatized holistically when derived (i.e. not reduced to their bases: i.e. <i>determined</i> (as in his <i>determined resolution</i>) → determined(adj); <i>bicumeliche</i> → becomely(adv) etc. Adjectives that agree in number or case with the noun are tagged accordingly: equals (as in <i>deuyde it in parties equals</i>, ‘divide it into equal parts’) → equal (adj(pl)).</li>
+			<li>Common and proper nouns are lemmatized in the nominative singular, and inflectional suffixes represented as tags: i.e. <i>dea&amp;des</i> ‘death.GEN’ → death(n$); <i>tymes</i> ‘time.PL’ → time(ns), etc.; Derived word forms are lemmatized holistically, however, and not reduced to their bases: i.e. <i>breadth</i> → breadth(n); <i>cursynge</i> → cursing(n); </li>
+			<li>Personal pronouns are lemmatized in their nominative singular forms - <i>its</i> ‘it.GEN’ → it($), s-derivatives of possessives such as <i>yours</i> are lemmatized as if they were genitives, e.g. yours →  your (PRO$).</li>
+		</ol>
+							</div><div id="cluster">
+							<h4>4.1.4 Cluster</h4>
+			<p>Returns the (actual or potential, see introduction) coda cluster of the word form. The analyses reproduced in this filed need to be handled with some care and responsibly. They are approximations. Among other reasons, this is because we had to generalize over a large observation period, during which segments were subject to considerable variation and change. It was impossible to take this into account. For instance, /x/ in <i>fight</i> probably changed quite gradually from a voiceless fricative to a voiced one, then to an approximant or glide and was eventually completely vocalised. In our database, however, all instances of the word are analysed as ending in the cluster /çt/. There are other cases, which experts will surely notice. In future versions of ECCE the graining of our analyses may become more finely grained, but in the present version it has had to remain approximate. So a detailed look at the results is in certainly still order before conclusions are drawn from them.</p>
+								</div><div id="morphological-status">
+								<h4>4.1.5 Morphological status</h4>
+									<p>Returns the identifiers described above (see &rarr; <a href="#the-mpt-status-field">MPT status</a>).</p>
+								</div>	<div id="date">				
+			<h4>4.1.6 Date</h4>
+			<p>Returns the date at which the token was attested. These dates have been taken over from the Penn Helsinki Corpora, except in cases where the date of composition differed from the date of the manuscript. Here we decided to take the mean. Obviously, this is not completely unproblematic, and ECCE users should refer to the Penn Helsinki Corpora if they decide against living with the consequences of our decision. Also in this case, the ECCE results need to be interpreted with due care.</p>
+			<p>The token list returned by default thus looks as in figure (3):</p>
+			<p>(3)</p>
+			<img src="{% static 'webpage/img/resource4.png' %}" style="width: 80%"/>
+										</div><div id="additional-result-fields">				
+			<h4>4.1.7 Additional result fields</h4>
+			<p>Apart from the fields returned by default, users may select a number of further result fields to be displayed. These can be accessed by clicking the button under ‘Select additional columns’ on the main search page. Some of them have been created for internal use and may not be very useful for practical purposes. Others might be of interest, however. </p>
+											<h5>4.1.7.1	POS</h5>
+			<p>Returns Penn-Helsinki POS tags.</p>
+			<h5>4.1.7.2	Medial suffix and Final suffix</h5>
+			<p>Return suffixes involved in cluster formation (only in relevant cases, of course).</p>
+			<h5>4.1.7.3	Right onset</h5>
+			<p>Returns the initial segment of the word following the cluster</p>
+			<h5>4.1.7.4	Weight</h5>
+			<p>Returns an estimate of the probability that a token was actually realised with a cluster at the time of its attestation. The single variable taken into account for this purpose is an estimate about the progress of schwa loss. This change represented a major factor in the emergence and rise of coda clusters in English. For instance, in word forms such as <i>clymbe</i> (/’kliːmbə/ > /’kliːmb/) ‘climb’ or <i>ende</i> (/’endə/ > /end/) ‘end’ it changed medial clusters into final ones, and in items like <i>famed</i> (/’faːməd/ > /’faːmd/) ‘famed’ or <i>faylled</i> (/failəd/ >/faild/ ) ‘failed’ new final clusters were created out CVC sequences. Schwa loss spread gradually from the beginning of the twelfth to the end of the fifteenth century, and the probability of potential schwa loss inputs to wind up with a final cluster rose accordingly. For our purpose, we modelled schwa loss spread in terms of an s-curve that we calibrated against evidence from verse texts (see Bauman, Prömer and Ritt forthc.). In relevant tokens, our estimate of the probability that a potential cluster was realised as an actual one is therefore a linear function of our estimate of schwa loss progress. – It is of course evident that the weights thereby attributed to tokens cannot be interpreted literally as saying much (or anything) about individual occurrences. They represent statistical measures and make sense only when one interprets them as being about token populations at particular periods rather than commitments about individuals. Therefore, it makes much more sense to consider their impact on the frequency tables that ECCE offers as well (see below): in a population of 1000 tokens with a cluster probability of 0.7 per token, it clearly makes some sense to think that about 700 of them may have surfaced with an actual coda cluster, even if one does not know which the specific ones that did actually were. It is for such statistical purposes that we have introduced probability weightings into the database, and we have made it possible to look at estimates in the token list primarily for purposes of transparency. Even when interpreted statistically as being about populations rather than individual instances, however, our estimates remain, indeed, estimates and should be handled accordingly and with due caution.</p>
+			<p><b>Caveat:</b> It needs to be pointed out in this context that schwa loss is the ONLY variable that we have taken into account when estimating cluster probabilities. Crucially, other sound changes such as the vocalisation of /x/ in words like <i>knight</i>, or the deletion of final /b/ and /g/ in <i>climb</i> or <i>thing</i> do not yet figure in our calculations, although they may do so in later versions. This means that our database overestimates cluster frequencies particularly in the later parts of the observation period. Users interested in clusters to which that applies, will for the present have to adjust the results that ECCE returns accordingly.</p>
+										</div>	<div id="freq-table">
+											<h3>4.2	Frequency tables</h3>
+			<p>In addition to token lists, ECCE generates frequency lists for any search one formulates. They can be accessed by clicking on the button ‘See frequency tables’ on the main search page, and look as in figure (4).</p>
+			<p>(4)</p>
+			<img src="{% static 'webpage/img/resource5.png' %}" style="width: 80%"/>
+			<p>Frequency tables contain the following fields:</p>
+											</div>	<div id="semicentury">
+			<h4>4.2.1 Semicentury</h4>
+			<p>Shows the start dates of half centuries in which the returned tokens were attested. I.e. 1350 means 1350-1400 and so on.</p>
+												</div>	<div id="tokens">
+			<h4>4.2.2 Tokens</h4>
+			<p>Shows the absolute number of word form tokens attested in the period that had the potential of ending in a cluster.</p>
+													</div>	<div id="weighted">
+			<h4>4.2.3 Weighted</h4>
+			<p>Shows the absolute number of tokens likely to have been actually realised with clusters taking the progress of schwa loss into account. (Relevant only for statistical significance tests)</p>
+														</div>	<div id="normalized-weighted">
+			<h4>4.2.4 Normalized and weighted</h4>
+			<p>Shows the number of tokens per million words that were likely to have been actually realised with clusters taking the progress of schwa loss into account.</p>
+															</div>	<div id="normilized">
+																<h4>4.2.5 Normalised</h4>
+			<p>Shows the number of word form tokens per million words attested in the period that had the potential of ending in a cluster.</p>
+		</div></div>
+        <div id="charts">
+        	<h2>5 Charts</h2>
+        	<p>ECCE provides a rich selection of ways in which plots from search results can be created. Quite a number of them have been set up for purposes of testing and may be of limited usefulness for actual research purposes. Others may be however. In future versions, it is planned to limit the choice to useful plotting options.</p>
+        	<p>Also, at present, ECCE does not yet offer help files that would explain what the provided plots actually plot. In many cases, however, this should be evident, or at least inferable. </p>
 		</div>
-		<div id="">
+		<div id="using-decce">
+			<h2>6 Using ECCE for simulating virtual post schwa loss varieties</h2>
+			<p>As will have become obvious, ECCE employs two different types of cluster counts. On the one hand, it counts potential clusters. This type of count includes all words that had the potential of ending in clusters after the full implementation of schwa loss. The other count takes the actual progress of schwa loss into account, and considers only words that were likely to have actually been realised with coda clusters at the time of their occurrence. Clearly, for purposes of historical description, or rather reconstruction, it is the latter type of count that matters. However, also the former one can be exploited for interesting purposes. In particular, it allows one to derive virtual post schwa loss languages. This can be achieved by counting all potential pre-schwa-loss clusters as ‘virtually’ actual. If one does that, one gets an idea of how the population of English coda clusters might have looked, if nothing had happened in the historical development of English except schwa loss. Comparing such virtual post schwa loss populations to actual ones makes it possible to identify changes that may constitute possibly ‘therapeutic’ reactions to the (mor-)phonotactic effects of schwa loss. For interesting results that this method produces see, for example, Baumann, Prömer and Ritt 2015. </p>
 		</div>
-		<div id="">
-		</div><div id="">
+		<div id="downloading-results">
+			<h2>7 Downloading search results for further processing and analysis</h2>
+			<p>ECCE makes it possible to export and download search results for further treatment. To do so, click the download button on the results page. At present results are exported in *.cvs format, which allows data to be imported into spreadsheets such as Excel or others. – Subjecting ECCE results to further analysis is advisable in many cases, as explained also below. </p>
 		</div>
-		<div id="">
+		<div id="disclaimers">
+			<h2>8 Envoy and some disclaimers</h2>
+			<p>ECCE was designed for the purpose of making it easier to use historical and written corpus data for addressing phonological questions. While we think that ECCE demonstrates quite well how this can be done, it clearly has some limitations. For example, and as indicated above (see <a href="#additional-result-fields">weight</a>), ECCE does not take into account that some final clusters that emerged after schwa loss were affected by subsequent changes such as final cluster simplification (/mb/ > /m/ in words like <i>climb</i>) or /X/-vocalisation (as in <i>thought</i>). Thus, the numbers ECCE returns for clusters affected by such changes, need to be manually adjusted for the time being. Also, users might not always subscribe to the analytic criteria we have applied and/or find errors among the 370.000 plus tokens in the database. Also in such cases, the possibility to download results makes it easy to apply adjustments as required. Finally, ECCE shares with many historical corpora that it combines data of diverse regional origins, of diverse genres, and scribal practices, and puts them all together as if they represented something pictures of ‘coherent language stages’, which the did not really. In that respect, the calculations that ECCE supplies are necessarily calculations about artefact and should be treated with appropriate caution when interpreted as representing abstractions of historical realities.</p>
 		</div>
-		<div id="">
-		</div>
-		<div id="">
-		</div>
-		<div id="">
+		<div id="references">
+			<h2>9 References</h2>
+			<p>Baumann, Andreas Christina Prömer, &amp; Nikolaus Ritt. 2015. Identifying therapeutic changes by simulating virtual language stages: a method and its application in the study of Middle English coda phonotactics after schwa deletion. <i>Vienna English Working Papers</i> 24: 1-30.</p>
+			<p>Baumann, Andreas Christina Prömer, &amp; Nikolaus Ritt. forthc. <i>Reconstructing the spread of Middle English schwa deletion</i>. Italian Journal of Linguistics (Special Issue, edited by Anderson, Cormac &amp; Natalia Kuznetsova)</p>
+			<p>Kroch, Anthony, Beatrice Santorini &amp; Lauren Delfs. 2004. <i>Penn-Helsinki Parsed Corpus of Early Modern English</i>. <a href="http://www.ling.upenn.edu/hist-corpora/">http://www.ling.upenn.edu/hist-corpora/</a>.</p>
+			<p>Kroch, Anthony &amp; Ann Taylor. 2000. <i>Penn-Helsinki Parsed Corpus of Middle English</i>. <a href="http://www.ling.upenn.edu/hist-corpora/">http://www.ling.upenn.edu/hist-corpora/</a>.</p>
 		</div>
 
         </div>
