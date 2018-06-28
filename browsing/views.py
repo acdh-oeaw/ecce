@@ -1,3 +1,4 @@
+import io
 from django_tables2 import SingleTableView, RequestConfig
 from tokens.models import *
 from .filters import *
@@ -236,26 +237,29 @@ class TokenDownloadView(GenericListView):
 
     def render_to_response(self, context, **kwargs):
         timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
-        response = HttpResponse(content_type='text/csv')
         filename = "ecce_export_{}".format(timestamp)
-        response['Content-Disposition'] = 'attachment; filename="{}.csv"'.format(filename)
-        writer = csv.writer(response, delimiter=",")
-        writer.writerow([
-            'Left Context', 'Plain Word',
+        response = HttpResponse(content_type='text/csv')
+        tok_list = self.get_queryset().values_list(
+            'left_context',
+            'plain_word',
+            'right_context',
+            'lemma__name',
+            'lemma__pos__pref_label',
+            'cluster__consonant',
+            'label__label',
+            'text_source__mean_date__dates'
+        )
+        tok_list_headers = [
+            'Left Context',
+            'Plain Word',
             'Right Context',
             'Word Lemma',
+            'Word Lemma POS',
             'Cluster',
             'Morphological Status',
             'Date'
-            ]
-        )
-        for obj in self.get_queryset()[:1000]:
-            writer.writerow([
-                obj.left_context, obj.plain_word,
-                obj.right_context,
-                obj.lemma,
-                obj.cluster,
-                obj.label,
-                obj.text_source.mean_date.dates
-                ])
+        ]
+        tok_df = pd.DataFrame(list(tok_list), columns=tok_list_headers)
+        tok_df.to_csv(response, sep=',', index=False)
+        response['Content-Disposition'] = 'attachment; filename="{}.csv"'.format(filename)
         return response

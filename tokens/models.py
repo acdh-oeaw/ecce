@@ -40,7 +40,8 @@ class Date(models.Model):
     )
     semicentury = models.IntegerField(
         blank=True, null=True, verbose_name="Semicentury",
-        help_text="50-year period of source text this token is extracted from (e.g. 1250 stands for 1250-1300)"
+        help_text="50-year period of source text this token is extracted from\
+        (e.g. 1250 stands for 1250-1300)"
     )
     century = models.IntegerField(
         blank=True, null=True, verbose_name="Century",
@@ -48,22 +49,27 @@ class Date(models.Model):
     )
     pr_cc_checekd = models.FloatField(
         blank=True, null=True, verbose_name="pr_cc_checked",
-        help_text="probability estimate of graphemically checked cluster for this year (for probabilistic estimation only)"
+        help_text="probability estimate of graphemically checked cluster for this year\
+        (for probabilistic estimation only)"
     )
     pr_cc_final = models.FloatField(
         blank=True, null=True, verbose_name="pr_cc_final",
-        help_text="probability estimate of cluster with graphemic final schwa for this year (for probabilistic estimation only)"
+        help_text="probability estimate of cluster with graphemic final schwa for this year\
+        (for probabilistic estimation only)"
     )
     pr_cc_final_V = models.FloatField(
         blank=True, null=True, verbose_name="pr_cc_final_V",
-        help_text="probability estimate of cluster with graphemic final and checked schwa for this year (for probabilistic estimation only)")
+        help_text="probability estimate of cluster with graphemic final and checked schwa\
+        for this year (for probabilistic estimation only)")
     pr_cc_both = models.FloatField(
         blank=True, null=True, verbose_name="pr_cc_both",
-        help_text="probability estimate of cluster with graphemic final schwa before vowel for this year (for probabilistic estimation only)"
+        help_text="probability estimate of cluster with graphemic final schwa before vowel\
+        for this year (for probabilistic estimation only)"
     )
     pr_cc_no = models.IntegerField(
         blank=True, null=True, verbose_name="pr_cc_no",
-        help_text="probability estimate of graphemic cluster for this year (for probabilistic estimation only)"
+        help_text="probability estimate of graphemic cluster for this year\
+        (for probabilistic estimation only)"
     )
     updated = models.DateTimeField(
         auto_now=True, verbose_name="updated", help_text="Date of last update"
@@ -142,11 +148,11 @@ class Text(models.Model):
 
     @property
     def related_tokens_amount(self):
-        #1. filter all tokens related to text
+        # 1. filter all tokens related to text
         tokens_per_text = Token.objects.filter(text_source=self.id)
-        #2. group tokens by semicentury
-        #tokens_per_text = tokens_per_text.values('text_source__mean_date__semicentury')
-        #3. count how many tokens in each semicentury
+        # 2. group tokens by semicentury
+        # tokens_per_text = tokens_per_text.values('text_source__mean_date__semicentury')
+        # 3. count how many tokens in each semicentury
         tokens_per_text = tokens_per_text.count()
         return tokens_per_text
 
@@ -212,12 +218,14 @@ class Cluster(models.Model):
     first_consonant = models.ForeignKey(
         Consonant, blank=True, null=True, related_name="consonant_first",
         verbose_name="Fourth-to-last segment",
-        help_text="IPA phonological transcription of fourth-to-last segment of the cluster (only applies to CCCC)"
+        help_text="IPA phonological transcription of fourth-to-last segment of the cluster\
+        (only applies to CCCC)"
     )
     second_consonant = models.ForeignKey(
         Consonant, blank=True, null=True, related_name="consonant_second",
         verbose_name="Third-to-last segment",
-        help_text="IPA phonological transcription of third-to-last segment of the cluster (only applies to CCC(C))"
+        help_text="IPA phonological transcription of third-to-last segment of the cluster\
+        (only applies to CCC(C))"
     )
     third_consonant = models.ForeignKey(
         Consonant, blank=True, null=True, related_name="consonant_third",
@@ -227,7 +235,8 @@ class Cluster(models.Model):
     fourth_consonant = models.ForeignKey(
         Consonant, blank=True, null=True, related_name="consonant_fourth",
         verbose_name="Last segment",
-        help_text="IPA phonological transcription of fourth-to-last segment of the cluster (only applies to CCCC)"
+        help_text="IPA phonological transcription of fourth-to-last segment of the cluster\
+        (only applies to CCCC)"
     )
     size = models.IntegerField(
         blank=True, null=True, verbose_name="Cluster size",
@@ -244,18 +253,23 @@ class Cluster(models.Model):
     preferred_cluster = models.CharField(
         blank=True, null=True, max_length=10,
         verbose_name="NAD preferred",
-        help_text="Says if cluster is preferred according to net auditory distance (see http://wa.amu.edu.pl/nadcalc/)"
+        help_text="Says if cluster is preferred according to net auditory distance\
+        (see http://wa.amu.edu.pl/nadcalc/)"
     )
     nad_vc = models.FloatField(
         blank=True, null=True, verbose_name="NAD VC",
-        help_text="Net auditory distance between preceding vowel and penultimate segment (see http://wa.amu.edu.pl/nadcalc/)"
+        help_text="Net auditory distance between preceding vowel and penultimate segment\
+        (see http://wa.amu.edu.pl/nadcalc/)"
     )
     nad_c1c2 = models.FloatField(
-        blank=True, null=True, verbose_name="NAD C1C2", help_text="Net auditory distance between segment 1 and segment 2 (see http://wa.amu.edu.pl/nadcalc/)"
+        blank=True, null=True, verbose_name="NAD C1C2",
+        help_text="Net auditory distance between segment 1 and segment 2\
+        (see http://wa.amu.edu.pl/nadcalc/)"
     )
     nad_c2c3 = models.FloatField(
         blank=True, null=True, verbose_name="NAD C2C3",
-        help_text="Net auditory distance between segment 1 and segment 2 (see http://wa.amu.edu.pl/nadcalc/)")
+        help_text="Net auditory distance between segment 1 and segment 2\
+        (see http://wa.amu.edu.pl/nadcalc/)")
     updated = models.DateTimeField(
         auto_now=True, verbose_name="updated", help_text="Date of last update"
     )
@@ -288,7 +302,8 @@ class TokenLabel(models.Model):
     morphonotacticity = models.ForeignKey(
         SkosConcept, blank=True, null=True, related_name="skos_morphonotacticity",
         verbose_name="Morphonotactic status",
-        help_text="Morphonotactic status of the cluster (lexical, morphonotactic, weakly morphonotatcic)"
+        help_text="Morphonotactic status of the cluster\
+        (lexical, morphonotactic, weakly morphonotatcic)"
     )
     updated = models.DateTimeField(
         auto_now=True, verbose_name="updated", help_text="Date of last update"
@@ -321,15 +336,18 @@ class SchwaPresent(models.Model):
     )
     is_final = models.NullBooleanField(
         verbose_name="schwa finally present",
-        help_text="says if schwa is graphemically represented in word final position (for probabilistic estimation only)"
+        help_text="says if schwa is graphemically represented in word final position\
+        (for probabilistic estimation only)"
     )
     is_final_v = models.NullBooleanField(
         verbose_name="schwa finally_V present",
-        help_text="says if schwa is graphemically represented in word final position before vowel (for probabilistic estimation only)"
+        help_text="says if schwa is graphemically represented in word final position before vowel\
+        (for probabilistic estimation only)"
     )
     is_checked = models.NullBooleanField(
         verbose_name="checked schwa present",
-        help_text="says if schwa is graphemically represented in interconsonantal position (for probabilistic estimation only)"
+        help_text="says if schwa is graphemically represented in interconsonantal position\
+        (for probabilistic estimation only)"
     )
     is_both = models.NullBooleanField(
         verbose_name="both schwas present",
@@ -466,7 +484,8 @@ class Token(models.Model):
     )
     weight_norm = models.FloatField(
         blank=True, null=True, verbose_name="Weighted and Normalized",
-        help_text="Per million tokens normalized probabilistically derived weigth of the cluster token (normalization based on semicentury-wise subcorpora)")
+        help_text="Per million tokens normalized probabilistically derived weigth\
+        of the cluster token (normalization based on semicentury-wise subcorpora)")
     weight_not_norm = models.FloatField(
         blank=True, null=True, verbose_name="Normalized",
         help_text="Per million tokens weigth of the cluster token")
