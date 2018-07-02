@@ -250,6 +250,7 @@ class TokenDownloadView(GenericListView):
             'label__label',
             'text_source__mean_date__dates'
         )
+
         tok_list_headers = [
             'Left Context',
             'Plain Word',
