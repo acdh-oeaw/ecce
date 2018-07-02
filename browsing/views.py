@@ -236,6 +236,7 @@ class TokenDownloadView(GenericListView):
     template_name = 'browsing/browse_tokens_custom.html'
 
     def render_to_response(self, context, **kwargs):
+        sep = self.request.GET.get('sep', '')
         timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
         filename = "ecce_export_{}".format(timestamp)
         response = HttpResponse(content_type='text/csv')
@@ -260,6 +261,11 @@ class TokenDownloadView(GenericListView):
             'Date'
         ]
         tok_df = pd.DataFrame(list(tok_list), columns=tok_list_headers)
-        tok_df.to_csv(response, sep=',', index=False)
+        if sep == "comma":
+            tok_df.to_csv(response, sep=',', index=False)
+        elif sep == "semicolon":
+            tok_df.to_csv(response, sep=',', index=False)
+        elif sep == "tab":
+            tok_df.to_csv(response, sep='\t', index=False)
         response['Content-Disposition'] = 'attachment; filename="{}.csv"'.format(filename)
         return response

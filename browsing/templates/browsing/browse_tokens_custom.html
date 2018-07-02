@@ -34,7 +34,7 @@ $("#goto option").each(function() {
 
         <h3><span class="fa fa-search" style="padding-left:10px; padding-right: 10px;">
         </span>Browse {% class_definition %} {% block list_title %}{% endblock %}</h3>
-    
+
           {% load django_tables2 crispy_forms_tags %}
             <form action="." class="uniForm" method="get">
                 {% if togglable_colums %}
@@ -47,7 +47,7 @@ $("#goto option").each(function() {
             {% crispy filter.form filter.form.helper %}
 
             </form>
-            
+
     {% block create_button %}{% endblock %}
 
  </div>
@@ -56,14 +56,17 @@ $("#goto option").each(function() {
             <div class="col-md-12">
                 {% with table.paginator.count as total %}
                 <legend>Total results: {{ total }}</legend>
-                
+
                 <p style="margin-bottom: 10px;">
                 <span class="glyphicon glyphicon-info-sign"></span> Sort results by clicking on column header
                 </p>
-                
+
                 <a class ="btn btn-default"  href="{% url 'browsing:browse_tokens_frequencies' %}{% querystring %}" style="margin-bottom: 20px;"><i class="fa fa-arrow-right"></i> See frequencies table</a>
                 <a class ="btn btn-default"  href="{% url 'browsing:tokens_download' %}{% querystring %}" style="margin-bottom: 20px;"><span class="glyphicon glyphicon-download-alt"></span> Download</a>
-  
+                <a class ="btn btn-default"  href="{% url 'browsing:tokens_download' %}{% querystring %}&sep=comma" style="margin-bottom: 20px;"><span class="glyphicon glyphicon-download-alt"></span> Download "," separated</a>
+                <a class ="btn btn-default"  href="{% url 'browsing:tokens_download' %}{% querystring %}&sep=semicolon" style="margin-bottom: 20px;"><span class="glyphicon glyphicon-download-alt"></span> Download ";" separated</a>
+                <a class ="btn btn-default"  href="{% url 'browsing:tokens_download' %}{% querystring %}}&sep=tab" style="margin-bottom: 20px;"><span class="glyphicon glyphicon-download-alt"></span> Download "tab" separated</a>
+
 
                 {% endwith %}
       {% block table %}
@@ -74,7 +77,7 @@ $("#goto option").each(function() {
               <tr>
               {% for column in table.columns %}
                   {% if column.orderable %}
-                  <th {{ column.attrs.th.as_html }}><a href="{% querystring table.prefixed_order_by_field=column.order_by_alias.next %}">{{ column.header }} 
+                  <th {{ column.attrs.th.as_html }}><a href="{% querystring table.prefixed_order_by_field=column.order_by_alias.next %}">{{ column.header }}
             </a></th>
                   {% else %}
                   <th {{ column.attrs.th.as_html }}>{{ column.header }}</th>
