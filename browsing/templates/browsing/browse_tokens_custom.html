@@ -61,12 +61,20 @@ $("#goto option").each(function() {
                 <span class="glyphicon glyphicon-info-sign"></span> Sort results by clicking on column header
                 </p>
 
-                <a class ="btn btn-default"  href="{% url 'browsing:browse_tokens_frequencies' %}{% querystring %}" style="margin-bottom: 20px;"><i class="fa fa-arrow-right"></i> See frequencies table</a>
-                <a class ="btn btn-default"  href="{% url 'browsing:tokens_download' %}{% querystring %}" style="margin-bottom: 20px;"><span class="glyphicon glyphicon-download-alt"></span> Download</a>
-                <a class ="btn btn-default"  href="{% url 'browsing:tokens_download' %}{% querystring %}&sep=comma" style="margin-bottom: 20px;"><span class="glyphicon glyphicon-download-alt"></span> Download "," separated</a>
-                <a class ="btn btn-default"  href="{% url 'browsing:tokens_download' %}{% querystring %}&sep=semicolon" style="margin-bottom: 20px;"><span class="glyphicon glyphicon-download-alt"></span> Download ";" separated</a>
-                <a class ="btn btn-default"  href="{% url 'browsing:tokens_download' %}{% querystring %}}&sep=tab" style="margin-bottom: 20px;"><span class="glyphicon glyphicon-download-alt"></span> Download "tab" separated</a>
+                <a class ="btn btn-default"  href="{% url 'browsing:browse_tokens_frequencies' %}{% querystring %}"><i class="fa fa-arrow-right"></i> See frequencies table</a>
 
+                <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle dropdown-custom" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  <span class="glyphicon glyphicon-download-alt"></span>
+                Download
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="{% url 'browsing:tokens_download' %}{% querystring %}&sep=comma">"," separated</a></li>
+                  <li><a href="{% url 'browsing:tokens_download' %}{% querystring %}&sep=semicolon">";" separated</a></li>
+                  <li><a href="{% url 'browsing:tokens_download' %}{% querystring %}}&sep=tab">"tab" separated</a></li>
+                </ul>
+              </div>
 
                 {% endwith %}
       {% block table %}
